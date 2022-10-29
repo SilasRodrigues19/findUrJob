@@ -1,0 +1,92 @@
+@use "sass:map";
+
+@mixin flexCenter($justify_content) {
+	display: flex;
+	align-items: center;
+	justify-content: $justify_content;
+}
+
+@mixin flexCenterCol {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+@mixin backgroundBefore($position, $opacity, $background) {
+	position: $position;
+	opacity: $opacity;
+	background: $background;
+	content: "";
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	left: 0;
+	top: 0;
+}
+
+@mixin slideInUpAccordionItem {
+	@for $i from 1 through 999 {
+		&:nth-child(#{$i}) {
+			animation: slide-in-up #{$i * 0.3}s ease-in-out;
+		}
+	}
+}
+
+@mixin slideInUpOnCollapse {
+	@for $i from 1 through 999 {
+		&:nth-of-type(#{$i}) {
+			animation: slide-in-up #{$i * 0.05}s ease-in-out;
+		}
+	}
+}
+
+@function pxToRem($value) {
+	@return calc($value / 16) + rem;
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+	&::-moz-placeholder {
+		@content;
+	}
+	&:-ms-input-placeholder {
+		@content;
+	}
+}
+
+$breakpoints: (
+	s: 500px,
+	m: 768px,
+	l: 1200px,
+	xl: 1600px,
+);
+
+@mixin mediaQueryMax($value) {
+	@if map.has-key($breakpoints, $value) {
+		$size: map.get($breakpoints, $value);
+		@media only screen and (max-width: $size) {
+			@content;
+		}
+	} @else {
+		@media only screen and (max-width: #{$value}px) {
+			@content;
+		}
+	}
+}
+
+@mixin mediaQueryMin($value) {
+	@if map.has-key($breakpoints, $value) {
+		$size: map.get($breakpoints, $value);
+		@media only screen and (min-width: $size) {
+			@content;
+		}
+	} @else {
+		@media only screen and (min-width: #{$value}px) {
+			@content;
+		}
+	}
+}

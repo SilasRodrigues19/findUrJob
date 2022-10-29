@@ -1,0 +1,76 @@
+@import "./_variables";
+@import "./_functions";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: $lightGrayDarker;
+	&:hover {
+		color: $lightGrayHigher;
+	}
+}
+
+li {
+	list-style: none;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: pxToRem(10);
+	background-color: transparent;
+}
+
+::-webkit-scrollbar {
+	width: pxToRem(6);
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: pxToRem(10);
+	background-color: #868f96;
+	display: none;
+}
+
+.showScrollbar ::-webkit-scrollbar-thumb {
+	display: initial;
+}
+
+::selection {
+	background: #485fc7;
+	color: #fff;
+}
+
+.is-full-vh {
+	min-height: 100vh;
+}
+
+.d-none {
+	display: none;
+}
+
+.d-block {
+	display: block;
+}
+
+.has-background-transparent {
+	background: transparent;
+}
+
+html {
+	overflow: overlay;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	font-family: "Montserrat", sans-serif;
+}
+
+.material-symbols-outlined,
+.material-symbols {
+	font-size: 1rem;
+}
