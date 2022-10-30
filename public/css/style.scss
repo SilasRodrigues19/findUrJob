@@ -21,22 +21,20 @@ li {
 
 ::-webkit-scrollbar-track {
 	border-radius: pxToRem(10);
-	background-color: transparent;
+	background-repeat: transparent;
 }
 
 ::-webkit-scrollbar {
-	width: pxToRem(6);
-	background-color: transparent;
+	width: pxToRem(8);
+	background-clip: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	border-radius: pxToRem(10);
-	background-color: #868f96;
-	display: none;
-}
-
-.showScrollbar ::-webkit-scrollbar-thumb {
-	display: initial;
+	border-radius: pxToRem(2);
+	background: #485fc780;
+	&:hover {
+		background: #485fc780;
+	}
 }
 
 ::selection {
@@ -46,6 +44,10 @@ li {
 
 .is-full-vh {
 	min-height: 100vh;
+}
+
+.is-gap-2 {
+	gap: 2rem;
 }
 
 .d-none {
