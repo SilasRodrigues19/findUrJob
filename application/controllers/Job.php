@@ -30,5 +30,17 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
+	public function new()
+	{
+		$data['title'] = 'Publique uma vaga';
+
+		$res = $this->mjob->listJobLevel();
+		$data['listJobLevel'] = $res;
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/new', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
 
 }
