@@ -21,12 +21,12 @@ li {
 
 ::-webkit-scrollbar-track {
 	border-radius: pxToRem(10);
-	background-repeat: transparent;
+	background: transparent;
 }
 
 ::-webkit-scrollbar {
 	width: pxToRem(8);
-	background-clip: transparent;
+	background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -44,6 +44,12 @@ li {
 
 .is-full-vh {
 	min-height: 100vh;
+}
+
+.is-flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .is-gap-2 {
@@ -75,4 +81,8 @@ body {
 .material-symbols-outlined,
 .material-symbols {
 	font-size: 1rem;
+}
+
+.job-link:visited {
+	color: #cacaca;
 }
