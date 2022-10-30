@@ -17,11 +17,17 @@ class Job_model extends CI_Model {
 
     $execute = $this->db->query($select);
 
+    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+  }
 
-   /*  echo  "<pre>";
-    var_dump($execute); exit(); */
+  public function listJobLevel()
+  {
+    $select = "SELECT DISTINCT SUBSTRING(job_level, 1) AS job_level FROM jobs";
+
+    $execute = $this->db->query($select);
 
     return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+
   }
 
 
