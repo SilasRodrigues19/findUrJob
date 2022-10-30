@@ -60,24 +60,37 @@
     </div>
 
     <div>
-      <table class="table is-bordered has-background-transparent">
+      <table class="table is-bordered is-fullwidth has-background-transparent has-datatable pt-6">
+        <caption class="subtitle">Painel de vagas.</caption>
         <thead>
           <tr>
-            <td>Descrição da vaga</td>
-            <td>Link da vaga</td>
-            <td>Senioridade</td>
-            <td>Requer experiência?</td>
+            <td class="has-text-centered">
+              <span class="iconify d-block my-0 mx-auto" data-icon="clarity:details-line"></span>
+              Descrição da vaga
+            </td>
+            <td class="has-text-centered">
+              <span class="iconify d-block my-0 mx-auto" data-icon="bi:link"></span>
+              Link da vaga
+            </td>
+            <td class="has-text-centered">
+              <span class="iconify d-block my-0 mx-auto" data-icon="game-icons:unbalanced"></span>
+              Nível
+            </td>
+            <td class="has-text-centered">
+              <span class="iconify d-block my-0 mx-auto" data-icon="ic:sharp-work-outline"></span>
+              Requer experiência?
+            </td>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <?php foreach($showJob as $idx => $value): ?>
+          <?php foreach($showJob as $idx => $value): ?>
+            <tr class="has-text-centered">
               <?= '<td>'.$showJob[$idx]['job_description'].'</td>';  ?>
-              <?= '<td>'.$showJob[$idx]['job_link'].'</td>';  ?>
+              <?= '<td><a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a></td>';  ?>
               <?= '<td>'.$showJob[$idx]['job_level'].'</td>';  ?>
               <?= '<td>'.($showJob[$idx]['job_experience'] ? 'Sim' : 'Não').'</td>';  ?>
-            <?php endforeach; ?>
             </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>
