@@ -26,14 +26,15 @@
 
     <!-- Right side -->
     <div class="level-right">
-      <p class="level-item ml-6"><a href="#all"><strong>Todas</strong></a></p>
       <p class="level-item ml-6">
-        <a href="#archived">
+        <span class="iconify has-text-grey mb-.1 mr-2" data-icon="bxs:archive-in"></span>
+        <a href="<?= base_url('/job/archived') ?>">
           Arquivadas
         </a>
       </p>
       <p class="level-item ml-6">
-        <a href="#about">
+        <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
+        <a href="<?= base_url('/job/about') ?>">
           Sobre
         </a>
       </p>
@@ -50,13 +51,13 @@
 
   <section class="section is-full-vh mt-10">
     <h1 class="title has-text-grey-dark">Vagas publicadas</h1>
-    <h2 class="subtitle mt-6">
+    <h2 class="subtitle my-6">
       Abaixo você pode encontrar todas as <strong class="has-text-grey-dark">vagas publicadas</strong>, ou utilize o filtro do cabeçalho para buscar por algo.
     </h2>
 
-    <div class="notification is-link is-light" id="reportPost">
+    <div class="notification is-link is-light my-6" id="reportPost">
       <button onclick="removeNotification();" class="delete m-auto"></button>
-      <p>Caso encontre alguma publicação que tenha passado pelo filtro e esteja fora do contexto de publicação de vagas, denuncie <a href="#report"><strong>nesta página.</strong></a></p>
+      <p>Caso encontre alguma publicação que tenha passado pelo filtro e esteja fora do contexto de publicação de vagas, denuncie <a target="_blank" href="<?= base_url('/job/report') ?>"><strong>nesta página.</strong></a></p>
     </div>
 
     <div>
