@@ -46,10 +46,24 @@ li {
 	min-height: 100vh;
 }
 
+.has-position-fixed-on-top {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
 .is-flex-center {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.mt-10 {
+	margin-top: 5rem;
 }
 
 .mb-\.1 {
@@ -89,4 +103,10 @@ body {
 
 .job-link:visited {
 	color: #cacaca;
+}
+
+nav {
+	background: rgba(204, 204, 204, .1);
+	box-shadow: 1px 1px 5px #cacaca;
+	backdrop-filter: blur(25px);
 }
