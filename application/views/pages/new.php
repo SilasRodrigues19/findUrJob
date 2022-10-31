@@ -17,13 +17,13 @@
       </p>
       <p class="level-item ml-6">
         <span class="iconify mb-.1 mr-2" data-icon="bxs:archive-in"></span>
-        <a href="#archived">
+        <a href="<?= base_url('/job/archived') ?>">
           Arquivadas
         </a>
       </p>
       <p class="level-item ml-6">
         <span class="iconify mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
-        <a href="#about">
+        <a href="<?= base_url('/job/about') ?>">
           Sobre
         </a>
       </p>
@@ -39,7 +39,7 @@
 
   <div class="columns">
     <form action="" method="POST" class="column is-6">
-      <input type="text" name="job_requirements" id="splited_job_requirements">
+      <input type="hidden" name="job_requirements" id="splited_job_requirements">
       <div class="field">
         <label class="label">Descrição</label>
         <div class="control">
