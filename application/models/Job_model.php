@@ -20,15 +20,19 @@ class Job_model extends CI_Model {
     return ($execute->num_rows() > 0) ? $execute->result_array() : array();
   }
 
-  public function listJobLevel()
+  public function addJob($dados)
   {
-    $select = "SELECT DISTINCT SUBSTRING(job_level, 1) AS job_level FROM jobs";
 
-    $execute = $this->db->query($select);
+    $insert = "INSERT INTO jobs (job_description, job_link, job_level, job_currency, job_mode, job_contract, job_salary, job_experience) 
+    VALUES ('{$dados['job_description']}', '{$dados['job_link']}', '{$dados['job_level']}', 
+            '{$dados['job_currency']}', '{$dados['job_mode']}', 
+            '{$dados['job_contract']}', '{$dados['job_salary']}', '{$dados['job_experience']}')";
 
-    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+            
+    $execute = $this->db->query($insert);
+
+    return ($execute) ? true : false;
 
   }
-
 
 }
