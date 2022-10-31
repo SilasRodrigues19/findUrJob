@@ -38,7 +38,7 @@
         </a>
       </p>
       <p class="level-item ml-6">
-        <a href="#publish" class="button is-link is-outlined">
+        <a href="<?= base_url('/job/new') ?>" class="button is-link is-outlined">
           <span class="material-symbols-outlined mr-2">
             add
           </span>
@@ -60,24 +60,29 @@
     </div>
 
     <div>
-      <table class="table is-bordered is-fullwidth has-background-transparent has-datatable pt-6">
+      <table class="table is-bordered is-fullwidth has-background-transparent has-datatable pt-6 my-4">
         <caption class="subtitle">Painel de vagas.</caption>
         <thead>
           <tr>
             <td class="has-text-centered">
-              <span class="iconify d-block my-0 mx-auto" data-icon="clarity:details-line"></span>
               Descrição da vaga
             </td>
             <td class="has-text-centered">
-              <span class="iconify d-block my-0 mx-auto" data-icon="bi:link"></span>
               Link da vaga
             </td>
             <td class="has-text-centered">
-              <span class="iconify d-block my-0 mx-auto" data-icon="game-icons:unbalanced"></span>
               Nível
             </td>
             <td class="has-text-centered">
-              <span class="iconify d-block my-0 mx-auto" data-icon="ic:sharp-work-outline"></span>
+              Salário
+            </td>
+            <td class="has-text-centered">
+              Moeda
+            </td>
+            <td class="has-text-centered">
+              Modalidade
+            </td>
+            <td class="has-text-centered">
               Requer experiência?
             </td>
           </tr>
@@ -88,6 +93,9 @@
               <?= '<td>'.$showJob[$idx]['job_description'].'</td>';  ?>
               <?= '<td><a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a></td>';  ?>
               <?= '<td>'.$showJob[$idx]['job_level'].'</td>';  ?>
+              <?= '<td>'.$showJob[$idx]['job_salary'].'</td>';  ?>
+              <?= '<td>'.$showJob[$idx]['job_currency'].'</td>';  ?>
+              <?= '<td>'.$showJob[$idx]['job_mode'].'</td>';  ?>
               <?= '<td>'.($showJob[$idx]['job_experience'] ? 'Sim' : 'Não').'</td>';  ?>
             </tr>
           <?php endforeach; ?>
