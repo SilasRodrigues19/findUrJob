@@ -54,6 +54,10 @@ li {
   align-items: center;
 }
 
+.mb-\.1 {
+  margin-bottom: 0.1rem;
+}
+
 .is-gap-2 {
   gap: 2rem;
 }
