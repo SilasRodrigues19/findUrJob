@@ -34,8 +34,21 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Publique uma vaga';
 
-		$res = $this->mjob->listJobLevel();
-		$data['listJobLevel'] = $res;
+		$dados['job_description'] = $this->input->post('job_description');
+		$dados['job_link'] = $this->input->post('job_link');
+		$dados['job_level'] = $this->input->post('job_level');
+		$dados['job_currency'] = $this->input->post('job_currency');
+		/*$dados['job_requirements'] = $this->input->post('job_requirements');*/
+		$dados['job_mode'] = $this->input->post('job_mode');
+		$dados['job_contract'] = $this->input->post('job_contract');
+		$dados['job_salary'] = $this->input->post('job_salary');
+		$dados['job_experience'] = $this->input->post('job_experience');
+
+		if(isset($dados['job_experience'])) {
+
+			$res = $this->mjob->addJob($dados);
+		}
+
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/new', $data);
