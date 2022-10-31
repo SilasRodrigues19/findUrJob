@@ -55,5 +55,31 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
+	public function about()
+	{
+		$data['title'] = 'Sobre';
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/about', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
+	public function report()
+	{
+		$data['title'] = 'Denuncie';
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/report', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
+	public function archived()
+	{
+		$data['title'] = 'Arquivadas';
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/archived', $data);
+		$this->load->view('templates/footer', $data);
+	}
 
 }
