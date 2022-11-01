@@ -8,10 +8,18 @@ class Job_model extends CI_Model {
     $where = false;
 
     if($searchTerm) {
-      $where = "WHERE '{$searchTerm}' IN (job_description, job_link, job_level, job_currency, job_mode, job_contract)";
+      $where = "WHERE CONCAT(job_description, job_link, job_level, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
     }
 
-    $select = "SELECT * from jobs {$where}";
+    $select = "SELECT *,
+      CASE 
+        WHEN job_currency = 'Real' THEN 'R$'
+        WHEN job_currency = 'Dollar' THEN '$'
+        WHEN job_currency = 'Euro' THEN '€'
+      END AS job_currency_symbol
+    FROM jobs {$where}";
+
+    //echo $select; exit();
 
     $execute = $this->db->query($select);
 

@@ -60,6 +60,13 @@ li {
   align-items: center;
 }
 
+.is-flex-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .w-100 {
   width: 100%;
 }
@@ -143,4 +150,10 @@ nav {
 
 .dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select {
   outline-color: #485fc7;
+}
+
+@media screen and (max-width: 500px) {
+  .card-footer-item {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -11,7 +11,7 @@
         <div class="level-item">
           <div class="field has-addons">
             <p class="control">
-              <input autocomplete="off" class="input" type="text" name="search" id="search" placeholder="Busque uma vaga">
+              <input autocomplete="off" class="input" type="text" name="search" id="search" placeholder="Busque uma vaga" value="<?= $search ?>">
             </p>
             <p class="control">
               <button class="button" type="submit">
@@ -70,52 +70,59 @@
     </h2>
 
     <div class="notification is-link is-light my-6" id="reportPost">
-      <button onclick="removeNotification();" class="delete m-auto"></button>
+      <button class="delete m-auto"></button>
       <p>Caso encontre alguma publicação que tenha passado pelo filtro e esteja fora do contexto de publicação de vagas, denuncie <a target="_blank" href="<?= base_url('/job/report') ?>"><strong>nesta página.</strong></a></p>
     </div>
 
     <div>
-      <table class="table is-hoverable is-fullwidth has-background-transparent has-datatable pt-6 my-4">
-        <caption class="subtitle">Painel de vagas.</caption>
-        <thead>
-          <tr>
-            <td class="has-text-centered">
-              Descrição da vaga
-            </td>
-            <td class="has-text-centered">
-              Link da vaga
-            </td>
-            <td class="has-text-centered">
-              Nível
-            </td>
-            <td class="has-text-centered">
-              Salário
-            </td>
-            <td class="has-text-centered">
-              Moeda
-            </td>
-            <td class="has-text-centered">
-              Modalidade
-            </td>
-            <td class="has-text-centered">
-              Requer experiência?
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach($showJob as $idx => $value): ?>
-            <tr class="has-text-centered">
-              <?= '<td>'.$showJob[$idx]['job_description'].'</td>';  ?>
-              <?= '<td><a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a></td>';  ?>
-              <?= '<td>'.$showJob[$idx]['job_level'].'</td>';  ?>
-              <?= '<td>'.$showJob[$idx]['job_salary'].'</td>';  ?>
-              <?= '<td>'.$showJob[$idx]['job_currency'].'</td>';  ?>
-              <?= '<td>'.$showJob[$idx]['job_mode'].'</td>';  ?>
-              <?= '<td>'.($showJob[$idx]['job_experience'] ? 'Sim' : 'Não').'</td>';  ?>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
+      <?php if($showJob): ?>
+        <?php foreach($showJob as $idx => $value): ?>
+          <div class="card my-4">
+            <header class="card-header py-4">
+              <p class="card-header-title">
+              <?= $showJob[$idx]['job_description']; ?>
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <p><strong>Link da vaga</strong></p>
+                <p><?= '<a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a>'; ?></p>
+              </div>
+              <div class="content">
+                <p><strong>Salário</strong></p>
+                <p><?= ($showJob[$idx]['job_salary'] == '0.00' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
+              </div>
+              <div class="content">
+                <p><strong>Modalidade</strong></p>
+                <p><?= ($showJob[$idx]['job_mode'] ? $showJob[$idx]['job_mode'] : 'Não informado');; ?></p>
+              </div>
+              <div class="content">
+                <p><strong>Contrato</strong></p>
+                <p><?= ($showJob[$idx]['job_contract'] ? $showJob[$idx]['job_contract'] : 'Não informado'); ?></p>
+              </div>
+              <div class="content">
+                <p><strong>Requer experiência?</strong></p>
+                <p><?= ($showJob[$idx]['job_experience'] ? 'Sim' : 'Não') ?></p>
+              </div>
+            </div>
+            <footer class="card-footer py-4">
+              <p class="card-footer-item d-block has-text-left">Publicado no dia
+                <strong class="mx-2"><?= date_format(new DateTime($showJob[$idx]['created_at']), 'd/m/Y');?></strong> às 
+                <strong class="ml-2"><?= date_format(new DateTime($showJob[$idx]['created_at']), 'H:i:s'); ?></strong>
+              </p>
+            </footer>
+          </div>
+        <?php endforeach; ?>
+        <?php else: ?>
+          <article class="message is-info">
+            <div class="message-header">
+              <p>Ainda não há nada por aqui.</p>
+            </div>
+            <div class="message-body">
+              Não encontramos nenhuma vaga publicada, que tal <a href="<?= base_url('/job/new') ?>">publicar uma?</a>
+            </div>
+          </article>
+      <?php endif; ?>
     </div>
 
   </section>

@@ -6,6 +6,8 @@ $(document).ready(function () {
 	});
 });
 
+window.history.replaceState && window.history.replaceState(null, null, window.location.href);
+
 let notificationBox = document.querySelector("#reportPost");
 
 const showAlertBox = (title, text, icon) => {
@@ -13,23 +15,17 @@ const showAlertBox = (title, text, icon) => {
 		title: title,
 		html: text,
 		icon: icon,
+		showClass: {
+			popup: 'animate__animated animate__zoomIn',
+		},
+		hideClass: {
+			popup: 'animate__animated animate__zoomOut',
+		},
 		allowOutsideClick: false,
 		allowEscapeKey: false,
 		allowEnterKey: false,
-		showCancelButton: true,
-		confirmButtonText: "Sim",
-		cancelButtonText: "Não",
-	}).then((result) => {
-		if (result.isConfirmed) {
-			notificationBox.classList.add("d-none");
-		} else if (result.isDenied) {
-			notificationBox.classList.add("d-block");
-		}
+		confirmButtonText: "Fechar",
 	});
-};
-
-const removeNotification = () => {
-	showAlertBox("", "Deseja remover essa mensagem ?", "error");
 };
 
 const removeFilter = () => {
@@ -46,3 +42,23 @@ if (document.body.contains(showMessage)) {
 		showMessage.classList.add("removeMessage");
 	}, 7500);
 }
+
+
+const job_description = document.querySelector('#job_description'),
+	  job_link = document.querySelector('#job_link'),
+	  job_level = document.querySelector('#job_level'),
+	  job_currency = document.querySelector('#job_currency'),
+	  job_salary = document.querySelector('#job_salary'),
+	  job_mode = document.querySelector('#job_mode'),
+	  job_contract = document.querySelector('#job_contract');
+
+
+const validateFields = () => {
+	if (job_description.value == "" || job_link.value == "" || job_level.value == "" || job_currency.value == "" 
+		|| job_salary.value == "" || job_mode.value == "" || job_contract.value == "") {
+		
+		showAlertBox("Erro ao publicar vaga", "Certifique-se de preencher todos os campos", "error");
+		return false;
+	} 
+	return true;
+} 

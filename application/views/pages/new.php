@@ -1,4 +1,5 @@
 <section class="hero is-link">
+  <?= showMessage(); ?>
   <div class="hero-body">
     <p class="title">
       Publique uma vaga.
