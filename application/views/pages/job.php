@@ -7,21 +7,23 @@
           <strong><?= $countJobs['countJobs'] ?></strong> <?= ($countJobs['countJobs']) > 1 ? 'vagas publicadas' : 'vaga publicada' ?> 
         </p>
       </div>
-      <div class="level-item">
-        <div class="field has-addons">
-          <p class="control">
-            <input class="input" type="text" placeholder="Busque uma vaga">
-          </p>
-          <p class="control">
-            <button class="button">
-              <span class="material-symbols-outlined mr-4">
-                search
-              </span>
-              Pesquisar
-            </button>
-          </p>
+      <form action="" method="POST" id="form-filter">
+        <div class="level-item">
+          <div class="field has-addons">
+            <p class="control">
+              <input autocomplete="off" class="input" type="text" name="search" id="search" placeholder="Busque uma vaga">
+            </p>
+            <p class="control">
+              <button class="button" type="submit">
+                <span class="material-symbols-outlined mr-4">
+                  search
+                </span>
+                Pesquisar
+              </button>
+            </p>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
 
     <!-- Right side -->
@@ -50,7 +52,19 @@
   </nav>
 
   <section class="section is-full-vh mt-10">
+
+    <?= 
+      (isset($search) && strlen($search) > 0) ? 
+      '<p class="my-6">Exibindo resultados para: ' . 
+        '<strong>' . $search . '</strong>
+          <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
+        </p>' 
+        : ''
+    ?>
+
+
     <h1 class="title has-text-grey-dark">Vagas publicadas</h1>
+    <?= showMessage(); ?>
     <h2 class="subtitle my-6">
       Abaixo você pode encontrar todas as <strong class="has-text-grey-dark">vagas publicadas</strong>, ou utilize o filtro do cabeçalho para buscar por algo.
     </h2>

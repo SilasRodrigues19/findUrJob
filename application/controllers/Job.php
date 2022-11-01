@@ -19,11 +19,14 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Vagas publicadas';
 
-		$res = $this->mjob->showJob();
+		$data['search'] = $this->input->post('search');
+
+		$res = $this->mjob->showJob($data['search']);
 		$data['showJob'] = $res;
 
 		$res = $this->mjob->totalJobs();
 		$data['countJobs'] = $res[0];
+
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/job', $data);
@@ -47,6 +50,11 @@ class Job extends MY_Controller
 		if(isset($dados['job_experience'])) {
 
 			$res = $this->mjob->addJob($dados);
+
+			if($res) {
+				notify('', 'Vaga adicionada', 'success');
+				redirect('/');
+			}
 		}
 
 

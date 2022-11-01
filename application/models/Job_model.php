@@ -2,9 +2,16 @@
 
 class Job_model extends CI_Model {
 
-  public function showJob()
+  public function showJob($searchTerm = false)
   {
-    $select = "SELECT * from jobs";
+
+    $where = false;
+
+    if($searchTerm) {
+      $where = "WHERE '{$searchTerm}' IN (job_description, job_link, job_level, job_currency, job_mode, job_contract)";
+    }
+
+    $select = "SELECT * from jobs {$where}";
 
     $execute = $this->db->query($select);
 
