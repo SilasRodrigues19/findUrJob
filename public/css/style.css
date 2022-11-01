@@ -72,6 +72,10 @@ li {
   margin-bottom: 0.1rem;
 }
 
+.mb--\.2 {
+  margin-bottom: -0.2rem;
+}
+
 .is-gap-2 {
   gap: 2rem;
 }
@@ -107,9 +111,36 @@ body {
   color: #cacaca;
 }
 
+.removeFilter {
+  cursor: pointer;
+  transition: scale 0.5 ease-in-out;
+}
+.removeFilter:hover {
+  scale: 1.2;
+  transition: scale 0.5 ease-in-out;
+}
+
+.showMessage {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 1rem;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.removeMessage {
+  display: none;
+}
+
 nav {
   background: rgba(204, 204, 204, 0.1);
   box-shadow: 1px 1px 5px #cacaca;
   -webkit-backdrop-filter: blur(25px);
           backdrop-filter: blur(25px);
+  z-index: 9;
+}
+
+.dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select {
+  outline-color: #485fc7;
 }/*# sourceMappingURL=style.css.map */

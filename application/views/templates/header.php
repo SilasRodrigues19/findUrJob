@@ -13,9 +13,8 @@
 		<link rel="manifest" href="<?= base_url('site.webmanifest'); ?>">
 		<title><?= $title; ?></title>
 		<link rel="stylesheet" href="<?= base_url('public/libraries/sweetalert2/sweetalert2.min.css'); ?>">
-		<link rel="stylesheet" href="<?= base_url('public/libraries/bulma/bulma.min.css'); ?>">
+		<link rel="stylesheet" href="<?= base_url('public/libraries/bulma/bulma.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/libraries/animate/animate.min.css'); ?>">
-		<link rel="stylesheet" href="<?= base_url('public/libraries/select2/select2.min.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/libraries/datatable/dataTables.min.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/css/style.css'); ?>">
 	</head>
