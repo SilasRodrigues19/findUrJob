@@ -4,7 +4,7 @@
     <div class="level-left">
       <div class="level-item">
         <p class="subtitle is-5">
-          <strong><?= $countJobs['countJobs'] ?></strong> <?= ($countJobs['countJobs']) > 1 ? 'vagas publicadas' : 'vaga publicada' ?> 
+          <?= ($countJobs['countJobs'] == 0) ? 'Nenhuma' : "<strong>" . $countJobs['countJobs'] . "</strong>"?> <?= ($countJobs['countJobs'] > 1 ? 'vagas publicadas' : 'vaga publicada') ?> 
         </p>
       </div>
       <form action="" method="POST" id="form-filter">
@@ -70,8 +70,12 @@
     </h2>
 
     <div class="notification is-link is-light my-6" id="reportPost">
-      <button class="delete m-auto"></button>
+      <button onclick="closeWarning();" class="delete m-auto"></button>
       <p>Caso encontre alguma publicação que tenha passado pelo filtro e esteja fora do contexto de publicação de vagas, denuncie <a target="_blank" href="<?= base_url('/job/report') ?>"><strong>nesta página.</strong></a></p>
+    </div>
+
+    <div class="notification my-2" id="rollBackPost">
+      <span onclick="revertWarning();" class="iconify rollback" data-icon="grommet-icons:revert"></span>
     </div>
 
     <div>

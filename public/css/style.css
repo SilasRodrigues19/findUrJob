@@ -148,6 +148,18 @@ nav {
   z-index: 9;
 }
 
+.notification > .rollback {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  cursor: pointer;
+  transition: scale 0.5 ease-in-out;
+}
+.notification > .rollback:hover {
+  scale: 1.2;
+  transition: scale 0.5 ease-in-out;
+}
+
 .dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select {
   outline-color: #485fc7;
 }

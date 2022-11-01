@@ -145,6 +145,20 @@ nav {
 	z-index: 9;
 }
 
+.notification {
+	> .rollback {
+		position: absolute;
+		right: 0.5rem;
+		top: 0.5rem;
+		cursor: pointer;
+		transition: scale .5 ease-in-out;
+		&:hover {
+			scale: 1.2;
+			transition: scale .5 ease-in-out;
+		}
+	}
+}
+
 
 // DataTable Override
 

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	rollBackPost.classList.add('d-none');
 	$(".has-datatable").DataTable({
 		language: {
 			url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json",
@@ -8,7 +9,8 @@ $(document).ready(function () {
 
 window.history.replaceState && window.history.replaceState(null, null, window.location.href);
 
-let notificationBox = document.querySelector("#reportPost");
+let notificationBox = document.querySelector("#reportPost"),
+	rollBackPost = document.querySelector("#rollBackPost");
 
 const showAlertBox = (title, text, icon) => {
 	Swal.fire({
@@ -35,14 +37,23 @@ const removeFilter = () => {
 	formFilter.submit();
 }
 
+const closeWarning = () => {
+	notificationBox.classList.add('d-none');
+	rollBackPost.classList.remove('d-none');
+}
+
+const revertWarning = () => {
+	notificationBox.classList.remove('d-none');
+	rollBackPost.classList.add('d-none');
+}
+
 const showMessage = document.querySelector(".showMessage");
 
 if (document.body.contains(showMessage)) {
 	setTimeout(() => {
 		showMessage.classList.add("removeMessage");
-	}, 7500);
+	}, 5000);
 }
-
 
 const job_description = document.querySelector('#job_description'),
 	  job_link = document.querySelector('#job_link'),
