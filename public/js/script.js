@@ -31,3 +31,18 @@ const showAlertBox = (title, text, icon) => {
 const removeNotification = () => {
 	showAlertBox("", "Deseja remover essa mensagem ?", "error");
 };
+
+const removeFilter = () => {
+	let search = document.querySelector("#search"),
+	formFilter = document.querySelector("#form-filter");
+	search.value = "";
+	formFilter.submit();
+}
+
+const showMessage = document.querySelector(".showMessage");
+
+if (document.body.contains(showMessage)) {
+	setTimeout(() => {
+		showMessage.classList.add("removeMessage");
+	}, 7500);
+}
