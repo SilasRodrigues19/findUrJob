@@ -44,7 +44,7 @@
       <div class="field">
         <label class="label">Descrição</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="text" placeholder="Descrição da vaga" name="job_description">
+          <input autocomplete="off" class="input" type="text" placeholder="Descrição da vaga" name="job_description" id="job_description">
         </div>
       </div>
 
@@ -54,7 +54,7 @@
             <strong class="button is-static">https://</strong>
             </p>
             <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="tel" placeholder="exemplo.com.br" name="job_link">
+              <input autocomplete="off" class="input" type="tel" placeholder="exemplo.com.br" name="job_link" id="job_link">
             </p>
           </div>
           <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
@@ -64,7 +64,7 @@
         <label class="label">Nível</label>
         <div class="control">
           <div class="select">
-            <select name="job_level">
+            <select name="job_level" id="job_level">
               <option value="" disabled selected>Selecione o nível exigido pela vaga</option>
               <option value="senior">Senior</option>
               <option value="pleno">Pleno</option>
@@ -80,7 +80,7 @@
       <div class="field has-addons">
         <p class="control">
           <span class="select">
-            <select name="job_currency">
+            <select name="job_currency" id="job_currency">
               <option value="real">R$</option>
               <option value="dollar">$</option>
               <option value="euro">€</option>
@@ -88,7 +88,7 @@
           </span>
         </p>
         <p class="control">
-          <input autocomplete="off" class="input" type="text" name="job_salary" placeholder="Salário">
+          <input autocomplete="off" class="input" type="text" name="job_salary" id="job_salary" placeholder="Salário">
         </p>
       </div>
 
@@ -107,7 +107,7 @@
         <label class="label">Modalidade</label>
         <div class="control">
           <div class="select">
-            <select name="job_mode">
+            <select name="job_mode" id="job_mode">
               <option value="" disabled selected>Selecione a modalidade</option>
               <option value="remoto">Remoto</option>
               <option value="presencial">Presencial</option>
@@ -121,7 +121,7 @@
         <label class="label">Contrato</label>
         <div class="control">
           <div class="select">
-            <select name="job_contract">
+            <select name="job_contract" id="job_contract">
               <option value="" disabled selected>Selecione o tipo de contrato</option>
               <option value="clt">CLT</option>
               <option value="pj">PJ</option>
@@ -139,7 +139,7 @@
               Sim
             </label>
             <label class="radio">
-              <input type="radio" value="0" name="job_experience">
+              <input type="radio" value="0" name="job_experience" checked>
               Não
             </label>
           </div>
@@ -150,7 +150,7 @@
 
       <div class="field is-grouped">
         <p class="control">
-          <button type="submit" class="button is-link is-medium">
+          <button onclick="return validateFields()" type="submit" class="button is-link is-medium">
             Enviar
           </button>
         </p>
