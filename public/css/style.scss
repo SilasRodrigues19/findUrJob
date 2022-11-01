@@ -70,6 +70,10 @@ li {
 	margin-bottom: .1rem;
 }
 
+.mb-\-\.2 {
+	margin-bottom: -.2rem;
+}
+
 .is-gap-2 {
 	gap: 2rem;
 }
@@ -105,8 +109,38 @@ body {
 	color: #cacaca;
 }
 
+.removeFilter {
+	cursor: pointer;
+	transition: scale .5 ease-in-out;
+	&:hover {
+		scale: 1.2;
+		transition: scale .5 ease-in-out;
+	}
+}
+
+.showMessage {
+	display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 1rem;
+	max-width: 20rem;
+    margin: 0 auto;
+}
+
+.removeMessage {
+	display: none;
+}
+
 nav {
 	background: rgba(204, 204, 204, .1);
 	box-shadow: 1px 1px 5px #cacaca;
 	backdrop-filter: blur(25px);
+	z-index: 9;
+}
+
+
+// DataTable Override
+
+.dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select {
+	outline-color: #485fc7;
 }
