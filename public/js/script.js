@@ -73,3 +73,11 @@ const validateFields = () => {
 	} 
 	return true;
 } 
+
+const splitRequirements = () => {
+	let splited_job_requirements = document.querySelector('#splited_job_requirements'),
+		job_requirements = document.querySelector('#job_requirements');
+
+	splited_job_requirements.value = job_requirements.value.split(',');
+}
+
