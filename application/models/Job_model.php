@@ -8,7 +8,7 @@ class Job_model extends CI_Model {
     $where = false;
 
     if($searchTerm) {
-      $where = "WHERE CONCAT(job_description, job_link, job_level, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
+      $where = "WHERE CONCAT(job_description, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
     }
 
     $select = "SELECT *,
