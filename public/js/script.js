@@ -1,3 +1,6 @@
+let notificationBox = document.querySelector("#reportPost"),
+	rollBackPost = document.querySelector("#rollBackPost");
+
 $(document).ready(function () {
 	rollBackPost.classList.add('d-none');
 	$(".has-datatable").DataTable({
@@ -8,9 +11,6 @@ $(document).ready(function () {
 });
 
 window.history.replaceState && window.history.replaceState(null, null, window.location.href);
-
-let notificationBox = document.querySelector("#reportPost"),
-	rollBackPost = document.querySelector("#rollBackPost");
 
 const showAlertBox = (title, text, icon) => {
 	Swal.fire({
