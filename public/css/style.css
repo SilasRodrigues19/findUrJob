@@ -112,13 +112,17 @@ body {
   width: 100%;
   font-family: "Montserrat", sans-serif;
 }
-body:before {
+
+.banner {
+  height: 15rem;
+}
+.banner:before {
   content: "";
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100vh;
+  height: 15rem;
   background: url("../img/background.jpg") no-repeat center/cover;
   opacity: 0.1;
   z-index: 0;
@@ -135,6 +139,11 @@ body:before {
 
 .job-link:visited {
   color: #cacaca;
+}
+
+.about-text {
+  text-align: justify;
+  line-height: 2rem;
 }
 
 .removeFilter {
