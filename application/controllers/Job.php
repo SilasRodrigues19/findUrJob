@@ -17,7 +17,6 @@ class Job extends MY_Controller
 
 	public function job()
 	{
-		$data['title'] = 'Vagas publicadas';
 
 		$data['search'] = $this->input->post('search');
 
@@ -27,6 +26,7 @@ class Job extends MY_Controller
 		$res = $this->mjob->totalJobs();
 		$data['countJobs'] = $res[0];
 
+		$data['title'] = 'Vagas publicadas ' . '(' .$data['countJobs']['countJobs']. ')' ;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/job', $data);
