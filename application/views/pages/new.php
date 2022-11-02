@@ -1,4 +1,4 @@
-<section class="hero is-link">
+<section class="hero is-link banner">
   <?= showMessage(); ?>
   <div class="hero-body">
     <p class="title">
@@ -33,14 +33,14 @@
 </section>
 
 <section class="section my-6">
-  <h1 class="title">Informações da vaga</h1>
+  <h1 class="title has-text-grey-dark">Informações da vaga</h1>
   <h2 class="subtitle mt-4">
     Preencha os campos abaixo com os dados referente a vaga que deseja publicar.
   </h2>
 
   <div class="columns">
     <form action="" method="POST" class="column is-6">
-      <input type="hidden" name="job_requirements" id="splited_job_requirements">
+      <input type="text" name="splited_job_requirements" id="splited_job_requirements">
       <div class="field">
         <label class="label">Descrição</label>
         <div class="control">
@@ -97,7 +97,7 @@
       <div class="field">
         <label class="label">Requisitos</label>
         <div class="control">
-          <input oninput="return handleTeste()" autocomplete="off" class="input" type="text" id="job_requirements" placeholder="Requisitos separados por vírgula">
+          <input oninput="return splitRequirements()" autocomplete="off" class="input" type="text" name="job_requirements" id="job_requirements" placeholder="Requisitos separados por vírgula">
         </div>
       </div>
 
