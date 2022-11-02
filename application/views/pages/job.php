@@ -15,9 +15,7 @@
             </p>
             <p class="control">
               <button class="button" type="submit">
-                <span class="material-symbols-outlined mr-4">
-                  search
-                </span>
+                <span class="iconify mr-1" data-icon="line-md:search" data-rotate="270deg"></span>
                 Pesquisar
               </button>
             </p>
@@ -42,9 +40,7 @@
       </p>
       <p class="level-item ml-6">
         <a href="<?= base_url('/job/new') ?>" class="button is-link is-outlined">
-          <span class="material-symbols-outlined mr-2">
-            add
-          </span>
+          <span class="iconify mr-2" data-icon="line-md:plus"></span>
           Publicar
         </a>
       </p>
@@ -74,7 +70,7 @@
       <p>Caso encontre alguma publicação que tenha passado pelo filtro e esteja fora do contexto de publicação de vagas, denuncie <a target="_blank" href="<?= base_url('/job/report') ?>"><strong>nesta página.</strong></a></p>
     </div>
 
-    <div class="notification my-2" id="rollBackPost">
+    <div class="notification is-transparent my-2" id="rollBackPost">
       <span onclick="revertWarning();" class="iconify rollback" data-icon="grommet-icons:revert"></span>
     </div>
 
