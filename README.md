@@ -49,6 +49,12 @@
 ### Publish opportunity
 [![Preview][product-screenshot2]](#)
 
+### Archived posts
+[![Preview][product-screenshot3]](#)
+
+### About project
+[![Preview][product-screenshot4]](#)
+
 
 The screens and features are described below:
  
@@ -58,9 +64,9 @@ The screens and features are described below:
 
 - **/archived:** opportunities that have timed out will be moved in the list that will appear on this page. (Not yet implemented).
 
-- **/about:** a simple page to talk about this project. (Not yet implemented).
+- **/about:** a simple page to talk about this project.
 
-- **/report:** page to report publications that are not in the context of job opportunities.
+- **/report:** page to report publications that are not in the context of job opportunities. (Not yet implemented).
 
 
 ## Built With
@@ -124,6 +130,8 @@ Project Link: [https://github.com/SilasRodrigues19/findUrJob](https://github.com
 [license-url]: https://github.com/SilasRodrigues19/findUrJob/blob/master/LICENSE
 [product-screenshot]: ./public/screenshots/preview.png
 [product-screenshot2]: ./public/screenshots/preview2.png
+[product-screenshot3]: ./public/screenshots/preview3.png
+[product-screenshot4]: ./public/screenshots/preview4.png
 [license-url]: https://github.com/SilasRodrigues19/findUrJob/blob/master/LICENSE
 
 <br><hr>
