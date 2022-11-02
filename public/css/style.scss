@@ -97,6 +97,10 @@ li {
 	background: transparent;
 }
 
+.is-transparent {
+	background: transparent;
+}
+
 html {
 	overflow: overlay;
 }
@@ -105,6 +109,21 @@ body {
 	height: 100%;
 	width: 100%;
 	font-family: "Montserrat", sans-serif;
+	&:before {
+		content: '';
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100vh;
+		background: url('../img/background.jpg') no-repeat center / cover;
+		opacity: .1;
+		z-index: 0;
+	}
+}
+
+.hero-body, .section {
+	z-index: 1;
 }
 
 .material-symbols-outlined,
