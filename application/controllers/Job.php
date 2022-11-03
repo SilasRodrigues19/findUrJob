@@ -26,6 +26,20 @@ class Job extends MY_Controller
 		$res = $this->mjob->totalJobs();
 		$data['countJobs'] = $res[0];
 
+		$accesskey = $this->input->post('archivejob');
+		$id = $this->input->post('archivejob_id');
+
+		if($accesskey == 123) {
+			$res = $this->mjob->archiveJob($id);
+			$data['archiveJob'] = $res;
+
+			if($res) {
+				notify('', 'Vaga arquivada', 'success');
+				redirect('/job/archived');
+			}
+		}
+
+
 		$data['title'] = 'Vagas publicadas ' . '(' .$data['countJobs']['countJobs']. ')' ;
 
 		$this->load->view('templates/header', $data);
@@ -83,10 +97,14 @@ class Job extends MY_Controller
 
 	public function archived()
 	{
-		$data['title'] = 'Arquivadas';
+
+		$res = $this->mjob->totalArchivedJobs();
+		$data['countArchivedJobs'] = $res[0];
 
 		$res = $this->mjob->archivedJobs();
 		$data['archivedJobs'] = $res;
+
+		$data['title'] = 'Vagas arquivadas ' . '(' .$data['countArchivedJobs']['countArchivedJobs']. ')' ;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/archived', $data);

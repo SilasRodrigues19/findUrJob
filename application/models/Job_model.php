@@ -28,12 +28,22 @@ class Job_model extends CI_Model {
 
   public function totalJobs()
   {
-    $select = "SELECT COUNT(*) AS countJobs FROM jobs;";
+    $select = "SELECT COUNT(*) AS countJobs FROM jobs WHERE job_is_archived = 0";
 
     $execute = $this->db->query($select);
 
     return ($execute->num_rows() > 0) ? $execute->result_array() : array();
   }
+
+  public function totalArchivedJobs()
+  {
+    $select = "SELECT COUNT(*) AS countArchivedJobs FROM jobs WHERE job_is_archived = 1";
+
+    $execute = $this->db->query($select);
+
+    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+  }
+
 
   public function addJob($dados)
   {
@@ -64,6 +74,19 @@ class Job_model extends CI_Model {
 
     return ($execute->num_rows() > 0) ? $execute->result_array() : array();
 
+  }
+
+  public function archiveJob($id)
+  {
+
+    $update = "UPDATE jobs SET job_is_archived = 1 WHERE job_id = {$id}";
+
+    //echo $update; exit();
+
+    $execute = $this->db->query($update);
+
+    return ($execute) ? true : false;
+    
   }
 
 }

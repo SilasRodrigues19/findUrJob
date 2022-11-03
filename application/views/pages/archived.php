@@ -1,5 +1,4 @@
 <section class="hero is-link banner">
-  <?= showMessage(); ?>
   <div class="hero-body">
     <p class="title">
       Arquivadas
@@ -33,7 +32,8 @@
 </section>
 
 <section class="section my-6">
-  <h1 class="title has-text-grey-dark">Vagas Expiradas.</h1>
+  <?= showMessage(); ?>
+  <h1 class="title has-text-grey-dark"><?= $countArchivedJobs['countArchivedJobs'] ?> Vagas Expiradas.</h1>
   <h2 class="subtitle mt-4">
     As vagas que encerraram o tempo para candidaturas aparecerão aqui.
   </h2>
@@ -61,7 +61,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($archivedJobs[$idx]['job_salary'] == '0.00' ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . $archivedJobs[$idx]['job_salary']); ?></p>
+                <p><?= ($archivedJobs[$idx]['job_salary'] == '0.00' ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . number_format($archivedJobs[$idx]['job_salary'], 2, ',', '.') ); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>

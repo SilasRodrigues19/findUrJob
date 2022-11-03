@@ -19,6 +19,8 @@
             </p>
           </div>
           <form action="" method="POST" id="form-filter">
+          <input type="hidden" name="archivejob" id="archivejob">
+          <input type="hidden" name="archivejob_id" id="archivejob_id">
             <div class="level-item">
               <div class="field has-addons">
                 <p class="control">
@@ -114,7 +116,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($showJob[$idx]['job_salary'] == '0.00' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
+                <p><?= ($showJob[$idx]['job_salary'] == '0.00' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . number_format($showJob[$idx]['job_salary'], 2, ',', '.') ); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>

@@ -51,7 +51,7 @@ const showMessage = document.querySelector(".showMessage");
 
 if (document.body.contains(showMessage)) {
 	setTimeout(() => {
-		showMessage.classList.add("removeMessage");
+		showMessage.classList.add("showMessage");
 	}, 5000);
 }
 
@@ -82,6 +82,11 @@ const splitRequirements = () => {
 }
 
 const handleArchiving = (job_id, job_description) => {
+
+
+	let archivejob = document.querySelector('#archivejob'),
+		archivejob_id = document.querySelector('#archivejob_id'),
+		formFilter = document.querySelector("#form-filter");
 	
 	Swal.fire({
 		title: 'Insira a chave de acesso para arquivar a vaga',
@@ -90,6 +95,11 @@ const handleArchiving = (job_id, job_description) => {
 		allowOutsideClick: false,
 		allowEscapeKey: false,
 	  }).then(({ value }) => {
+		archivejob.value = value;
+		archivejob_id.value = job_id;
+		  setTimeout(() => {
+			  formFilter.submit();
+		  }, 3000);
 		if(value == 123) {
 			Swal.fire({
 			  icon: 'success',
@@ -101,7 +111,7 @@ const handleArchiving = (job_id, job_description) => {
 			icon: 'error',
 			html: `A vaga ${job_description} não foi arquivada`
 		  })
-	  })
+		})
 }
 
 
