@@ -1,50 +1,64 @@
 <main class="is-widescreen is-fullhd has-background-light	hero is-fullheight">
-  <nav class="level p-4 has-position-fixed-on-top w-100">
-    <!-- Left side -->
-    <div class="level-left">
-      <div class="level-item">
-        <p class="subtitle is-5">
-          <?= ($countJobs['countJobs'] == 0) ? 'Nenhuma' : "<strong>" . $countJobs['countJobs'] . "</strong>"?> <?= ($countJobs['countJobs'] > 1 ? 'vagas publicadas' : 'vaga publicada') ?> 
-        </p>
-      </div>
-      <form action="" method="POST" id="form-filter">
-        <div class="level-item">
-          <div class="field has-addons">
-            <p class="control">
-              <input autocomplete="off" class="input" type="text" name="search" id="search" placeholder="Busque uma vaga" value="<?= $search ?>">
-            </p>
-            <p class="control">
-              <button class="button" type="submit">
-                <span class="iconify mr-1" data-icon="line-md:search" data-rotate="270deg"></span>
-                Pesquisar
-              </button>
+  <nav class="level p-4 has-position-fixed-on-top w-100 navbar" role="navigation" aria-label="main navigation">
+
+    <a role="button" class="navbar-burger nav-toggle" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+
+    <div id="navbarBasicExample" class="nav-menu"> 
+
+      <div class="navbar-start">
+        <!-- Left side -->
+        <div class="level-left navbar-item">
+          <div class="level-item">
+            <p class="subtitle is-5">
+              <?= ($countJobs['countJobs'] == 0) ? 'Nenhuma' : "<strong>" . $countJobs['countJobs'] . "</strong>"?> <?= ($countJobs['countJobs'] > 1 ? 'vagas publicadas' : 'vaga publicada') ?> 
             </p>
           </div>
+          <form action="" method="POST" id="form-filter">
+            <div class="level-item">
+              <div class="field has-addons">
+                <p class="control">
+                  <input autocomplete="off" class="input" type="text" name="search" id="search" placeholder="Busque uma vaga" value="<?= $search ?>">
+                </p>
+                <p class="control">
+                  <button class="button" type="submit">
+                    <span class="iconify mr-1" data-icon="line-md:search" data-rotate="270deg"></span>
+                    Pesquisar
+                  </button>
+                </p>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+    
+        <!-- Right side -->
+        <div class="level-right navbar-item navbar-home">
+          <p class="level-item ml-6">
+            <span class="iconify has-text-grey mb-.1 mr-2" data-icon="bxs:archive-in"></span>
+            <a href="<?= base_url('/job/archived') ?>">
+              Arquivadas
+            </a>
+          </p>
+          <p class="level-item ml-6">
+            <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
+            <a href="<?= base_url('/job/about') ?>">
+              Sobre
+            </a>
+          </p>
+          <p class="level-item ml-6">
+            <a href="<?= base_url('/job/new') ?>" class="button is-link is-outlined">
+              <span class="iconify mr-2" data-icon="line-md:plus"></span>
+              Publicar
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Right side -->
-    <div class="level-right">
-      <p class="level-item ml-6">
-        <span class="iconify has-text-grey mb-.1 mr-2" data-icon="bxs:archive-in"></span>
-        <a href="<?= base_url('/job/archived') ?>">
-          Arquivadas
-        </a>
-      </p>
-      <p class="level-item ml-6">
-        <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
-        <a href="<?= base_url('/job/about') ?>">
-          Sobre
-        </a>
-      </p>
-      <p class="level-item ml-6">
-        <a href="<?= base_url('/job/new') ?>" class="button is-link is-outlined">
-          <span class="iconify mr-2" data-icon="line-md:plus"></span>
-          Publicar
-        </a>
-      </p>
-    </div>
   </nav>
 
   <section class="section is-full-vh mt-10">
@@ -85,7 +99,7 @@
               </p>
               <button class="card-header-icon" aria-label="Archive item">
                 <span class="icon">
-                  <span onclick="return handleArchiving(<?= $showJob[$idx]['job_id'] ?>)" class="iconify" data-icon="material-symbols:archive"></span>
+                  <span onclick="return handleArchiving( <?=  $showJob[$idx]['job_id'] . ', \'' . $showJob[$idx]['job_description'] . '\' '?> )" class="iconify" data-icon="material-symbols:archive"></span>
                 </span>
               </button>
             </header>

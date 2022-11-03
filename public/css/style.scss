@@ -53,16 +53,11 @@ li {
 }
 
 .is-flex-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flexCenter(center);
 }
 
 .is-flex-column {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+	@include flexCenterCol;
 }
 
 .w-100 {
@@ -85,7 +80,7 @@ li {
 	gap: 2rem;
 }
 
-.d-none {
+.d-none, .is-hidden, .removeMessage {
 	display: none;
 }
 
@@ -93,13 +88,10 @@ li {
 	display: block;
 }
 
-.has-background-transparent {
+.has-background-transparent, .is-transparent {
 	background: transparent;
 }
 
-.is-transparent {
-	background: transparent;
-}
 
 html {
 	overflow: overlay;
@@ -154,16 +146,10 @@ body {
 }
 
 .showMessage {
-	display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+	@include flexCenter(space-evenly);
     border-radius: 1rem;
 	max-width: 20rem;
     margin: 0 auto;
-}
-
-.removeMessage {
-	display: none;
 }
 
 nav {
@@ -198,5 +184,19 @@ nav {
 @media screen and (max-width: 500px) {
 	.card-footer-item {
 		font-size: 14px;
+	}
+	.item-menu {
+		@include flexCenter(center);
+		.level-item {
+			&:last-of-type {
+				align-self: baseline;
+			}
+		}
+	}
+	.navbar-home {
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
+		flex-direction: column;
 	}
 }

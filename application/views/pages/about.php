@@ -8,7 +8,7 @@
     <p class="subtitle mt-4">
       Como surgiu o projeto e qual é o seu propósito.
     </p>
-     <div class="level-right">
+     <div class="level-right item-menu">
       <p class="level-item ml-6">
         <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">

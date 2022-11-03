@@ -7,7 +7,7 @@
     <p class="subtitle mt-4">
       Viu uma vaga e quer compartilhar com mais pessoas ? Publique ela abaixo.
     </p>
-     <div class="level-right">
+     <div class="level-right item-menu">
       <p class="level-item ml-6">
         <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
@@ -40,7 +40,7 @@
 
   <div class="columns">
     <form action="" method="POST" class="column is-6">
-      <input type="text" name="splited_job_requirements" id="splited_job_requirements">
+      <input type="hidden" name="splited_job_requirements" id="splited_job_requirements">
       <div class="field">
         <label class="label">Descrição</label>
         <div class="control">
@@ -51,10 +51,10 @@
       <div class="field">
         <div class="field has-addons">
             <p class="control">
-            <strong class="button is-static">https://</strong>
+            <strong class="button is-static">Link:</strong>
             </p>
             <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="tel" placeholder="exemplo.com.br" name="job_link" id="job_link">
+              <input autocomplete="off" class="input" type="tel" placeholder="https://exemplo.com.br" name="job_link" id="job_link">
             </p>
           </div>
           <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
