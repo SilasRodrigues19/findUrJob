@@ -45,6 +45,7 @@ class Job extends MY_Controller
 		$dados['job_contract'] = $this->input->post('job_contract');
 		$dados['job_salary'] = $this->input->post('job_salary');
 		$dados['job_experience'] = $this->input->post('job_experience');
+		$dados['job_is_archived '] = $this->input->post('job_is_archived ');
 
 		if(isset($dados['job_experience'])) {
 
@@ -83,6 +84,9 @@ class Job extends MY_Controller
 	public function archived()
 	{
 		$data['title'] = 'Arquivadas';
+
+		$res = $this->mjob->archivedJobs();
+		$data['archivedJobs'] = $res;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/archived', $data);
