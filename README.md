@@ -85,7 +85,6 @@ Technologies used in the project.
 ### Libraries / Plugins
 
 - [jQuery](https://jquery.com/)
-- [DataTables](https://datatables.net/)
 - [Iconify Design](https://iconify.design/)
 
 

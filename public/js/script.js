@@ -3,11 +3,6 @@ let notificationBox = document.querySelector("#reportPost"),
 
 $(document).ready(function () {
 	rollBackPost.classList.add('d-none');
-	$(".has-datatable").DataTable({
-		language: {
-			url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json",
-		},
-	});
 });
 
 window.history.replaceState && window.history.replaceState(null, null, window.location.href);
