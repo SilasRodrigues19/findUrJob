@@ -81,3 +81,23 @@ const splitRequirements = () => {
 	splited_job_requirements.value = job_requirements.value.split(',');
 }
 
+const handleArchiving = (job_id) => {
+	
+	Swal.fire({
+		title: 'Insira a chave de acesso para arquivar a vaga',
+		input: 'password',
+		confirmButtonText: "Confirmar",
+	  }).then(({ value }) => {
+		if(value == 123) {
+			Swal.fire({
+			  icon: 'success',
+			  html: `A vaga ${job_id} foi arquivada`
+			})
+			return;
+		}
+		Swal.fire({
+			icon: 'error',
+			html: `A vaga ${job_id} não foi arquivada`
+		  })
+	  })
+}

@@ -77,11 +77,17 @@
     <div>
       <?php if($showJob): ?>
         <?php foreach($showJob as $idx => $value): ?>
+          <?php if(!$showJob[$idx]['job_is_archived']): ?>
           <div class="card my-4">
             <header class="card-header py-4">
               <p class="card-header-title">
-              <?= $showJob[$idx]['job_description']; ?>
+                <?= $showJob[$idx]['job_description']; ?>
               </p>
+              <button class="card-header-icon" aria-label="Archive item">
+                <span class="icon">
+                  <span onclick="return handleArchiving(<?= $showJob[$idx]['job_id'] ?>)" class="iconify" data-icon="material-symbols:archive"></span>
+                </span>
+              </button>
             </header>
             <div class="card-content">
               <div class="content">
@@ -89,12 +95,16 @@
                 <p><?= '<a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a>'; ?></p>
               </div>
               <div class="content">
+                <p><strong>Senioridade</strong></p>
+                <p><?= ($showJob[$idx]['job_level'] ? $showJob[$idx]['job_level'] : 'Não informado'); ?></p>
+              </div>
+              <div class="content">
                 <p><strong>Salário</strong></p>
                 <p><?= ($showJob[$idx]['job_salary'] == '0.00' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>
-                <p><?= ($showJob[$idx]['job_mode'] ? $showJob[$idx]['job_mode'] : 'Não informado');; ?></p>
+                <p><?= ($showJob[$idx]['job_mode'] ? $showJob[$idx]['job_mode'] : 'Não informado'); ?></p>
               </div>
               <div class="content">
                 <p><strong>Contrato</strong></p>
@@ -112,7 +122,9 @@
               </p>
             </footer>
           </div>
+          <?php endif; ?>
         <?php endforeach; ?>
+        
         <?php else: ?>
           <article class="message is-info">
             <div class="message-header">
