@@ -97,15 +97,19 @@
           <div class="card my-4">
             <header class="card-header py-4">
               <p class="card-header-title">
-                <?= $showJob[$idx]['job_description']; ?>
+                <?= $showJob[$idx]['job_title']; ?>
               </p>
               <button class="card-header-icon" aria-label="Archive item">
                 <span class="icon">
-                  <span onclick="return handleArchiving( <?=  $showJob[$idx]['job_id'] . ', \'' . $showJob[$idx]['job_description'] . '\' '?> )" class="iconify" data-icon="material-symbols:archive"></span>
+                  <span onclick="return handleArchiving( <?=  $showJob[$idx]['job_id'] . ', \'' . $showJob[$idx]['job_title'] . '\' '?> )" class="iconify" data-icon="material-symbols:archive"></span>
                 </span>
               </button>
             </header>
             <div class="card-content">
+              <div class="content">
+                <p><strong>Requisitos da vaga</strong></p>
+                <p><?= ($showJob[$idx]['job_requirements'] ? $showJob[$idx]['job_requirements'] : 'Não informado'); ?></p>
+              </div>
               <div class="content">
                 <p><strong>Link da vaga</strong></p>
                 <p><?= '<a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a>'; ?></p>
@@ -130,6 +134,12 @@
                 <p><strong>Requer experiência?</strong></p>
                 <p><?= ($showJob[$idx]['job_experience'] ? 'Sim' : 'Não') ?></p>
               </div>
+              <?php if($showJob[$idx]['job_observation']): ?>
+                <div class="content">
+                  <p><strong>Observação</strong></p>
+                  <p><?= ($showJob[$idx]['job_observation']) ?></p>
+                </div>
+              <?php endif; ?>
             </div>
             <footer class="card-footer py-4">
               <p class="card-footer-item d-block has-text-left">Publicado no dia

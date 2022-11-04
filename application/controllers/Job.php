@@ -51,7 +51,8 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Publique uma vaga';
 
-		$dados['job_description'] = $this->input->post('job_description');
+		$dados['job_title'] = $this->input->post('job_title');
+		$dados['job_requirements'] = $this->input->post('job_requirements');
 		$dados['job_link'] = $this->input->post('job_link');
 		$dados['job_level'] = $this->input->post('job_level');
 		$dados['job_currency'] = $this->input->post('job_currency');
@@ -59,7 +60,7 @@ class Job extends MY_Controller
 		$dados['job_contract'] = $this->input->post('job_contract');
 		$dados['job_salary'] = $this->input->post('job_salary');
 		$dados['job_experience'] = $this->input->post('job_experience');
-		$dados['job_is_archived '] = $this->input->post('job_is_archived ');
+		$dados['job_observation'] = $this->input->post('job_observation');
 
 		if(isset($dados['job_experience'])) {
 

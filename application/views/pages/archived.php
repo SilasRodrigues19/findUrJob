@@ -47,10 +47,14 @@
           <div class="card my-4">
             <header class="card-header py-4">
               <p class="card-header-title">
-                <?= $archivedJobs[$idx]['job_description']; ?>
+                <?= $archivedJobs[$idx]['job_title']; ?>
               </p>
             </header>
             <div class="card-content">
+              <div class="content">
+                <p><strong>Requisitos da vaga</strong></p>
+                <p><?= ($archivedJobs[$idx]['job_requirements'] ? $archivedJobs[$idx]['job_requirements'] : 'Não informado'); ?></p>
+              </div>
               <div class="content">
                 <p><strong>Link da vaga</strong></p>
                 <p><?= '<a class="job-link" href="'.$archivedJobs[$idx]['job_link'].'" target="_blank">'.$archivedJobs[$idx]['job_link'].'</a>'; ?></p>
@@ -75,6 +79,12 @@
                 <p><strong>Requer experiência?</strong></p>
                 <p><?= ($archivedJobs[$idx]['job_experience'] ? 'Sim' : 'Não') ?></p>
               </div>
+              <?php if($archivedJobs[$idx]['job_observation']): ?>
+                <div class="content">
+                  <p><strong>Observação</strong></p>
+                  <p><?= ($archivedJobs[$idx]['job_observation']) ?></p>
+                </div>
+              <?php endif; ?>
             </div>
             <footer class="card-footer py-4">
               <p class="card-footer-item d-block has-text-left">Publicado no dia
