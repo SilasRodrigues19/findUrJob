@@ -4,7 +4,6 @@
 		<script src="<?= base_url('public/libraries/jquery/jquery.min.js'); ?>"></script>
 		<script src="<?= base_url('public/libraries/iconify/iconify.min.js'); ?>"></script>
 		<script src="<?= base_url('public/libraries/jquery/jquery.min.js'); ?>"></script>
-		<script src="<?= base_url('public/libraries/datatable/dataTables.min.js'); ?>"></script>
 		<script src="<?= base_url('public/js/script.js'); ?>"></script>
 	</body>
 </html>

@@ -1,5 +1,4 @@
 <section class="hero is-link banner">
-  <?= showMessage(); ?>
   <div class="hero-body">
     <p class="title">
       Arquivadas
@@ -33,7 +32,8 @@
 </section>
 
 <section class="section my-6">
-  <h1 class="title has-text-grey-dark">Vagas Expiradas.</h1>
+  <?= showMessage(); ?>
+  <h1 class="title has-text-grey-dark"><?= $countArchivedJobs['countArchivedJobs'] ?> Vagas Expiradas.</h1>
   <h2 class="subtitle mt-4">
     As vagas que encerraram o tempo para candidaturas aparecerão aqui.
   </h2>
@@ -47,10 +47,14 @@
           <div class="card my-4">
             <header class="card-header py-4">
               <p class="card-header-title">
-                <?= $archivedJobs[$idx]['job_description']; ?>
+                <?= $archivedJobs[$idx]['job_title']; ?>
               </p>
             </header>
             <div class="card-content">
+              <div class="content">
+                <p><strong>Requisitos da vaga</strong></p>
+                <p><?= ($archivedJobs[$idx]['job_requirements'] ? $archivedJobs[$idx]['job_requirements'] : 'Não informado'); ?></p>
+              </div>
               <div class="content">
                 <p><strong>Link da vaga</strong></p>
                 <p><?= '<a class="job-link" href="'.$archivedJobs[$idx]['job_link'].'" target="_blank">'.$archivedJobs[$idx]['job_link'].'</a>'; ?></p>
@@ -61,7 +65,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($archivedJobs[$idx]['job_salary'] == '0.00' ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . $archivedJobs[$idx]['job_salary']); ?></p>
+                <p><?= ($archivedJobs[$idx]['job_salary'] == '0.00' ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . number_format($archivedJobs[$idx]['job_salary'], 2, ',', '.') ); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>
@@ -75,6 +79,12 @@
                 <p><strong>Requer experiência?</strong></p>
                 <p><?= ($archivedJobs[$idx]['job_experience'] ? 'Sim' : 'Não') ?></p>
               </div>
+              <?php if($archivedJobs[$idx]['job_observation']): ?>
+                <div class="content">
+                  <p><strong>Observação</strong></p>
+                  <p><?= ($archivedJobs[$idx]['job_observation']) ?></p>
+                </div>
+              <?php endif; ?>
             </div>
             <footer class="card-footer py-4">
               <p class="card-footer-item d-block has-text-left">Publicado no dia

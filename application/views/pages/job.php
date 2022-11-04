@@ -19,6 +19,8 @@
             </p>
           </div>
           <form action="" method="POST" id="form-filter">
+          <input type="hidden" name="archivejob" id="archivejob">
+          <input type="hidden" name="archivejob_id" id="archivejob_id">
             <div class="level-item">
               <div class="field has-addons">
                 <p class="control">
@@ -95,15 +97,19 @@
           <div class="card my-4">
             <header class="card-header py-4">
               <p class="card-header-title">
-                <?= $showJob[$idx]['job_description']; ?>
+                <?= $showJob[$idx]['job_title']; ?>
               </p>
               <button class="card-header-icon" aria-label="Archive item">
                 <span class="icon">
-                  <span onclick="return handleArchiving( <?=  $showJob[$idx]['job_id'] . ', \'' . $showJob[$idx]['job_description'] . '\' '?> )" class="iconify" data-icon="material-symbols:archive"></span>
+                  <span onclick="return handleArchiving( <?=  $showJob[$idx]['job_id'] . ', \'' . $showJob[$idx]['job_title'] . '\' '?> )" class="iconify" data-icon="material-symbols:archive"></span>
                 </span>
               </button>
             </header>
             <div class="card-content">
+              <div class="content">
+                <p><strong>Requisitos da vaga</strong></p>
+                <p><?= ($showJob[$idx]['job_requirements'] ? $showJob[$idx]['job_requirements'] : 'Não informado'); ?></p>
+              </div>
               <div class="content">
                 <p><strong>Link da vaga</strong></p>
                 <p><?= '<a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a>'; ?></p>
@@ -114,7 +120,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($showJob[$idx]['job_salary'] == '0.00' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
+                <p><?= ($showJob[$idx]['job_salary'] == '0.00' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . number_format($showJob[$idx]['job_salary'], 2, ',', '.') ); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>
@@ -128,6 +134,12 @@
                 <p><strong>Requer experiência?</strong></p>
                 <p><?= ($showJob[$idx]['job_experience'] ? 'Sim' : 'Não') ?></p>
               </div>
+              <?php if($showJob[$idx]['job_observation']): ?>
+                <div class="content">
+                  <p><strong>Observação</strong></p>
+                  <p><?= ($showJob[$idx]['job_observation']) ?></p>
+                </div>
+              <?php endif; ?>
             </div>
             <footer class="card-footer py-4">
               <p class="card-footer-item d-block has-text-left">Publicado no dia

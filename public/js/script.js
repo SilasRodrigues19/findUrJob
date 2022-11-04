@@ -3,11 +3,6 @@ let notificationBox = document.querySelector("#reportPost"),
 
 $(document).ready(function () {
 	rollBackPost.classList.add('d-none');
-	$(".has-datatable").DataTable({
-		language: {
-			url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json",
-		},
-	});
 });
 
 window.history.replaceState && window.history.replaceState(null, null, window.location.href);
@@ -51,11 +46,11 @@ const showMessage = document.querySelector(".showMessage");
 
 if (document.body.contains(showMessage)) {
 	setTimeout(() => {
-		showMessage.classList.add("removeMessage");
+		showMessage.classList.add("d-none");
 	}, 5000);
 }
 
-const job_description = document.querySelector('#job_description'),
+const job_title = document.querySelector('#job_title'),
 	  job_link = document.querySelector('#job_link'),
 	  job_level = document.querySelector('#job_level'),
 	  job_currency = document.querySelector('#job_currency'),
@@ -65,7 +60,7 @@ const job_description = document.querySelector('#job_description'),
 
 
 const validateFields = () => {
-	if (job_description.value == "" || job_link.value == "" || job_level.value == "" || job_currency.value == "" 
+	if (job_title.value == "" || job_link.value == "" || job_level.value == "" || job_currency.value == "" 
 		|| job_salary.value == "" || job_mode.value == "" || job_contract.value == "") {
 		
 		showAlertBox("Erro ao publicar vaga", "Certifique-se de preencher todos os campos", "error");
@@ -81,7 +76,12 @@ const splitRequirements = () => {
 	splited_job_requirements.value = job_requirements.value.split(',');
 }
 
-const handleArchiving = (job_id, job_description) => {
+const handleArchiving = (job_id, job_title) => {
+
+
+	let archivejob = document.querySelector('#archivejob'),
+		archivejob_id = document.querySelector('#archivejob_id'),
+		formFilter = document.querySelector("#form-filter");
 	
 	Swal.fire({
 		title: 'Insira a chave de acesso para arquivar a vaga',
@@ -90,18 +90,36 @@ const handleArchiving = (job_id, job_description) => {
 		allowOutsideClick: false,
 		allowEscapeKey: false,
 	  }).then(({ value }) => {
+		archivejob.value = value;
+		archivejob_id.value = job_id;
+		  setTimeout(() => {
+			  formFilter.submit();
+		  }, 3000);
 		if(value == 123) {
 			Swal.fire({
 			  icon: 'success',
-			  html: `A vaga ${job_description} foi arquivada`
+			  html: `A vaga ${job_title} foi arquivada`
 			})
 			return;
 		}
 		Swal.fire({
 			icon: 'error',
-			html: `A vaga ${job_description} não foi arquivada`
+			html: `A vaga ${job_title} não foi arquivada`
 		  })
-	  })
+		})
+}
+
+
+let observation = document.querySelector('#observation'),
+	btnObservation = document.querySelector('#btnObservation');
+
+const toggleObservation = () => {
+	observation.classList.toggle('d-none');
+	if(!observation.classList.contains('d-none')) {
+		btnObservation.innerText = 'Remover observação';
+	} else {
+		btnObservation.innerText = 'Adicionar observação';
+	}
 }
 
 

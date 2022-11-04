@@ -42,9 +42,16 @@
     <form action="" method="POST" class="column is-6">
       <input type="hidden" name="splited_job_requirements" id="splited_job_requirements">
       <div class="field">
-        <label class="label">Descrição</label>
+        <label class="label has-text-grey-dark">Título</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="text" placeholder="Descrição da vaga" name="job_description" id="job_description">
+          <input autocomplete="off" class="input" type="text" placeholder="Título da vaga" name="job_title" id="job_title">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label has-text-grey-dark">Requisitos</label>
+        <div class="control">
+          <input autocomplete="off" class="input" type="text" placeholder="Requisitos da vaga" name="job_requirements" id="job_requirements">
         </div>
       </div>
 
@@ -61,7 +68,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Nível</label>
+        <label class="label has-text-grey-dark">Nível</label>
         <div class="control">
           <div class="select">
             <select name="job_level" id="job_level">
@@ -92,19 +99,8 @@
         </p>
       </div>
 
-      <!--
-
       <div class="field">
-        <label class="label">Requisitos</label>
-        <div class="control">
-          <input oninput="return splitRequirements()" autocomplete="off" class="input" type="text" name="job_requirements" id="job_requirements" placeholder="Requisitos separados por vírgula">
-        </div>
-      </div>
-
-      -->
-
-      <div class="field">
-        <label class="label">Modalidade</label>
+        <label class="label has-text-grey-dark">Modalidade</label>
         <div class="control">
           <div class="select">
             <select name="job_mode" id="job_mode">
@@ -118,7 +114,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Contrato</label>
+        <label class="label has-text-grey-dark">Contrato</label>
         <div class="control">
           <div class="select">
             <select name="job_contract" id="job_contract">
@@ -131,7 +127,7 @@
       </div>
   
       <div class="field">
-        <label class="label">Requer experiência?</label>
+        <label class="label has-text-grey-dark">Requer experiência?</label>
         <div class="field is-narrow">
           <div class="control mt-4">
             <label class="radio">
@@ -144,6 +140,21 @@
             </label>
           </div>
         </div>
+      </div>
+
+      <button onclick="return toggleObservation()" type="button" class="button is-link is-small" id="btnObservation">
+        Adicionar observação
+      </button>
+
+      <div class="field d-none  my-4" id="observation">
+        <div class="field has-addons">
+            <p class="control">
+            <strong class="button is-static">Observação:</strong>
+            </p>
+            <p class="control is-expanded">
+              <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="job_observation" id="job_observation">
+            </p>
+          </div>
       </div>
 
       <hr>

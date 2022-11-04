@@ -26,6 +26,20 @@ class Job extends MY_Controller
 		$res = $this->mjob->totalJobs();
 		$data['countJobs'] = $res[0];
 
+		$accesskey = $this->input->post('archivejob');
+		$id = $this->input->post('archivejob_id');
+
+		if($accesskey == 123) {
+			$res = $this->mjob->archiveJob($id);
+			$data['archiveJob'] = $res;
+
+			if($res) {
+				notify('', 'Vaga arquivada', 'success');
+				redirect('/job/archived');
+			}
+		}
+
+
 		$data['title'] = 'Vagas publicadas ' . '(' .$data['countJobs']['countJobs']. ')' ;
 
 		$this->load->view('templates/header', $data);
@@ -37,7 +51,8 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Publique uma vaga';
 
-		$dados['job_description'] = $this->input->post('job_description');
+		$dados['job_title'] = $this->input->post('job_title');
+		$dados['job_requirements'] = $this->input->post('job_requirements');
 		$dados['job_link'] = $this->input->post('job_link');
 		$dados['job_level'] = $this->input->post('job_level');
 		$dados['job_currency'] = $this->input->post('job_currency');
@@ -45,7 +60,7 @@ class Job extends MY_Controller
 		$dados['job_contract'] = $this->input->post('job_contract');
 		$dados['job_salary'] = $this->input->post('job_salary');
 		$dados['job_experience'] = $this->input->post('job_experience');
-		$dados['job_is_archived '] = $this->input->post('job_is_archived ');
+		$dados['job_observation'] = $this->input->post('job_observation');
 
 		if(isset($dados['job_experience'])) {
 
@@ -83,10 +98,14 @@ class Job extends MY_Controller
 
 	public function archived()
 	{
-		$data['title'] = 'Arquivadas';
+
+		$res = $this->mjob->totalArchivedJobs();
+		$data['countArchivedJobs'] = $res[0];
 
 		$res = $this->mjob->archivedJobs();
 		$data['archivedJobs'] = $res;
+
+		$data['title'] = 'Vagas arquivadas ' . '(' .$data['countArchivedJobs']['countArchivedJobs']. ')' ;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/archived', $data);

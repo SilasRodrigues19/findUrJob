@@ -15,7 +15,6 @@
 		<link rel="stylesheet" href="<?= base_url('public/libraries/sweetalert2/sweetalert2.min.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/libraries/bulma/bulma.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/libraries/animate/animate.min.css'); ?>">
-		<link rel="stylesheet" href="<?= base_url('public/libraries/datatable/dataTables.min.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/css/style.css'); ?>">
 	</head>
 
