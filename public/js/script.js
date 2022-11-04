@@ -1,9 +1,11 @@
 let notificationBox = document.querySelector("#reportPost"),
 	rollBackPost = document.querySelector("#rollBackPost");
 
-$(document).ready(function () {
-	rollBackPost.classList.add('d-none');
-});
+
+document.addEventListener('DOMContentLoaded', () => {
+	document.body.contains(rollBackPost) && rollBackPost.classList.add('d-none');
+})
+
 
 window.history.replaceState && window.history.replaceState(null, null, window.location.href);
 
@@ -127,9 +129,10 @@ const toggleObservation = () => {
 const burger = document.querySelector('.nav-toggle'),
 	  menu = document.querySelector('.nav-menu');
 
-navigator.userAgent.match(/Mobile/) && menu.classList.add('is-hidden');
-
-burger.addEventListener('click', () => {
-	burger.classList.toggle('is-active');
-	menu.classList.toggle('is-hidden');
-});
+if (navigator.userAgent.match(/Mobile/)) {
+	menu.classList.add('is-hidden');
+	burger.addEventListener('click', () => {
+		burger.classList.toggle('is-active');
+		menu.classList.toggle('is-hidden');
+	});
+} 
