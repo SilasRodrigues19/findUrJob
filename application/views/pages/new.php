@@ -40,7 +40,6 @@
 
   <div class="columns">
     <form action="" method="POST" class="column is-6">
-      <input type="hidden" name="splited_job_requirements" id="splited_job_requirements">
       <div class="field">
         <label class="label has-text-grey-dark">Título</label>
         <div class="control">
@@ -61,7 +60,7 @@
             <strong class="button is-static">Link:</strong>
             </p>
             <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" id="job_link">
+              <input onblur="return handleLink();" autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" id="job_link">
             </p>
           </div>
           <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
@@ -84,6 +83,13 @@
         </div>
       </div>
 
+      <div class="field">
+        <label class="label has-text-grey-dark">Email</label>
+        <div class="control">
+          <input autocomplete="off" class="input" type="email" placeholder="Email para contato" name="job_email" id="job_email">
+        </div>
+      </div>
+
       <div class="field has-addons">
         <p class="control">
           <span class="select">
@@ -95,7 +101,7 @@
           </span>
         </p>
         <p class="control">
-          <input autocomplete="off" class="input" type="number" name="job_salary" id="job_salary" placeholder="Salário">
+          <input onchange="return formatCurrency();" autocomplete="off" class="input" type="text" name="job_salary" id="job_salary" placeholder="Salário">
         </p>
       </div>
 
@@ -120,6 +126,7 @@
             <select name="job_contract" id="job_contract">
               <option value="" disabled selected>Selecione o tipo de contrato</option>
               <option value="clt">CLT</option>
+              <option value="clt flex">CLT Flex</option>
               <option value="pj">PJ</option>
             </select>
           </div>
