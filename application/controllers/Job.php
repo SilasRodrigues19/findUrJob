@@ -58,6 +58,7 @@ class Job extends MY_Controller
 		$dados['job_currency'] = $this->input->post('job_currency');
 		$dados['job_mode'] = $this->input->post('job_mode');
 		$dados['job_contract'] = $this->input->post('job_contract');
+		$dados['job_email'] = $this->input->post('job_email');
 		$dados['job_salary'] = $this->input->post('job_salary');
 		$dados['job_experience'] = $this->input->post('job_experience');
 		$dados['job_observation'] = $this->input->post('job_observation');

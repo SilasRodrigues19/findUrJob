@@ -120,7 +120,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($showJob[$idx]['job_salary'] == '0.00' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . number_format($showJob[$idx]['job_salary'], 2, ',', '.') ); ?></p>
+                <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>
@@ -129,6 +129,10 @@
               <div class="content">
                 <p><strong>Contrato</strong></p>
                 <p><?= ($showJob[$idx]['job_contract'] ? $showJob[$idx]['job_contract'] : 'Não informado'); ?></p>
+              </div>
+              <div class="content">
+                <p><strong>E-mail para contato</strong></p>
+                <p><?= '<a href="mailto:'.$showJob[$idx]['job_email'].'">'.$showJob[$idx]['job_email'].'</a>'; ?></p>
               </div>
               <div class="content">
                 <p><strong>Requer experiência?</strong></p>

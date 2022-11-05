@@ -65,7 +65,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($archivedJobs[$idx]['job_salary'] == '0.00' ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . number_format($archivedJobs[$idx]['job_salary'], 2, ',', '.') ); ?></p>
+                <p><?= ($archivedJobs[$idx]['job_salary'] == '0,00' || $archivedJobs[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . $archivedJobs[$idx]['job_salary']); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>
@@ -74,6 +74,10 @@
               <div class="content">
                 <p><strong>Contrato</strong></p>
                 <p><?= ($archivedJobs[$idx]['job_contract'] ? $archivedJobs[$idx]['job_contract'] : 'Não informado'); ?></p>
+              </div>
+              <div class="content">
+                <p><strong>E-mail para contato</strong></p>
+                <p><?= '<a href="mailto:'.$archivedJobs[$idx]['job_email'].'">'.$archivedJobs[$idx]['job_email'].'</a>'; ?></p>
               </div>
               <div class="content">
                 <p><strong>Requer experiência?</strong></p>

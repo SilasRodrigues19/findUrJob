@@ -69,29 +69,35 @@ li {
 }
 
 .mb-\.1 {
-	margin-bottom: .1rem;
+	margin-bottom: 0.1rem;
 }
 
 .mb-\-\.2 {
-	margin-bottom: -.2rem;
+	margin-bottom: -0.2rem;
 }
 
 .is-gap-2 {
 	gap: 2rem;
 }
 
-.d-none, .is-hidden, .removeMessage {
-	display: none;
+.d-none,
+.is-hidden,
+.removeMessage {
+	display: none !important;
 }
 
 .d-block {
 	display: block;
 }
 
-.has-background-transparent, .is-transparent {
+.has-background-transparent,
+.is-transparent {
 	background: transparent;
 }
 
+.sweet_text {
+	font-weight: bold;
+}
 
 html {
 	overflow: overlay;
@@ -106,19 +112,20 @@ body {
 .banner {
 	height: 15rem;
 	&:before {
-		content: '';
+		content: "";
 		position: absolute;
 		left: 0;
 		top: 0;
 		width: 100%;
 		height: 15rem;
-		background: url('../img/background.jpg') no-repeat center / cover;
-		opacity: .1;
+		background: url("../img/background.jpg") no-repeat center / cover;
+		opacity: 0.1;
 		z-index: 0;
 	}
 }
 
-.hero-body, .section {
+.hero-body,
+.section {
 	z-index: 1;
 }
 
@@ -138,22 +145,22 @@ body {
 
 .removeFilter {
 	cursor: pointer;
-	transition: scale .5 ease-in-out;
+	transition: scale 0.5 ease-in-out;
 	&:hover {
 		scale: 1.2;
-		transition: scale .5 ease-in-out;
+		transition: scale 0.5 ease-in-out;
 	}
 }
 
 .showMessage {
 	@include flexCenter(space-evenly);
-    border-radius: 1rem;
+	border-radius: 1rem;
 	max-width: 20rem;
-    margin: 0 auto;
+	margin: 0 auto;
 }
 
 nav {
-	background: rgba(204, 204, 204, .1);
+	background: rgba(204, 204, 204, 0.1);
 	box-shadow: 1px 1px 5px #cacaca;
 	backdrop-filter: blur(25px);
 	z-index: 9;
@@ -165,14 +172,13 @@ nav {
 		right: 0.5rem;
 		top: 0.5rem;
 		cursor: pointer;
-		transition: scale .5 ease-in-out;
+		transition: scale 0.5 ease-in-out;
 		&:hover {
 			scale: 1.2;
-			transition: scale .5 ease-in-out;
+			transition: scale 0.5 ease-in-out;
 		}
 	}
 }
-
 
 @media screen and (max-width: 500px) {
 	.card-footer-item {
