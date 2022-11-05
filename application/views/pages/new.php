@@ -61,7 +61,7 @@
             <strong class="button is-static">Link:</strong>
             </p>
             <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="tel" placeholder="https://exemplo.com.br" name="job_link" id="job_link">
+              <input autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" id="job_link">
             </p>
           </div>
           <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
@@ -95,7 +95,7 @@
           </span>
         </p>
         <p class="control">
-          <input autocomplete="off" class="input" type="text" name="job_salary" id="job_salary" placeholder="Salário">
+          <input autocomplete="off" class="input" type="number" name="job_salary" id="job_salary" placeholder="Salário">
         </p>
       </div>
 
