@@ -65,7 +65,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($archivedJobs[$idx]['job_salary'] == '0,00' || $archivedJobs[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . $archivedJobs[$idx]['job_salary']); ?></p>
+                <p><?= ($archivedJobs[$idx]['job_salary'] == '0,00' || $archivedJobs[$idx]['job_salary'] == 'NaN' ? 'Não informado' : $archivedJobs[$idx]['job_currency_symbol'] . ' ' . $archivedJobs[$idx]['job_salary']); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>

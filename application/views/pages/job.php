@@ -65,14 +65,14 @@
 
   <section class="section is-full-vh mt-10">
 
-    <?= 
-      (isset($search) && strlen($search) > 0) ? 
-      '<p class="my-6">Exibindo resultados para: ' . 
+    <?=
+      (isset($search) && strlen($search) > 0) ?
+      '<p class="my-6">Exibindo resultados para: ' .
         '<strong>' . $search . '</strong>
           <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
-        </p>' 
+        </p>'
         : ''
-    ?>
+              ?>
 
 
     <h1 class="title has-text-grey-dark">Vagas publicadas</h1>
@@ -120,7 +120,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
+                <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>
