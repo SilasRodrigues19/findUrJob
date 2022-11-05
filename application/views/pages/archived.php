@@ -92,14 +92,14 @@
             </div>
             <footer class="card-footer py-4">
               <p class="card-footer-item d-block has-text-left">Publicado no dia
-                <strong class="mx-2"><?= date_format(new DateTime($archivedJobs[$idx]['created_at']), 'd/m/Y');?></strong> às 
+                <strong class="mx-2"><?= date_format(new DateTime($archivedJobs[$idx]['created_at']), 'd/m/Y');?></strong> às
                 <strong class="ml-2"><?= date_format(new DateTime($archivedJobs[$idx]['created_at']), 'H:i:s'); ?></strong>
               </p>
             </footer>
           </div>
           <?php endif; ?>
         <?php endforeach; ?>
-        
+
         <?php else: ?>
           <article class="message is-info">
             <div class="message-header">
@@ -112,6 +112,6 @@
       <?php endif; ?>
     </div>
 
-  
+
 
 </section>
