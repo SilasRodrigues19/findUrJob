@@ -88,16 +88,23 @@ li {
   gap: 2rem;
 }
 
-.d-none, .is-hidden, .removeMessage {
-  display: none;
+.d-none,
+.is-hidden,
+.removeMessage {
+  display: none !important;
 }
 
 .d-block {
   display: block;
 }
 
-.has-background-transparent, .is-transparent {
+.has-background-transparent,
+.is-transparent {
   background: transparent;
+}
+
+.sweet_text {
+  font-weight: bold;
 }
 
 html {
@@ -125,7 +132,8 @@ body {
   z-index: 0;
 }
 
-.hero-body, .section {
+.hero-body,
+.section {
   z-index: 1;
 }
 
