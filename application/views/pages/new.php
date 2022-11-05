@@ -125,7 +125,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="field">
         <label class="label has-text-grey-dark">Requer experiência?</label>
         <div class="field is-narrow">
