@@ -26,6 +26,26 @@ class Job_model extends CI_Model {
     return ($execute->num_rows() > 0) ? $execute->result_array() : array();
   }
 
+  public function showJobCount($searchTerm = false)
+  {
+
+    $where = false;
+
+    if($searchTerm) {
+      $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
+    }
+
+    $select = "SELECT COUNT(*) AS count FROM jobs {$where}";
+
+    //echo $select; exit();
+
+    
+    $execute = $this->db->query($select);
+
+
+    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+  }
+
   public function totalJobs()
   {
     $select = "SELECT COUNT(*) AS countJobs FROM jobs WHERE job_is_archived = 0";

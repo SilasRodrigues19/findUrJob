@@ -65,14 +65,20 @@
 
   <section class="section is-full-vh mt-10">
 
-    <?= 
-      (isset($search) && strlen($search) > 0) ? 
-      '<p class="my-6">Exibindo resultados para: ' . 
-        '<strong>' . $search . '</strong>
-          <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
-        </p>' 
-        : ''
-    ?>
+    <?php foreach($showJobCount as $idx => $value): ?>
+
+      <?= 
+        (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] > 0) ? 
+        '<p class="my-6">Exibindo <strong>' .$showJobCount[$idx]['count']. '</strong> ' .($showJobCount[$idx]['count'] > 1 ? 'resultados' : 'resultado'). ' para: ' . 
+          '<strong>' . $search . '</strong>
+            <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
+          </p>
+        ' 
+          : 
+        ''
+      ?>
+
+    <?php endforeach ?>
 
 
     <h1 class="title has-text-grey-dark">Vagas publicadas</h1>
@@ -155,13 +161,19 @@
           <?php endif; ?>
         <?php endforeach; ?>
         
-        <?php else: ?>
+        <?php elseif(!isset($search) && strlen($search) > 0): ?>
           <article class="message is-info">
             <div class="message-header">
               <p>Ainda não há nada por aqui.</p>
             </div>
             <div class="message-body">
               Não encontramos nenhuma vaga publicada, que tal <a href="<?= base_url('/job/new') ?>">publicar uma?</a>
+            </div>
+          </article>
+        <?php else: ?>
+          <article class="message is-warning">
+            <div class="message-header">
+              <p>Não encontramos resultados com esse filtro.</p>
             </div>
           </article>
       <?php endif; ?>
