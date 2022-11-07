@@ -67,6 +67,7 @@ let testValidLink = new RegExp(urlRegex);
 const validateFields = () => {
 	if (
 		job_title.value == "" ||
+		job_requirements.value == "" ||
 		job_link.value == "" ||
 		job_level.value == "" ||
 		job_currency.value == "" ||
