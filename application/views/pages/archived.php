@@ -77,7 +77,7 @@
               </div>
               <div class="content">
                 <p><strong>E-mail para contato</strong></p>
-                <p><?= '<a href="mailto:'.$archivedJobs[$idx]['job_email'].'">'.$archivedJobs[$idx]['job_email'].'</a>'; ?></p>
+                <p><?= ($archivedJobs[$idx]['job_email'] ? '<a href="mailto:'.$archivedJobs[$idx]['job_email'].'">'.$archivedJobs[$idx]['job_email'].'</a>' : 'E-mail não informado, consulte o link da vaga'); ?></p>
               </div>
               <div class="content">
                 <p><strong>Requer experiência?</strong></p>

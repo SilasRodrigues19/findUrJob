@@ -132,7 +132,7 @@
               </div>
               <div class="content">
                 <p><strong>E-mail para contato</strong></p>
-                <p><?= '<a href="mailto:'.$showJob[$idx]['job_email'].'">'.$showJob[$idx]['job_email'].'</a>'; ?></p>
+                <p><?= ($showJob[$idx]['job_email'] ? '<a href="mailto:'.$showJob[$idx]['job_email'].'">'.$showJob[$idx]['job_email'].'</a>' : '<span>E-mail não informado, consulte o <a href="'.$showJob[$idx]['job_link'].'" target="_blank">link da vaga</a></span>'); ?></p>
               </div>
               <div class="content">
                 <p><strong>Requer experiência?</strong></p>

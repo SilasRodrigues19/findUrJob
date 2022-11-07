@@ -86,7 +86,7 @@
       <div class="field">
         <label class="label has-text-grey-dark">Email</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="email" placeholder="Email para contato" name="job_email" id="job_email">
+          <input autocomplete="off" class="input" type="email" placeholder="Deixar em branco caso não houver" name="job_email" id="job_email">
         </div>
       </div>
 
