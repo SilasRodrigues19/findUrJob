@@ -23,6 +23,9 @@ class Job extends MY_Controller
 		$res = $this->mjob->showJob($data['search']);
 		$data['showJob'] = $res;
 
+		$res = $this->mjob->showJobCount($data['search']);
+		$data['showJobCount'] = $res;
+
 		$res = $this->mjob->totalJobs();
 		$data['countJobs'] = $res[0];
 
