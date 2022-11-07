@@ -1,17 +1,16 @@
 <?php
 
-class Job_model extends CI_Model {
+class Job_model extends CI_Model
+{
+    public function showJob($searchTerm = false)
+    {
+        $where = false;
 
-  public function showJob($searchTerm = false)
-  {
+        if ($searchTerm) {
+            $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
+        }
 
-    $where = false;
-
-    if($searchTerm) {
-      $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
-    }
-
-    $select = "SELECT *,
+        $select = "SELECT *,
       CASE 
         WHEN job_currency = 'Real' THEN 'R$'
         WHEN job_currency = 'Dollar' THEN '$'
@@ -19,94 +18,86 @@ class Job_model extends CI_Model {
       END AS job_currency_symbol
     FROM jobs {$where}";
 
-    //echo $select; exit();
+        //echo $select; exit();
 
-    $execute = $this->db->query($select);
+        $execute = $this->db->query($select);
 
-    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
-  }
-
-  public function showJobCount($searchTerm = false)
-  {
-
-    $where = false;
-
-    if($searchTerm) {
-      $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
+        return ($execute->num_rows() > 0) ? $execute->result_array() : array();
     }
 
-    $select = "SELECT COUNT(*) AS count FROM jobs {$where}";
+    public function showJobCount($searchTerm = false)
+    {
+        $where = false;
 
-    //echo $select; exit();
+        if ($searchTerm) {
+            $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
+        }
 
-    
-    $execute = $this->db->query($select);
+        $select = "SELECT COUNT(*) AS count FROM jobs {$where}";
 
-
-    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
-  }
-
-  public function totalJobs()
-  {
-    $select = "SELECT COUNT(*) AS countJobs FROM jobs WHERE job_is_archived = 0";
-
-    $execute = $this->db->query($select);
-
-    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
-  }
-
-  public function totalArchivedJobs()
-  {
-    $select = "SELECT COUNT(*) AS countArchivedJobs FROM jobs WHERE job_is_archived = 1";
-
-    $execute = $this->db->query($select);
-
-    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
-  }
+        //echo $select; exit();
 
 
-  public function addJob($dados)
-  {
+        $execute = $this->db->query($select);
 
-    $insert = "INSERT INTO jobs (job_title, job_requirements, job_link, job_level, job_currency, job_mode, job_contract, job_email, job_salary, job_experience, job_is_archived, job_observation) 
+
+        return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+    }
+
+    public function totalJobs()
+    {
+        $select = "SELECT COUNT(*) AS countJobs FROM jobs WHERE job_is_archived = 0";
+
+        $execute = $this->db->query($select);
+
+        return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+    }
+
+    public function totalArchivedJobs()
+    {
+        $select = "SELECT COUNT(*) AS countArchivedJobs FROM jobs WHERE job_is_archived = 1";
+
+        $execute = $this->db->query($select);
+
+        return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+    }
+
+
+    public function addJob($dados)
+    {
+        $insert = "INSERT INTO jobs (job_title, job_requirements, job_link, job_level, job_currency, job_mode, job_contract, job_email, job_salary, job_experience, job_is_archived, job_observation) 
     VALUES ('{$dados['job_title']}', '{$dados['job_requirements']}', '{$dados['job_link']}', '{$dados['job_level']}', 
             '{$dados['job_currency']}', '{$dados['job_mode']}', '{$dados['job_contract']}', '{$dados['job_email']}', '{$dados['job_salary']}', 
             '{$dados['job_experience']}', false, '{$dados['job_observation']}')";
 
-    //echo $insert; exit();
-    $execute = $this->db->query($insert);
+        //echo $insert; exit();
+        $execute = $this->db->query($insert);
 
-    return ($execute) ? true : false;
+        return ($execute) ? true : false;
+    }
 
-  }
-
-  public function archivedJobs()
-  {
-
-    $select = "SELECT *, CASE 
+    public function archivedJobs()
+    {
+        $select = "SELECT *, CASE 
                           WHEN job_currency = 'Real' THEN 'R$'
                           WHEN job_currency = 'Dollar' THEN '$'
                           WHEN job_currency = 'Euro' THEN '€'
                         END AS job_currency_symbol 
               FROM jobs WHERE job_is_archived = 1";
 
-    $execute = $this->db->query($select);
+        $execute = $this->db->query($select);
 
-    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+        return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+    }
 
-  }
+    public function archiveJob($id)
+    {
+        $update = "UPDATE jobs SET job_is_archived = 1 WHERE job_id = {$id}";
 
-  public function archiveJob($id)
-  {
+        //echo $update; exit();
 
-    $update = "UPDATE jobs SET job_is_archived = 1 WHERE job_id = {$id}";
+        $execute = $this->db->query($update);
 
-    //echo $update; exit();
-
-    $execute = $this->db->query($update);
-
-    return ($execute) ? true : false;
-    
-  }
-
+        return ($execute) ? true : false;
+    }
 }

@@ -67,16 +67,16 @@
 
     <?php foreach($showJobCount as $idx => $value): ?>
 
-      <?= 
-        (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] > 0) ? 
-        '<p class="my-6">Exibindo <strong>' .$showJobCount[$idx]['count']. '</strong> ' .($showJobCount[$idx]['count'] > 1 ? 'resultados' : 'resultado'). ' para: ' . 
+      <?=
+        (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] > 0) ?
+        '<p class="my-6">Exibindo <strong>' .$showJobCount[$idx]['count']. '</strong> ' .($showJobCount[$idx]['count'] > 1 ? 'resultados' : 'resultado'). ' para: ' .
           '<strong>' . $search . '</strong>
             <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
           </p>
-        ' 
-          : 
+        '
+          :
         ''
-      ?>
+        ?>
 
     <?php endforeach ?>
 
@@ -126,7 +126,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
+                <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN' ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>
