@@ -8,14 +8,14 @@
     </a>
 
 
-    <div id="navbarBasicExample" class="nav-menu"> 
+    <div id="navbarBasicExample" class="nav-menu">
 
       <div class="navbar-start">
         <!-- Left side -->
         <div class="level-left navbar-item">
           <div class="level-item">
             <p class="subtitle is-5">
-              <?= ($countJobs['countJobs'] == 0) ? 'Nenhuma' : "<strong>" . $countJobs['countJobs'] . "</strong>"?> <?= ($countJobs['countJobs'] > 1 ? 'vagas publicadas' : 'vaga publicada') ?> 
+              <?= ($countJobs['countJobs'] == 0) ? 'Nenhuma' : "<strong>" . $countJobs['countJobs'] . "</strong>"?> <?= ($countJobs['countJobs'] > 1 ? 'vagas publicadas' : 'vaga publicada') ?>
             </p>
           </div>
           <form action="" method="POST" id="form-filter">
@@ -36,7 +36,7 @@
             </div>
           </form>
         </div>
-    
+
         <!-- Right side -->
         <div class="level-right navbar-item navbar-home">
           <p class="level-item ml-6">
@@ -153,14 +153,14 @@
             </div>
             <footer class="card-footer py-4">
               <p class="card-footer-item d-block has-text-left">Publicado no dia
-                <strong class="mx-2"><?= date_format(new DateTime($showJob[$idx]['created_at']), 'd/m/Y');?></strong> às 
+                <strong class="mx-2"><?= date_format(new DateTime($showJob[$idx]['created_at']), 'd/m/Y');?></strong> às
                 <strong class="ml-2"><?= date_format(new DateTime($showJob[$idx]['created_at']), 'H:i:s'); ?></strong>
               </p>
             </footer>
           </div>
           <?php endif; ?>
         <?php endforeach; ?>
-        
+
         <?php elseif(!isset($search) && strlen($search) > 0): ?>
           <article class="message is-info">
             <div class="message-header">
