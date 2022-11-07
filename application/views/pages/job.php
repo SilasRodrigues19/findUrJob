@@ -67,14 +67,16 @@
 
     <?php foreach($showJobCount as $idx => $value): ?>
 
-    <?= 
-      (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] > 0) ? 
-      '<p class="my-6">Exibindo ' .$showJobCount[$idx]['count']. ' resultados para: ' . 
-        '<strong>' . $search . '</strong>
-          <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
-        </p>' 
-        : ''
-    ?>
+      <?= 
+        (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] > 0) ? 
+        '<p class="my-6">Exibindo <strong>' .$showJobCount[$idx]['count']. '</strong> ' .($showJobCount[$idx]['count'] > 1 ? 'resultados' : 'resultado'). ' para: ' . 
+          '<strong>' . $search . '</strong>
+            <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
+          </p>
+        ' 
+          : 
+        ''
+      ?>
 
     <?php endforeach ?>
 
@@ -169,7 +171,7 @@
             </div>
           </article>
         <?php else: ?>
-          <article class="message is-info">
+          <article class="message is-warning">
             <div class="message-header">
               <p>Não encontramos resultados com esse filtro.</p>
             </div>
