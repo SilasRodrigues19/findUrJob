@@ -30,8 +30,13 @@ const removeFilter = () => {
 	let search = document.querySelector("#search"),
 		formFilter = document.querySelector("#form-filter");
 	search.value = "";
-	formFilter.submit();
+	setTimeout(() => {
+		formFilter.submit();
+		location.reload();
+	}, 1000);
+
 };
+
 
 const closeWarning = () => {
 	notificationBox.classList.add("d-none");
