@@ -80,6 +80,17 @@
 
     <?php endforeach ?>
 
+    <?= 
+        (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] == 0) ? 
+        '<p class="my-6">Nenhum resultado encontrado para: '. 
+          '<strong>' . $search . '</strong>
+            <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
+          </p>
+        ' 
+          : 
+        ''
+      ?>
+
 
     <h1 class="title has-text-grey-dark">Vagas publicadas</h1>
     <?= showMessage(); ?>
@@ -161,7 +172,7 @@
           <?php endif; ?>
         <?php endforeach; ?>
         
-        <?php elseif(!isset($search) && strlen($search) > 0): ?>
+        <?php elseif(!isset($search)): ?>
           <article class="message is-info">
             <div class="message-header">
               <p>Ainda não há nada por aqui.</p>
