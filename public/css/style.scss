@@ -10,6 +10,7 @@
 a {
 	text-decoration: none;
 	color: $lightGrayDarker;
+
 	&:hover {
 		color: $lightGrayHigher;
 	}
@@ -32,6 +33,7 @@ li {
 ::-webkit-scrollbar-thumb {
 	border-radius: pxToRem(2);
 	background: #485fc780;
+
 	&:hover {
 		background: #485fc780;
 	}
@@ -111,6 +113,7 @@ body {
 
 .banner {
 	height: 15rem;
+
 	&:before {
 		content: "";
 		position: absolute;
@@ -146,6 +149,7 @@ body {
 .removeFilter {
 	cursor: pointer;
 	transition: scale 0.5 ease-in-out;
+
 	&:hover {
 		scale: 1.2;
 		transition: scale 0.5 ease-in-out;
@@ -167,12 +171,13 @@ nav {
 }
 
 .notification {
-	> .rollback {
+	>.rollback {
 		position: absolute;
 		right: 0.5rem;
 		top: 0.5rem;
 		cursor: pointer;
 		transition: scale 0.5 ease-in-out;
+
 		&:hover {
 			scale: 1.2;
 			transition: scale 0.5 ease-in-out;
@@ -184,18 +189,74 @@ nav {
 	.card-footer-item {
 		font-size: 14px;
 	}
+
 	.item-menu {
 		@include flexCenter(center);
+
 		.level-item {
 			&:last-of-type {
 				align-self: baseline;
 			}
 		}
 	}
+
 	.navbar-home {
 		display: flex;
 		justify-content: center;
 		align-items: baseline;
 		flex-direction: column;
 	}
+}
+
+
+// Login
+
+#loginSection {
+	position: relative;
+	z-index: 1;
+
+	&::before {
+		@include backgroundBefore(absolute, .2, url("../img/login_background.jpg") no-repeat center / cover);
+	}
+
+	.loginContainer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: .5rem 1rem;
+
+		.loginLabel {
+			color: #ccc;
+		}
+
+		.loginForm {
+			background: transparent;
+			min-width: 20rem;
+			padding: 2rem 4rem;
+
+			.input,
+			.divider {
+				background: rgba($color: #fff, $alpha: 0.1);
+			}
+
+			.input {
+				color: #ccc;
+
+				@include placeholder {
+					color: rgba($color: #fff, $alpha: 0.4);
+				}
+
+			}
+
+
+		}
+
+	}
+
+}
+
+
+#loginSvg {
+	width: 30rem;
+	height: 25rem;
 }
