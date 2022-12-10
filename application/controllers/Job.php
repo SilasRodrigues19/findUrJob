@@ -116,4 +116,14 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
+	public function login()
+	{
+		$data['title'] = 'Login';
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/login', $data);
+		$this->load->view('templates/footer', $data);
+	}
+	
+
 }
