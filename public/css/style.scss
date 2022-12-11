@@ -215,7 +215,7 @@ nav {
 	width: 100%;
 
 	&:after {
-		@include backgroundBefore(fixed, .4, url('http://localhost/findUrJob/public/img/login_background.jpg') fixed no-repeat center / cover)
+		@include backgroundBefore(fixed, .4, url('../../public/img/login_background.jpg') fixed no-repeat center / cover)
 	}
 
 	.wrapperLogin {
