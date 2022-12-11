@@ -1,37 +1,38 @@
-<section class="hero is-link is-fullheight" id="loginSection">
-  <div class="hero-body">
-    <div class="container loginContainer">
-      <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <form action="" class="box loginForm">
-            <div class="field">
-              <label for="" class="label loginLabel">Email ou Usuário</label>
-              <div class="control has-icons-left">
-                <input type="email" placeholder="mail@domain.com" class="input" required>
-                <span class="icon is-small is-left">
-                  <span class="iconify" data-icon="mdi:envelope"></span>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <label for="" class="label loginLabel">Senha</label>
-              <div class="control has-icons-left">
-                <input type="password" placeholder="*******" class="input" required>
-                <span class="icon is-small is-left">
-                  <span class="iconify" data-icon="mdi:lock"></span>
-                </span>
-              </div>
-            </div>
-            <hr class="divider">
-            <div class="field">
-              <button class="button is-link is-fullwidth">
-                Entrar
-              </button>
-            </div>
-          </form>
-        </div>
+<section class="loginSection">
+  <div class="wrapperLogin">
+    <div class="boxLogin">
+      <div class="top-header">
+        <span>Já tem uma conta?</span>
+        <header>Login</header>
       </div>
-      <img id="loginSvg" src="<?= base_url('public/img/animated_login_background.svg') ?>" alt="Background animado">
+  
+      <div class="input-field">
+        <input autocomplete="off" type="text" placeholder="Ex:. joao@domain.com" required>
+        <i class="bx bx-envelope"></i>
+      </div>
+  
+      <div class="input-field">
+        <input class="passwordInput" autocomplete="off" type="password" placeholder="********" required>
+        <i class="bx bx-hide show-hide"></i>
+      </div>
+  
+      <div class="input-field">
+        <input type="submit" class="submit" value="Entrar">
+      </div>
+  
+      <div class="bottom">
+        <div class="left">
+          <label for="">
+            <a class="links" href="#">Não possui cadastro?</a>
+          </label>
+        </div>
+        <div class="right">
+          <label for=""><a class="links" href="#">Esqueceu a senha?</a></label>
+        </div>
+  
+      </div>
+  
+  
     </div>
   </div>
 </section>

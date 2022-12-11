@@ -1,5 +1,27 @@
 @use "sass:map";
 
+@mixin contentCenter {
+	display: flex;
+	justify-content: center;
+}
+
+@mixin itemsCenter {
+	display: flex;
+	align-items: center;
+}
+
+@mixin flexCol {
+	display: flex;
+	flex-direction: column;
+}
+
+@mixin flexCenterOptionallyCol($justify-content, $flexDirection: row) {
+	display: flex;
+	align-items: center;
+	justify-content: $justify-content;
+	flex-direction: $flexDirection;
+}
+
 @mixin flexCenter($justify_content) {
 	display: flex;
 	align-items: center;
@@ -11,7 +33,6 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	flex-wrap: wrap;
 }
 
 @mixin backgroundBefore($position, $opacity, $background) {
@@ -42,17 +63,19 @@
 	}
 }
 
-@function pxToRem($value) {
-	@return calc($value / 16) + rem;
+@function ptr($value) {
+	@return calc($value / 16)+rem;
 }
 
 @mixin placeholder {
 	&::-webkit-input-placeholder {
 		@content;
 	}
+
 	&::-moz-placeholder {
 		@content;
 	}
+
 	&:-ms-input-placeholder {
 		@content;
 	}
@@ -68,10 +91,13 @@ $breakpoints: (
 @mixin mediaQueryMax($value) {
 	@if map.has-key($breakpoints, $value) {
 		$size: map.get($breakpoints, $value);
+
 		@media only screen and (max-width: $size) {
 			@content;
 		}
-	} @else {
+	}
+
+	@else {
 		@media only screen and (max-width: #{$value}px) {
 			@content;
 		}
@@ -81,10 +107,13 @@ $breakpoints: (
 @mixin mediaQueryMin($value) {
 	@if map.has-key($breakpoints, $value) {
 		$size: map.get($breakpoints, $value);
+
 		@media only screen and (min-width: $size) {
 			@content;
 		}
-	} @else {
+	}
+
+	@else {
 		@media only screen and (min-width: #{$value}px) {
 			@content;
 		}
