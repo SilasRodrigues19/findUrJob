@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="<?= base_url('public/libraries/sweetalert2/sweetalert2.min.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/libraries/bulma/bulma.css'); ?>">
 		<link rel="stylesheet" href="<?= base_url('public/libraries/animate/animate.min.css'); ?>">
+		<link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">		
 		<link rel="stylesheet" href="<?= base_url('public/css/style.min.css'); ?>">
 	</head>
 
