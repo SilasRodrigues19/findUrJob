@@ -166,3 +166,21 @@ if (navigator.userAgent.match(/Mobile/)) {
 		menu.classList.toggle("is-hidden");
 	});
 }
+
+// Login
+const eyeIcons = document.querySelectorAll(".show-hide");
+
+eyeIcons.forEach((eyeIcon) => {
+	eyeIcon.addEventListener("click", () => {
+		const pInput = eyeIcon.parentElement.querySelector(".passwordInput");
+
+		// console.log(eyeIcon);
+
+		if (pInput.type === "password") {
+			eyeIcon.classList.replace("bx-hide", "bx-show");
+			return (pInput.type = "text");
+		}
+		eyeIcon.classList.replace("bx-show", "bx-hide");
+		pInput.type = "password";
+	});
+});
