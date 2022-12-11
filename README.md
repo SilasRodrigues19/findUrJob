@@ -41,23 +41,28 @@
 
 <hr>
 
+### Sign In
+
+[![Preview][product-screenshot5]](#)
+
 ### Home
 
 [![Preview][product-screenshot]](#)
 
-
 ### Publish opportunity
+
 [![Preview][product-screenshot2]](#)
 
 ### Archived posts
+
 [![Preview][product-screenshot3]](#)
 
 ### About project
+
 [![Preview][product-screenshot4]](#)
 
-
 The screens and features are described below:
- 
+
 - **Início:** has a table listing all opportunities published by other people, with the necessary information. In the top navigation has a input field to search anything more easily.
 
 - **/new:** route that leads to publish page, just fill in all the field and publish.
@@ -67,7 +72,6 @@ The screens and features are described below:
 - **/about:** a simple page to talk about this project.
 
 - **/report:** page to report publications that are not in the context of job opportunities. (Not yet implemented).
-
 
 ## Built With
 
@@ -86,7 +90,6 @@ Technologies used in the project.
 
 - [jQuery](https://jquery.com/)
 - [Iconify Design](https://iconify.design/)
-
 
 <!-- CONTRIBUTING -->
 
@@ -131,6 +134,7 @@ Project Link: [https://github.com/SilasRodrigues19/findUrJob](https://github.com
 [product-screenshot2]: ./public/screenshots/preview2.png
 [product-screenshot3]: ./public/screenshots/preview3.png
 [product-screenshot4]: ./public/screenshots/preview4.png
+[product-screenshot5]: ./public/screenshots/preview5.png
 [license-url]: https://github.com/SilasRodrigues19/findUrJob/blob/master/LICENSE
 
 <br><hr>
