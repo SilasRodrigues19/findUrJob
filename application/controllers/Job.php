@@ -32,18 +32,18 @@ class Job extends MY_Controller
 		$accesskey = $this->input->post('archivejob');
 		$id = $this->input->post('archivejob_id');
 
-		if($accesskey == 123) {
+		if ($accesskey == 123) {
 			$res = $this->mjob->archiveJob($id);
 			$data['archiveJob'] = $res;
 
-			if($res) {
+			if ($res) {
 				notify('', 'Vaga arquivada', 'success');
 				redirect('/job/archived');
 			}
 		}
 
 
-		$data['title'] = 'Vagas publicadas ' . '(' .$data['countJobs']['countJobs']. ')' ;
+		$data['title'] = 'Vagas publicadas ' . '(' . $data['countJobs']['countJobs'] . ')';
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/job', $data);
@@ -66,11 +66,11 @@ class Job extends MY_Controller
 		$dados['job_experience'] = $this->input->post('job_experience');
 		$dados['job_observation'] = $this->input->post('job_observation');
 
-		if(isset($dados['job_experience'])) {
+		if (isset($dados['job_experience'])) {
 
 			$res = $this->mjob->addJob($dados);
 
-			if($res) {
+			if ($res) {
 				notify('', 'Vaga adicionada', 'success');
 				redirect('/');
 			}
@@ -109,21 +109,28 @@ class Job extends MY_Controller
 		$res = $this->mjob->archivedJobs();
 		$data['archivedJobs'] = $res;
 
-		$data['title'] = 'Vagas arquivadas ' . '(' .$data['countArchivedJobs']['countArchivedJobs']. ')' ;
+		$data['title'] = 'Vagas arquivadas ' . '(' . $data['countArchivedJobs']['countArchivedJobs'] . ')';
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/archived', $data);
 		$this->load->view('templates/footer', $data);
 	}
 
-	public function login()
+	public function signin()
 	{
 		$data['title'] = 'Login';
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/login', $data);
+		$this->load->view('pages/signin', $data);
 		$this->load->view('templates/footer', $data);
 	}
-	
 
+	public function signup()
+	{
+		$data['title'] = 'Registrar';
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/signup', $data);
+		$this->load->view('templates/footer', $data);
+	}
 }
