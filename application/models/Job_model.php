@@ -109,4 +109,18 @@ class Job_model extends CI_Model {
     
   }
 
+  public function signUpUser($dados)
+  {
+
+    $insert = "INSERT INTO users (user_name, user_login, user_password, user_email, user_level, user_is_active, created_at) VALUES 
+    ('{$dados['user']}', 'user', '{$dados['password']}', '{$dados['email']}', 0, 1, NOW())";
+
+    /* echo $insert; exit(); */
+
+    $execute = $this->db->query($insert);
+
+    return ($execute) ? true : false;
+
+  }
+
 }

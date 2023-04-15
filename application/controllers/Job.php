@@ -116,14 +116,43 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
-	public function login()
+	public function signup()
 	{
-		$data['title'] = 'Login';
+		$data['title'] = 'Realize seu cadastro';
 
+		$dados['user'] = $this->input->post('user');
+		$dados['password'] = $this->input->post('password');
+		$dados['email'] = $this->input->post('email');
+
+
+		if (!empty($this->input->post('user')) && !empty($this->input->post('password')) && !empty($this->input->post('email'))) {
+			$res = $this->mjob->signUpUser($dados);
+			if($res) {
+				notify('', 'Usuário cadastrado', 'success');
+				redirect('/job/signin');
+			}
+		} 
+
+		
+		
+		/* 
+		echo "<pre>";	
+		var_dump($dados); exit; 
+		*/
+		
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/login', $data);
+		$this->load->view('pages/signup', $data);
 		$this->load->view('templates/footer', $data);
 	}
 	
+	public function signin()
+	{
+		$data['title'] = 'Faça login';
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/signin', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
 
 }
