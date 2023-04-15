@@ -231,6 +231,10 @@ nav {
 		width: ptr(350);
 		padding: 0 ptr(15);
 
+		.top-header {
+			margin: 2rem 0;
+		}
+
 		span {
 			@include contentCenter;
 			color: #fff;
@@ -266,6 +270,7 @@ nav {
 
 			i {
 				position: relative;
+				width: 1rem;
 				top: ptr(-30);
 				left: 85%;
 				color: #fff;
