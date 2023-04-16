@@ -140,7 +140,7 @@ class Job_model extends CI_Model {
     if ($select->num_rows() > 0) {
       return array(
         'success' => true,
-        'user_id' => $select->row()->user_id,
+        'user' => $select->row(),
       );
     } else {
       return array(
