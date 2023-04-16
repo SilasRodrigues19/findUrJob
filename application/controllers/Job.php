@@ -156,8 +156,6 @@ class Job extends MY_Controller
 		if (!empty($this->input->post('user')) && !empty($this->input->post('password'))) {
 			$res = $this->mjob->signInUser($dados);
 
-			$res = $this->mjob->signInUser($dados);
-
 			if ($res['success']) {
 				$this->session->set_userdata('usuario_id', $res['user_id']);
 				notify('', 'Login realizado', 'success');
