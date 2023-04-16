@@ -114,8 +114,8 @@ class Job_model extends CI_Model {
 
     $md5_password = md5($dados['password']);
 
-    $insert = "INSERT INTO users (user_name, user_login, user_password, user_email, user_level, user_is_active, created_at) VALUES 
-    ('{$dados['user']}', 'user', '{$md5_password}', '{$dados['email']}', 0, 1, NOW())";
+    $insert = "INSERT INTO users (user_name, user_password, user_email, created_at) VALUES 
+    ('{$dados['user']}', '{$md5_password}', '{$dados['email']}', NOW())";
 
     /* echo $insert; exit(); */
 
