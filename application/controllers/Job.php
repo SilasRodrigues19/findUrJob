@@ -144,10 +144,31 @@ class Job extends MY_Controller
 		$this->load->view('pages/signup', $data);
 		$this->load->view('templates/footer', $data);
 	}
+
 	
 	public function signin()
 	{
 		$data['title'] = 'Faça login';
+
+		$dados['user'] = $this->input->post('user');
+		$dados['password'] = $this->input->post('password');
+
+		if (!empty($this->input->post('user')) && !empty($this->input->post('password'))) {
+			$res = $this->mjob->signInUser($dados);
+
+			$res = $this->mjob->signInUser($dados);
+
+			if ($res['success']) {
+				$this->session->set_userdata('usuario_id', $res['user_id']);
+				notify('', 'Login realizado', 'success');
+				redirect('/job');
+			} else {
+				notify('', $res['error'], 'error');
+				redirect('/job/signin');
+			}
+
+
+		} 
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/signin', $data);

@@ -112,8 +112,10 @@ class Job_model extends CI_Model {
   public function signUpUser($dados)
   {
 
+    $md5_password = md5($dados['password']);
+
     $insert = "INSERT INTO users (user_name, user_login, user_password, user_email, user_level, user_is_active, created_at) VALUES 
-    ('{$dados['user']}', 'user', '{$dados['password']}', '{$dados['email']}', 0, 1, NOW())";
+    ('{$dados['user']}', 'user', '{$md5_password}', '{$dados['email']}', 0, 1, NOW())";
 
     /* echo $insert; exit(); */
 
@@ -122,5 +124,31 @@ class Job_model extends CI_Model {
     return ($execute) ? true : false;
 
   }
+
+
+  public function signInUser($dados)
+  {
+    $this->db->where('user_name', $dados['user']);
+    $this->db->where('user_password', MD5($dados['password']));
+
+    $select = $this->db->get('users');
+
+    /* echo $this->db->last_query();
+        exit;
+    */
+    
+    if ($select->num_rows() > 0) {
+      return array(
+        'success' => true,
+        'user_id' => $select->row()->user_id,
+      );
+    } else {
+      return array(
+        'success' => false,
+        'error' => 'Usuário ou senha incorretos.',
+      );
+    }
+  }
+
 
 }
