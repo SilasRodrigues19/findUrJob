@@ -15,6 +15,15 @@ class Job extends MY_Controller
 		$this->job();
 	}
 
+	protected function is_logged_in()
+	{
+			if (!$this->session->userdata('usuario')) {
+					notify('', 'Necessário autenticação.', 'error');
+					redirect('/job/signin');
+			}
+	}
+
+
 	public function job()
 	{
 
@@ -53,6 +62,8 @@ class Job extends MY_Controller
 	public function new()
 	{
 		$data['title'] = 'Publique uma vaga';
+
+		$this->is_logged_in();
 
 		$dados['job_title'] = $this->input->post('job_title');
 		$dados['job_requirements'] = $this->input->post('job_requirements');
@@ -111,6 +122,8 @@ class Job extends MY_Controller
 
 		$data['title'] = 'Vagas arquivadas ' . '(' .$data['countArchivedJobs']['countArchivedJobs']. ')' ;
 
+		$this->is_logged_in();
+
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/archived', $data);
 		$this->load->view('templates/footer', $data);
@@ -119,6 +132,10 @@ class Job extends MY_Controller
 	public function signup()
 	{
 		$data['title'] = 'Realize seu cadastro';
+
+		if ($this->session->has_userdata('usuario')) {
+        redirect('/job');
+    }
 
 		$dados['user'] = $this->input->post('user');
 		$dados['password'] = $this->input->post('password');
@@ -150,6 +167,10 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Faça login';
 
+    if ($this->session->has_userdata('usuario')) {
+        redirect('/job');
+    }
+
 		$dados['user'] = $this->input->post('user');
 		$dados['password'] = $this->input->post('password');
 
@@ -157,7 +178,9 @@ class Job extends MY_Controller
 			$res = $this->mjob->signInUser($dados);
 
 			if ($res['success']) {
-				$this->session->set_userdata('usuario_id', $res['user_id']);
+				$this->session->set_userdata('usuario', $res['user']);
+				/* echo "<pre>";
+				var_dump($this->session->userdata('usuario')); exit(); */
 				notify('', 'Login realizado', 'success');
 				redirect('/job');
 			} else {
@@ -171,6 +194,12 @@ class Job extends MY_Controller
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/signin', $data);
 		$this->load->view('templates/footer', $data);
+	}
+
+	public function logout()
+	{
+			$this->session->sess_destroy();
+			redirect('/job/signin');
 	}
 
 
