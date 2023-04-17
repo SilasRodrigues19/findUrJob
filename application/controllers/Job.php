@@ -8,6 +8,7 @@ class Job extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('Job_model', 'mjob');
+		$this->load->model('Auth_model', 'mauth');
 	}
 
 	public function index()
@@ -16,12 +17,16 @@ class Job extends MY_Controller
 	}
 
 	protected function is_logged_in()
-	{
-			if (!$this->session->userdata('usuario')) {
-					notify('', 'Necessário autenticação.', 'error');
-					redirect('/job/signin');
-			}
-	}
+{
+    if (!$this->session->userdata('usuario')) {
+        // Armazenar a página atual em uma sessão
+        $this->session->set_userdata('redirect_url', current_url());
+        
+        notify('', 'Necessário autenticação.', 'error');
+        redirect('/job/signin');
+    }
+}
+
 
 
 	public function job()
@@ -143,22 +148,15 @@ class Job extends MY_Controller
 
 
 		if (!empty($this->input->post('user')) && !empty($this->input->post('password')) && !empty($this->input->post('email'))) {
-			$res = $this->mjob->signUpUser($dados);
+			$res = $this->mauth->signUpUser($dados);
 			if($res) {
 				notify('', 'Usuário cadastrado', 'success');
 				redirect('/job/signin');
 			}
 		} 
 
-		
-		
-		/* 
-		echo "<pre>";	
-		var_dump($dados); exit; 
-		*/
-		
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/signup', $data);
+		$this->load->view('pages/auth/signup', $data);
 		$this->load->view('templates/footer', $data);
 	}
 
@@ -168,21 +166,23 @@ class Job extends MY_Controller
 		$data['title'] = 'Faça login';
 
     if ($this->session->has_userdata('usuario')) {
-        redirect('/job');
+        $redirect_url = $this->session->userdata('redirect_url') ?? '/';
+    		redirect($redirect_url);
     }
 
 		$dados['user'] = $this->input->post('user');
 		$dados['password'] = $this->input->post('password');
 
 		if (!empty($this->input->post('user')) && !empty($this->input->post('password'))) {
-			$res = $this->mjob->signInUser($dados);
+			$res = $this->mauth->signInUser($dados);
 
 			if ($res['success']) {
 				$this->session->set_userdata('usuario', $res['user']);
-				/* echo "<pre>";
-				var_dump($this->session->userdata('usuario')); exit(); */
+
 				notify('', 'Login realizado', 'success');
-				redirect('/job');
+				$redirect_url = $this->session->userdata('redirect_url') ?? '/';
+    		redirect($redirect_url);
+
 			} else {
 				notify('', $res['error'], 'error');
 				redirect('/job/signin');
@@ -192,14 +192,14 @@ class Job extends MY_Controller
 		} 
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/signin', $data);
+		$this->load->view('pages/auth/signin', $data);
 		$this->load->view('templates/footer', $data);
 	}
 
 	public function logout()
 	{
 			$this->session->sess_destroy();
-			redirect('/job/signin');
+			redirect(base_url());
 	}
 
 
