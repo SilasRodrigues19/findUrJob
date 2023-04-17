@@ -27,6 +27,7 @@
           Sobre
         </a>
       </p>
+      <?php $this->load->view('templates/logged_in_header.php') ?>
     </div>
   </div>
 </section>

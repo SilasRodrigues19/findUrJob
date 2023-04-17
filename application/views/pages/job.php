@@ -59,12 +59,12 @@
           </p>
 
           <?php if($this->session->userdata('usuario')): ?>
-            <p class="level-item has-text-grey">
-              <span class="mr-1 has-text-dark">Logado como:</span>
-              <span class="has-text-weight-bold"><?= $this->session->userdata('usuario')->user_name; ?></span>
+            <p class="level-item has-text-grey ml-3">
+              <span title="<?= "Autenticado como " . $this->session->userdata('usuario')->user_name ?>" class="has-text-weight-bold"><?= $this->session->userdata('usuario')->user_name; ?></span>
               <a href="<?= base_url('logout') ?>" class="button is-light is-small ml-3">Sair</a>
             </p>
           <?php endif; ?>
+
 
 
         </div>

@@ -1,5 +1,4 @@
 <section class="hero is-link banner">
-  <?= showMessage(); ?>
   <div class="hero-body">
     <p class="title">
       Publique uma vaga.
@@ -28,11 +27,13 @@
           Sobre
         </a>
       </p>
+      <?php $this->load->view('templates/logged_in_header.php') ?>
     </div>
   </div>
 </section>
 
 <section class="section my-6">
+  <?= showMessage(); ?>
   <h1 class="title has-text-grey-dark">Informações da vaga</h1>
   <h2 class="subtitle mt-4">
     Preencha os campos abaixo com os dados referente a vaga que deseja publicar.
