@@ -134,6 +134,31 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
+	public function forgot_password()
+	{
+		$data['title'] = 'Altere sua senha';
+
+
+		$dados['email'] = $this->input->post('email');
+
+		if(!empty($this->input->post('email'))) {
+			$res = $this->mauth->validateMail($dados);
+			if($res['success']) {
+				notify('', 'Email encontrado', 'success');
+				redirect('/job/forgot-password');
+			} else {
+				notify('', $res['error'], 'error');
+				redirect('/job/forgot-password');
+			}
+		}
+
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/auth/forgot-password', $data);
+		$this->load->view('templates/footer', $data);
+
+	}
+
 	public function signup()
 	{
 		$data['title'] = 'Realize seu cadastro';

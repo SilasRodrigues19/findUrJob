@@ -40,5 +40,27 @@ class Auth_model extends CI_Model {
       );
   }
 
+  public function validateMail($dados)
+  {
+
+    $this->db->where('user_email', $dados['email']);
+    $select = $this->db->get('users');
+
+    if ($select->num_rows() > 0) {
+
+        return array(
+                  'success' => true,
+                  'mail' => $dados['email'],
+              );
+    } else {
+        return array(
+                  'success' => false,
+                  'error' => 'Email não encontrado',
+              );
+    }
+
+
+  }
+
   
 }
