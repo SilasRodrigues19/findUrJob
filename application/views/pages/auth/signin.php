@@ -11,7 +11,7 @@
 
       <form action="" method="POST">
         <div class="input-field">
-          <label class="label has-text-light" for="">Seu Usuário</label>
+          <label class="label has-text-light" for="">Seu usuário</label>
           <input autocomplete="off" type="text" placeholder="Ex:. joao.silva" name="user" required>
           <i class="bx bx-user"></i>
         </div>
@@ -33,13 +33,11 @@
             </label>
           </div>
           <div class="right">
-            <label for=""><a class="links" href="#">Esqueceu a senha?</a></label>
+            <label for=""><a class="links" href="<?= base_url('/job/forgot-password') ?>">Esqueceu a senha?</a></label>
           </div>
   
         </div>
       </form>
-
-
 
     </div>
   </div>
