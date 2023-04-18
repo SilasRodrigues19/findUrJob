@@ -37,7 +37,6 @@ const removeFilter = () => {
 
 };
 
-
 const closeWarning = () => {
 	notificationBox.classList.add("d-none");
 	rollBackPost.classList.remove("d-none");
@@ -183,4 +182,35 @@ eyeIcons.forEach((eyeIcon) => {
 		eyeIcon.classList.replace("bx-show", "bx-hide");
 		pInput.type = "password";
 	});
+});
+
+// GSAP Animations
+const inputs = document.querySelectorAll(".input-field");
+const icons = document.querySelectorAll(".bx");
+
+gsap.from(".boxLogin, .showMessage", {
+	opacity: 0,
+	y: 50,
+	duration: 0.5,
+	ease: "power2.out",
+});
+
+
+
+gsap.set([...inputs, ...icons], { opacity: 0, y: 30 });
+
+inputs.forEach((input, i) => {
+	gsap.fromTo(
+		input,
+		{ opacity: 0, y: 30 },
+		{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
+	);
+});
+
+icons.forEach((icon, i) => {
+	gsap.fromTo(
+		icon,
+		{ opacity: 0, y: 30 },
+		{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
+	);
 });
