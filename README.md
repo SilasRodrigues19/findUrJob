@@ -12,7 +12,13 @@
     <img src="./logo.svg" alt="Logo" width="35">
   </a>
 
-  <h3 align="center">Find your job</h3>
+  <h3 align="center" id="fuj">Find your job</h3>
+
+  <p align="center">
+    <a href="https://findurjobteste.000webhostapp.com/">Demo</a>
+    &#124;	
+    <a href="https://github.com/SilasRodrigues19/findUrJob/issues">Report Bug</a>
+  </p>
 
   <p align="center">
     An app to people publish and find opportunities.
@@ -41,29 +47,36 @@
 
 <hr>
 
+### Sign Up
+[![Preview][product-screenshot6]](https://findurjobteste.000webhostapp.com/)
+
 ### Sign In
 
-[![Preview][product-screenshot5]](#)
+[![Preview][product-screenshot5]](https://findurjobteste.000webhostapp.com/)
 
 ### Home
 
-[![Preview][product-screenshot]](#)
+[![Preview][product-screenshot]](https://findurjobteste.000webhostapp.com/)
 
 ### Publish opportunity
 
-[![Preview][product-screenshot2]](#)
+[![Preview][product-screenshot2]](https://findurjobteste.000webhostapp.com/)
 
 ### Archived posts
 
-[![Preview][product-screenshot3]](#)
+[![Preview][product-screenshot3]](https://findurjobteste.000webhostapp.com/)
 
 ### About project
 
-[![Preview][product-screenshot4]](#)
+[![Preview][product-screenshot4]](https://findurjobteste.000webhostapp.com/)
 
 The screens and features are described below:
 
-- **Início:** has a table listing all opportunities published by other people, with the necessary information. In the top navigation has a input field to search anything more easily.
+- **signup:** user sign up page
+
+- **singin:** user sing in page. There are some routes that you need to authenticate to access, and in the future some pages will be accessed based on the level of the auth user
+
+- **/job:** has a table listing all opportunities published by other people, with the necessary information. In the top navigation has a input field to search anything more easily.
 
 - **/new:** route that leads to publish page, just fill in all the field and publish.
 
@@ -135,7 +148,8 @@ Project Link: [https://github.com/SilasRodrigues19/findUrJob](https://github.com
 [product-screenshot3]: ./public/screenshots/preview3.png
 [product-screenshot4]: ./public/screenshots/preview4.png
 [product-screenshot5]: ./public/screenshots/preview5.png
+[product-screenshot6]: ./public/screenshots/preview6.png
 [license-url]: https://github.com/SilasRodrigues19/findUrJob/blob/master/LICENSE
 
 <br><hr>
-[🔼 Back to top](#Find-your-job)
+[🔼 Back to top](#fuj)
