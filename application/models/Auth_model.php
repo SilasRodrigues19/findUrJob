@@ -5,10 +5,10 @@ class Auth_model extends CI_Model {
   public function signUpUser($dados)
   {
 
-    $md5_password = md5($dados['password']);
+    $argon_password = password_hash($dados['password'], PASSWORD_ARGON2I);
 
     $insert = "INSERT INTO users (user_name, user_password, user_email, created_at) VALUES 
-    ('{$dados['user']}', '{$md5_password}', '{$dados['email']}', NOW())";
+    ('{$dados['user']}', '{$argon_password}', '{$dados['email']}', NOW())";
 
     /* echo $insert; exit(); */
 
@@ -21,26 +21,24 @@ class Auth_model extends CI_Model {
 
   public function signInUser($dados)
   {
-    $this->db->where('user_name', $dados['user']);
-    $this->db->where('user_password', MD5($dados['password']));
+      $this->db->where('user_name', $dados['user']);
+      $select = $this->db->get('users');
 
-    $select = $this->db->get('users');
-
-    /* echo $this->db->last_query();
-        exit;
-    */
-    
-    if ($select->num_rows() > 0) {
+      if ($select->num_rows() > 0) {
+          $user = $select->row();
+          if (password_verify($dados['password'], $user->user_password)) {
+              return array(
+                  'success' => true,
+                  'user' => $user,
+              );
+          }
+      }
+      
       return array(
-        'success' => true,
-        'user' => $select->row(),
+          'success' => false,
+          'error' => 'Usuário ou senha incorretos.',
       );
-    } else {
-      return array(
-        'success' => false,
-        'error' => 'Usuário ou senha incorretos.',
-      );
-    }
   }
+
   
 }
