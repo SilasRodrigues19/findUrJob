@@ -12,7 +12,7 @@
       <form action="" method="POST">
         <div class="input-field">
           <label class="label has-text-light" for="email">Seu e-mail</label>
-          <input autocomplete="off" type="text" placeholder="Ex:. joao@domain.com" name="email">
+          <input autocomplete="off" type="email" placeholder="Ex:. joao@domain.com" name="email">
           <i class="bx bx-envelope"></i>
         </div>
 
