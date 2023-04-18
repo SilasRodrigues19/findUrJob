@@ -4,7 +4,7 @@
       Arquivadas
     </p>
     <p class="subtitle mt-4">
-      As vagas que passarem do período de inscrição ficaram arquivadas nessa lista.
+      As vagas que passarem do período de inscrição ficarão arquivadas nessa lista.
     </p>
      <div class="level-right item-menu">
       <p class="level-item ml-6">
