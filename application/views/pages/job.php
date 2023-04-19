@@ -39,19 +39,19 @@
     
         <!-- Right side -->
         <div class="level-right navbar-item navbar-home">
-          <p class="level-item ml-6">
+          <p class="level-item mx-2">
             <span class="iconify has-text-grey mb-.1 mr-2" data-icon="bxs:archive-in"></span>
             <a href="<?= base_url('/job/archived') ?>">
               Arquivadas
             </a>
           </p>
-          <p class="level-item ml-6">
+          <p class="level-item mx-2">
             <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
             <a href="<?= base_url('/job/about') ?>">
               Sobre
             </a>
           </p>
-          <p class="level-item ml-6">
+          <p class="level-item mx-2">
             <a href="<?= base_url('/job/new') ?>" class="button is-link is-outlined">
               <span class="iconify mr-2" data-icon="line-md:plus"></span>
               Publicar

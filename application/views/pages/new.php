@@ -7,7 +7,7 @@
       Viu uma vaga e quer compartilhar com mais pessoas ? Publique ela abaixo.
     </p>
      <div class="level-right item-menu">
-      <p class="level-item ml-6">
+      <p class="level-item mx-2">
         <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
           <strong>
@@ -15,13 +15,13 @@
           </strong>
         </a>
       </p>
-      <p class="level-item ml-6">
+      <p class="level-item mx-2">
         <span class="iconify mb-.1 mr-2" data-icon="bxs:archive-in"></span>
         <a href="<?= base_url('/job/archived') ?>">
           Arquivadas
         </a>
       </p>
-      <p class="level-item ml-6">
+      <p class="level-item mx-2">
         <span class="iconify mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
         <a href="<?= base_url('/job/about') ?>">
           Sobre
@@ -71,7 +71,7 @@
         <label class="label has-text-grey-dark">Nível</label>
         <div class="control">
           <div class="select">
-            <select name="job_level" id="job_level">
+            <select name="job_level" id="job_level" class="input">
               <option value="" disabled selected>Selecione o nível exigido pela vaga</option>
               <option value="senior">Senior</option>
               <option value="pleno">Pleno</option>
