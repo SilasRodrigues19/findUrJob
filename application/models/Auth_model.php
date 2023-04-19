@@ -18,27 +18,55 @@ class Auth_model extends CI_Model {
 
   }
 
+  public function isUserActive($username)
+  {
+     $this->db->select('user_is_active');
+     $this->db->where('user_name', $username);
+     $select = $this->db->get('users');
+    
+     if ($select->num_rows() > 0) {
+         $user = $select->row();
+         return $user->user_is_active == 1;
+     }
+    
+     return false;
+  }
+
+
 
   public function signInUser($dados)
-  {
-      $this->db->where('user_name', $dados['user']);
-      $select = $this->db->get('users');
+    {
+        $username = $dados['user'];
+        
+        $is_active = $this->isUserActive($username);
 
-      if ($select->num_rows() > 0) {
-          $user = $select->row();
-          if (password_verify($dados['password'], $user->user_password)) {
-              return array(
-                  'success' => true,
-                  'user' => $user,
-              );
-          }
-      }
-      
-      return array(
-          'success' => false,
-          'error' => 'Usuário ou senha incorretos.',
-      );
-  }
+        if (!$is_active) {
+            return array(
+                'success' => false,
+                'error' => 'O usuário <strong>' . $username . '</strong> está inativo',
+            );
+        }
+
+        $this->db->where('user_name', $username);
+        $select = $this->db->get('users');
+
+        if ($select->num_rows() > 0) {
+            $user = $select->row();
+            if (password_verify($dados['password'], $user->user_password)) {
+                return array(
+                    'success' => true,
+                    'user' => $user,
+                );
+            }
+        }
+        
+        return array(
+            'success' => false,
+            'error' => 'Usuário ou senha incorretos.',
+        );
+    }
+
+
 
   public function validateMail($dados)
   {
