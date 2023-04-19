@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.body.contains(rollBackPost) && rollBackPost.classList.add("d-none");
 });
 
+const levelItems = document.querySelectorAll(".level-item");
+
+const isMobile = navigator.userAgent.match(
+	/Tablet|iPad|iPod|iPhone|Android|webOS|BlackBerry|Windows Phone/i
+);
+
+levelItems.forEach((levelItem) => {
+	levelItem.classList.add(isMobile ? "mx-1" : "mx-4");
+});
+
+
 window.history.replaceState &&
 	window.history.replaceState(null, null, window.location.href);
 
@@ -157,12 +168,8 @@ const toggleObservation = () => {
 const burger = document.querySelector(".nav-toggle"),
 	menu = document.querySelector(".nav-menu");
 
-// location.href.includes('/archived/') || location.href.includes('/about')
 
-if (
-	navigator.userAgent.match(/Mobile/) &&
-	document.title.includes("Vagas publicadas (")
-) {
+if (isMobile && document.title.includes("Vagas publicadas (")) {
 	menu.classList.add("is-hidden");
 	burger.addEventListener("click", () => {
 		burger.classList.toggle("is-active");

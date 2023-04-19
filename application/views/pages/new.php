@@ -7,7 +7,7 @@
       Viu uma vaga e quer compartilhar com mais pessoas ? Publique ela abaixo.
     </p>
      <div class="level-right item-menu">
-      <p class="level-item mx-2">
+      <p class="level-item">
         <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
           <strong>
@@ -15,13 +15,13 @@
           </strong>
         </a>
       </p>
-      <p class="level-item mx-2">
+      <p class="level-item">
         <span class="iconify mb-.1 mr-2" data-icon="bxs:archive-in"></span>
         <a href="<?= base_url('/job/archived') ?>">
           Arquivadas
         </a>
       </p>
-      <p class="level-item mx-2">
+      <p class="level-item">
         <span class="iconify mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
         <a href="<?= base_url('/job/about') ?>">
           Sobre

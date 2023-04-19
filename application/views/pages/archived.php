@@ -7,7 +7,7 @@
       As vagas que passarem do período de inscrição ficarão arquivadas nessa lista.
     </p>
      <div class="level-right item-menu">
-      <p class="level-item mx-2">
+      <p class="level-item">
         <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
           <strong>
@@ -15,13 +15,13 @@
           </strong>
         </a>
       </p>
-      <p class="level-item mx-2">
+      <p class="level-item">
         <span class="iconify mb-.1 mr-2" data-icon="majesticons:textbox-plus"></span>
         <a href="<?= base_url('/job/new') ?>">
           Publicar
         </a>
       </p>
-      <p class="level-item mx-2">
+      <p class="level-item">
         <span class="iconify mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
         <a href="<?= base_url('/job/about') ?>">
           Sobre
