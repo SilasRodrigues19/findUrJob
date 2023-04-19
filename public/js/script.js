@@ -34,7 +34,6 @@ const removeFilter = () => {
 		formFilter.submit();
 		location.reload();
 	}, 1000);
-
 };
 
 const closeWarning = () => {
@@ -158,7 +157,12 @@ const toggleObservation = () => {
 const burger = document.querySelector(".nav-toggle"),
 	menu = document.querySelector(".nav-menu");
 
-if (navigator.userAgent.match(/Mobile/)) {
+// location.href.includes('/archived/') || location.href.includes('/about')
+
+if (
+	navigator.userAgent.match(/Mobile/) &&
+	document.title.includes("Vagas publicadas (")
+) {
 	menu.classList.add("is-hidden");
 	burger.addEventListener("click", () => {
 		burger.classList.toggle("is-active");
@@ -194,8 +198,6 @@ gsap.from(".boxLogin, .showMessage", {
 	duration: 0.5,
 	ease: "power2.out",
 });
-
-
 
 gsap.set([...inputs, ...icons], { opacity: 0, y: 30 });
 
