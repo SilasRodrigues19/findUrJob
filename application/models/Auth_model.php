@@ -35,9 +35,13 @@ class Auth_model extends CI_Model {
 
 
   public function signInUser($dados)
-    {
-        $username = $dados['user'];
-        
+  {
+    $username = $dados['user'];
+    $this->db->where('user_name', $username);
+    $select = $this->db->get('users');
+
+    if ($select->num_rows() > 0) {
+        $user = $select->row();
         $is_active = $this->isUserActive($username);
 
         if (!$is_active) {
@@ -47,24 +51,19 @@ class Auth_model extends CI_Model {
             );
         }
 
-        $this->db->where('user_name', $username);
-        $select = $this->db->get('users');
-
-        if ($select->num_rows() > 0) {
-            $user = $select->row();
-            if (password_verify($dados['password'], $user->user_password)) {
-                return array(
-                    'success' => true,
-                    'user' => $user,
-                );
-            }
+        if (password_verify($dados['password'], $user->user_password)) {
+            return array(
+                'success' => true,
+                'user' => $user,
+            );
         }
-        
-        return array(
-            'success' => false,
-            'error' => 'Usuário ou senha incorretos.',
-        );
     }
+
+    return array(
+        'success' => false,
+        'error' => 'Usuário ou senha incorretos.',
+    );
+  }
 
 
 
