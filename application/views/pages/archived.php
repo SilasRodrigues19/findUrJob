@@ -34,12 +34,21 @@
 
 <section class="section my-6">
   <?= showMessage(); ?>
-  <h1 class="title has-text-grey-dark"><?= $countArchivedJobs['countArchivedJobs'] ?> Vagas Expiradas.</h1>
+  <?php $count = $countArchivedJobs['countArchivedJobs']; ?>
+  <h1 class="title has-text-grey-dark">
+    <?= ($count == 1) ? $count . ' Vaga Expirada' : $count . ' Vagas Expiradas'?>
+  </h1>
+
   <h2 class="subtitle mt-4">
     As vagas que encerraram o tempo para candidaturas aparecerão aqui.
   </h2>
 
   <hr>
+
+  <form method="POST" id="form-filter">
+       <input type="hidden" name="archivejob" id="archivejob">
+       <input type="hidden" name="archivejob_id" id="archivejob_id">
+  </form>
 
   <div>
       <?php if($archivedJobs): ?>
@@ -50,6 +59,16 @@
               <p class="card-header-title">
                 <?= $archivedJobs[$idx]['job_title']; ?>
               </p>
+              <?php
+              $user = $this->session->userdata('usuario');
+              if($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin') ): 
+              ?>
+              <button class="card-header-icon" aria-label="Archive item">
+                <span class="icon">
+                  <span onclick="return handleArchiving( '<?=  $archivedJobs[$idx]['job_id'] ?>' , '<?= $archivedJobs[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
+                </span>
+              </button>
+              <?php endif; ?>
             </header>
             <div class="card-content">
               <div class="content">

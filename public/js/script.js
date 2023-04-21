@@ -122,6 +122,29 @@ const formatCurrency = () => {
 	job_salary.value = salary;
 };
 
+
+const handleDelete = (job_id, job_title) => {
+	
+	const deleteId = document.querySelector('#deleteId'),
+	formFilter = document.querySelector("#form-filter");
+
+	Swal.fire({
+		title: `Tem certeza que deseja deletar a vaga ${job_title} ?`,
+		confirmButtonText: "Confirmar",
+		showCancelButton: true,
+		cancelButtonText: "Cancelar",
+		allowOutsideClick: false,
+		allowEscapeKey: true,
+	}).then(({ value }) => {
+		if (value) {
+			deleteId.value = job_id;
+			setTimeout(() => {
+				formFilter.submit();
+			}, 1000);
+		}
+	});
+};
+
 const handleArchiving = (job_id, job_title) => {
 	let archivejob = document.querySelector("#archivejob"),
 		archivejob_id = document.querySelector("#archivejob_id"),
@@ -132,23 +155,23 @@ const handleArchiving = (job_id, job_title) => {
 		input: "password",
 		confirmButtonText: "Confirmar",
 		allowOutsideClick: false,
-		allowEscapeKey: false,
+		allowEscapeKey: true,
 	}).then(({ value }) => {
 		archivejob.value = value;
-		archivejob_id.value = job_id;
+		archivejob_id.value = job_id.toString();
 		setTimeout(() => {
 			formFilter.submit();
 		}, 3000);
 		if (value == 123) {
 			Swal.fire({
 				icon: "success",
-				html: `A vaga ${job_title} foi arquivada`,
+				html: `O status da vaga ${job_title} foi alterado`,
 			});
 			return;
 		}
 		Swal.fire({
 			icon: "error",
-			html: `A vaga ${job_title} não foi arquivada`,
+			html: `O status da vaga ${job_title} não foi alterado`,
 		});
 	});
 };

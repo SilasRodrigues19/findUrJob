@@ -21,6 +21,7 @@
           <form action="" method="POST" id="form-filter">
           <input type="hidden" name="archivejob" id="archivejob">
           <input type="hidden" name="archivejob_id" id="archivejob_id">
+          <input type="hidden" name="deleteId" id="deleteId">
             <div class="level-item">
               <div class="field has-addons">
                 <p class="control">
@@ -126,11 +127,21 @@
               <p class="card-header-title">
                 <?= $showJob[$idx]['job_title']; ?>
               </p>
+              <?php
+              $user = $this->session->userdata('usuario');
+              if($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin') ): 
+              ?>
               <button class="card-header-icon" aria-label="Archive item">
                 <span class="icon">
-                  <span onclick="return handleArchiving( <?=  $showJob[$idx]['job_id'] . ', \'' . $showJob[$idx]['job_title'] . '\' '?> )" class="iconify" data-icon="material-symbols:archive"></span>
+                  <span onclick="return handleArchiving( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
                 </span>
               </button>
+              <button class="card-header-icon" aria-label="Archive item">
+                <span class="icon">
+                  <span onclick="return handleDelete( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="solar:trash-bin-minimalistic-bold"></span>
+                </span>
+              </button>
+              <?php endif; ?>
             </header>
             <div class="card-content">
               <div class="content">

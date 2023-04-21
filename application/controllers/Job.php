@@ -47,7 +47,7 @@ class Job extends MY_Controller
 		$id = $this->input->post('archivejob_id');
 
 		if($accesskey == 123) {
-			$res = $this->mjob->archiveJob($id);
+			$res = $this->mjob->archiveJob("'" . $id . "'");
 			$data['archiveJob'] = $res;
 
 			if($res) {
@@ -55,6 +55,21 @@ class Job extends MY_Controller
 				redirect('/job/archived');
 			}
 		}
+
+		
+		$id = $this->input->post('deleteId');
+
+		if(isset($id)) {
+			$res = $this->mjob->deleteJob($id);
+
+			if($res['success']) {
+				notify('', $res['msg'], 'success');
+			} else {
+				notify('', $res['msg'], 'error');
+			}
+		}
+
+
 
 
 		$data['title'] = 'Vagas publicadas ' . '(' .$data['countJobs']['countJobs']. ')' ;
@@ -122,15 +137,15 @@ class Job extends MY_Controller
 
 			if($res['success']) {
 				notify('', $res['msg'], 'success');
-				redirect('/job/report');
 			} else {
 				notify('', $res['msg'], 'error');
-				redirect('/job/report');
 			}
 
+		} 
+
+		if($this->input->server('REQUEST_METHOD') == 'POST' && empty($this->input->post('report_job_id'))) {
+			notify('', 'Informe o ID da vaga', 'warning');
 		}
-
-
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/report', $data);
@@ -145,6 +160,20 @@ class Job extends MY_Controller
 
 		$res = $this->mjob->archivedJobs();
 		$data['archivedJobs'] = $res;
+
+		$accesskey = $this->input->post('archivejob');
+		$id = $this->input->post('archivejob_id');
+
+		if($accesskey == 123) {
+			$res = $this->mjob->archiveJob("'" . $id . "'");
+			$data['archiveJob'] = $res;
+
+			if($res) {
+				notify('', 'Vaga desarquivada', 'success');
+				redirect('/job');
+			}
+		}
+
 
 		$data['title'] = 'Vagas arquivadas ' . '(' .$data['countArchivedJobs']['countArchivedJobs']. ')' ;
 
