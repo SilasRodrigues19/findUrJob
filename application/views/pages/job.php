@@ -173,9 +173,13 @@
               <?php endif; ?>
             </div>
             <footer class="card-footer py-4">
-              <p class="card-footer-item d-block has-text-left">Publicado no dia
-                <strong class="mx-2"><?= date_format(new DateTime($showJob[$idx]['created_at']), 'd/m/Y');?></strong> às 
-                <strong class="ml-2"><?= date_format(new DateTime($showJob[$idx]['created_at']), 'H:i:s'); ?></strong>
+              <p class="card-footer-item d-block has-text-left">Publicado no dia 
+                <strong><?= $showJob[$idx]['dateString']?></strong> às 
+                <strong><?= $showJob[$idx]['timeString']?></strong>
+                | <?= $showJob[$idx]['job_post_user']; ?>
+              </p>
+              <p class="card-footer-item d-block has-text-right">
+                <strong>ID:</strong> <?= $showJob[$idx]['job_id']; ?>
               </p>
             </footer>
           </div>
