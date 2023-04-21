@@ -192,6 +192,7 @@ nav {
 
 	.item-menu {
 		@include flexCenter(center);
+		flex-wrap: wrap;
 
 		.level-item {
 			&:last-of-type {
@@ -335,4 +336,12 @@ nav {
 
 .mt-8 {
 	margin-top: 3.5rem;
+}
+
+.is-fixed {
+	position: fixed;
+	right: 5rem;
+	bottom: -30rem;
+	z-index: 5;
+	transition: bottom ease-in-out 1.5s;
 }
