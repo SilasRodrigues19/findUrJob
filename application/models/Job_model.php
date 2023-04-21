@@ -1,6 +1,6 @@
 <?php
 
-class Job_model extends CI_Model {
+class Job_model extends MY_Model {
 
   public function showJob($searchTerm = false)
   {
@@ -11,7 +11,7 @@ class Job_model extends CI_Model {
       $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
     }
 
-    $select = "SELECT *,
+    $select = "SELECT *, DATE_FORMAT(created_at, '%d/%m/%Y') AS dateString, DATE_FORMAT(created_at, '%H:%i:%s') AS timeString,
       CASE 
         WHEN job_currency = 'Real' THEN 'R$'
         WHEN job_currency = 'Dollar' THEN '$'
@@ -68,12 +68,21 @@ class Job_model extends CI_Model {
   public function addJob($dados)
   {
 
-    $insert = "INSERT INTO jobs (job_title, job_requirements, job_link, job_level, job_currency, job_mode, job_contract, job_email, job_salary, job_experience, job_is_archived, job_observation) 
-    VALUES ('{$dados['job_title']}', '{$dados['job_requirements']}', '{$dados['job_link']}', '{$dados['job_level']}', 
-            '{$dados['job_currency']}', '{$dados['job_mode']}', '{$dados['job_contract']}', '{$dados['job_email']}', '{$dados['job_salary']}', 
-            '{$dados['job_experience']}', false, '{$dados['job_observation']}')";
+    $this->load->library('session');
 
-    //echo $insert; exit();
+
+    $user = $this->session->userdata('usuario');
+
+    $job_post_user = $user->user_name . ' - ' . $user->user_email;
+
+    $job_id = $this->generateUUID();
+
+
+    $insert = "INSERT INTO jobs (job_id, job_title, job_requirements, job_link, job_level, job_currency, job_mode, job_contract, job_email, job_salary, job_experience, job_is_archived, job_observation, job_post_user) 
+    VALUES ('{$job_id}', '{$dados['job_title']}', '{$dados['job_requirements']}', '{$dados['job_link']}', '{$dados['job_level']}', 
+            '{$dados['job_currency']}', '{$dados['job_mode']}', '{$dados['job_contract']}', '{$dados['job_email']}', '{$dados['job_salary']}', 
+            '{$dados['job_experience']}', false, '{$dados['job_observation']}', '{$job_post_user}')";
+
     $execute = $this->db->query($insert);
 
     return ($execute) ? true : false;
@@ -108,4 +117,47 @@ class Job_model extends CI_Model {
     return ($execute) ? true : false;
     
   }
+
+  public function reportJob($dados)
+  {
+
+    $this->load->library('session');
+
+    $user = $this->session->userdata('usuario');
+
+    $report_by = $user->user_id;
+
+    $verify = "SELECT job_id, job_title FROM jobs WHERE job_id = '{$dados['report_job_id']}'";
+
+    $execute = $this->db->query($verify);
+
+    
+    if($execute->num_rows() > 0) {
+      
+      $result_array = $execute->result_array();
+      $job_title = $result_array[0]['job_title'];
+
+      $report_id = $this->generateUUID();
+
+      $insert = "INSERT into report (report_id, report_job_id, report_reason, report_observation, report_by)
+      VALUES ('{$report_id}', '{$dados['report_job_id']}', '{$dados['report_reason']}', '{$dados['report_observation']}', '{$report_by}')";
+
+      $execute = $this->db->query($insert);
+
+      return array(
+                'success' => true,
+                'msg' => 'A vaga <strong>' . $job_title . '</strong> foi reportada',
+            );
+
+    } else {
+      return array(
+                'success' => false,
+                'msg' => 'O ID informado não foi localizado',
+            );
+    }
+
+    
+  }
+
+
 }

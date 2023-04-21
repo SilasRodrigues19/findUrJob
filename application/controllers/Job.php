@@ -81,6 +81,7 @@ class Job extends MY_Controller
 		$dados['job_salary'] = $this->input->post('job_salary');
 		$dados['job_experience'] = $this->input->post('job_experience');
 		$dados['job_observation'] = $this->input->post('job_observation');
+		$dados['job_post_user'] = $this->input->post('job_post_user');
 
 		if(isset($dados['job_experience'])) {
 
@@ -110,6 +111,26 @@ class Job extends MY_Controller
 	public function report()
 	{
 		$data['title'] = 'Denuncie';
+
+		$dados['report_job_id'] = $this->input->post('report_job_id');
+		$dados['report_reason'] = $this->input->post('report_reason');
+		$dados['report_observation'] = $this->input->post('report_observation');
+
+
+		if (!empty($this->input->post('report_job_id'))) {
+			$res = $this->mjob->reportJob($dados);
+
+			if($res['success']) {
+				notify('', $res['msg'], 'success');
+				redirect('/job/report');
+			} else {
+				notify('', $res['msg'], 'error');
+				redirect('/job/report');
+			}
+
+		}
+
+
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/report', $data);
