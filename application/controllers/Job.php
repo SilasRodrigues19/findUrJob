@@ -137,8 +137,10 @@ class Job extends MY_Controller
 
 			if($res['success']) {
 				notify('', $res['msg'], 'success');
+				redirect('/job/report');
 			} else {
 				notify('', $res['msg'], 'error');
+				redirect('/job/report');
 			}
 
 		} 
