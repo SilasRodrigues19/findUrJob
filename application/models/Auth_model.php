@@ -1,14 +1,16 @@
 <?php
 
-class Auth_model extends CI_Model {
+class Auth_model extends MY_Model {
 
   public function signUpUser($dados)
   {
 
     $argon_password = password_hash($dados['password'], PASSWORD_ARGON2I);
 
-    $insert = "INSERT INTO users (user_name, user_password, user_email, created_at) VALUES 
-    ('{$dados['user']}', '{$argon_password}', '{$dados['email']}', NOW())";
+    $user_id = $this->generateUUID();
+
+    $insert = "INSERT INTO users (user_id, user_name, user_password, user_email, created_at) VALUES 
+    ('{$user_id}', '{$dados['user']}', '{$argon_password}', '{$dados['email']}', NOW())";
 
     /* echo $insert; exit(); */
 

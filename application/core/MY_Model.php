@@ -15,7 +15,7 @@ class MY_Model extends CI_Model
     public function  __construct()
     {
         parent::__construct();
-        $this->db = $this->load->database('sakila', true);
+        $this->db = $this->load->database('default', true);
     }
 
     public function table_exists( $table = false )
@@ -114,6 +114,11 @@ class MY_Model extends CI_Model
             $this->db->like( $like );
 
         return $this->db->count_all_results( $this->table );
+    }
+
+    public function generateUUID()
+    {
+        return md5(uniqid(rand(), true));
     }
 
 }
