@@ -28,7 +28,7 @@
                   <input autocomplete="off" class="input" type="text" name="search" id="search" placeholder="Busque uma vaga" value="<?= $search ?>">
                 </p>
                 <p class="control">
-                  <button class="button" type="submit">
+                  <button class="button" type="submit" name="submitBtn" id="submitBtn">
                     <span class="iconify mr-1" data-icon="line-md:search" data-rotate="270deg"></span>
                     Pesquisar
                   </button>
@@ -136,6 +136,9 @@
                   <span onclick="return handleArchiving( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
                 </span>
               </button>
+              <?php endif; ?>
+              <?php 
+              if($user && $user->user_level === 'Admin') : ?>
               <button class="card-header-icon" aria-label="Archive item">
                 <span class="icon">
                   <span onclick="return handleDelete( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="solar:trash-bin-minimalistic-bold"></span>

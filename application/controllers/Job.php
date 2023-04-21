@@ -32,6 +32,13 @@ class Job extends MY_Controller
 	public function job()
 	{
 
+		if($this->input->post('submitBtn') && (empty($this->input->post('search'))) || $this->input->post('search') === '') {
+			notify('', 'O filtro está vazio para pesquisar', 'warning');
+			header("Location: ".$_SERVER['REQUEST_URI']);
+    	exit();
+		}
+
+
 		$data['search'] = $this->input->post('search');
 
 		$res = $this->mjob->showJob($data['search']);
@@ -59,7 +66,7 @@ class Job extends MY_Controller
 		
 		$id = $this->input->post('deleteId');
 
-		if(isset($id)) {
+		if (!empty($this->input->post('deleteId'))) {
 			$res = $this->mjob->deleteJob($id);
 
 			if($res['success']) {
