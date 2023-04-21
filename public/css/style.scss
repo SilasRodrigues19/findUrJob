@@ -315,3 +315,24 @@ nav {
 	}
 
 }
+
+
+.error-wrapper .error-message {
+	margin-top: 0.5rem;
+}
+
+.control:not(.is-horizontal) .select {
+	width: 100%;
+}
+
+.error-message {
+	margin: 1rem 0;
+	background-color: #ffe3e3;
+	color: #e60000;
+	padding: 0.5rem;
+	border-radius: 0.25rem;
+}
+
+.mt-8 {
+	margin-top: 3.5rem;
+}
