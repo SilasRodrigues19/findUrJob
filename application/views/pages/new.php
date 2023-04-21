@@ -71,7 +71,7 @@
         <label class="label has-text-grey-dark">Nível</label>
         <div class="control">
           <div class="select">
-            <select name="job_level" id="job_level" class="input">
+            <select class="select" name="job_level" id="job_level">
               <option value="" disabled selected>Selecione o nível exigido pela vaga</option>
               <option value="senior">Senior</option>
               <option value="pleno">Pleno</option>
@@ -85,7 +85,7 @@
       </div>
 
       <div class="field">
-        <label class="label has-text-grey-dark">Email</label>
+        <label class="label has-text-grey-dark" id="mailLabel">Email</label>
         <div class="control">
           <input autocomplete="off" class="input" type="email" placeholder="Deixar em branco caso não houver" name="job_email" id="job_email">
         </div>
@@ -93,8 +93,8 @@
 
       <div class="field has-addons">
         <p class="control">
-          <span class="select">
-            <select name="job_currency" id="job_currency">
+          <span class="select error-wrapper">
+            <select class="select" name="job_currency" id="job_currency">
               <option value="real">R$</option>
               <option value="dollar">$</option>
               <option value="euro">€</option>
@@ -110,7 +110,7 @@
         <label class="label has-text-grey-dark">Modalidade</label>
         <div class="control">
           <div class="select">
-            <select name="job_mode" id="job_mode">
+            <select class="select" name="job_mode" id="job_mode">
               <option value="" disabled selected>Selecione a modalidade</option>
               <option value="remoto">Remoto</option>
               <option value="presencial">Presencial</option>
@@ -124,7 +124,7 @@
         <label class="label has-text-grey-dark">Contrato</label>
         <div class="control">
           <div class="select">
-            <select name="job_contract" id="job_contract">
+            <select class="select" name="job_contract" id="job_contract">
               <option value="" disabled selected>Selecione o tipo de contrato</option>
               <option value="clt">CLT</option>
               <option value="clt flex">CLT Flex</option>
