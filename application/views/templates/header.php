@@ -18,4 +18,4 @@
 		<link rel="stylesheet" href="<?= base_url('public/css/style.min.css'); ?>">
 	</head>
 
-	<body>
+	<body id="top">

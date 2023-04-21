@@ -246,3 +246,15 @@ icons.forEach((icon, i) => {
 		{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
 	);
 });
+
+const smoothScroll = document.querySelector("#smoothScroll");
+
+document.addEventListener('scroll', () => {
+	let scroll_position = window.scrollY;
+
+	if (scroll_position < 600) {
+		smoothScroll.style.cssText = 'bottom: -30rem';
+		return;
+	} 
+	smoothScroll.style.cssText = 'bottom: 5rem';
+})
