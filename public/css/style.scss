@@ -14,6 +14,10 @@ a {
 	&:hover {
 		color: $lightGrayHigher;
 	}
+
+	&[title*="webhost"] {
+		display: none;
+	}
 }
 
 li {
@@ -206,6 +210,19 @@ nav {
 		align-items: baseline;
 		flex-direction: column;
 	}
+
+	.container {
+		.columns {
+				display: flex;
+		
+				.column {
+					@include flexCenter(center);
+					width: 100%;
+				}
+		
+			}
+	}
+
 }
 
 
