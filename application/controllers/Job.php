@@ -195,28 +195,76 @@ class Job extends MY_Controller
 
 	public function forgot_password()
 	{
-		$data['title'] = 'Altere sua senha';
+
+			$data['title'] = 'Altere sua senha';
+
+			$email = $this->input->post('email');
+
+			// Mocked email
+			// $email = 'silasrodrigues.fatec@gmail.com';
+
+			$res = $this->mauth->getEmailSecret();
+			$dados['emailSecret'] = $res;
+
+			if(!empty($email)) {
+					$dados['email'] = $email;
+					$res = $this->mauth->validateMail($dados);
+					
+					if($res['success']) {
+							$token = bin2hex(random_bytes(32));
+							$resetLink = base_url('job/forgot-password?token=' . $token);
+
+							$email_config = [
+								'protocol'   => 'smtp',
+								'smtp_host'  => 'smtp.gmail.com',
+								'smtp_port'  => '587',
+								'smtp_crypto'=> 'tls',
+								'smtp_user'  => 'silasrodrigues.fatec@gmail.com',
+								'smtp_pass'  => $dados['emailSecret'],
+								'mailtype'   => 'html',
+								'starttls'   => true,
+								'newline'    => "\r\n"
+							];
 
 
-		$dados['email'] = $this->input->post('email');
+							$this->load->library('email', $email_config);
 
-		if(!empty($this->input->post('email'))) {
-			$res = $this->mauth->validateMail($dados);
-			if($res['success']) {
-				notify('', 'Email encontrado', 'success');
-				redirect('/job/forgot-password');
-			} else {
-				notify('', $res['error'], 'error');
-				redirect('/job/forgot-password');
+							$this->email->from('silasrodrigues.fatec@gmail.com');
+							$this->email->to($email);
+							$this->email->subject('Solicitação de redefinir a senha');
+							$this->email->message('
+																		<html>
+																				<head>
+																						<title>Solicitação de redefinir a senha</title>
+																				</head>
+																				<body>
+																						<p>Olá,</p>
+																						<p>Recebemos uma solicitação para redefinir a sua senha. Se você não solicitou essa redefinição, por favor desconsidere este e-mail.</p>
+																						<p>Para redefinir a sua senha, clique no link abaixo:</p>
+																						<p><a href="' . $resetLink . '">' . $resetLink . '</a></p>
+																				</body>
+																		</html>
+																');
+
+
+							// echo $this->email->print_debugger();
+
+							if ($this->email->send()) {
+									notify('', 'Link enviado para o e-mail informado', 'success');
+							} else {
+									notify('', 'Falha ao enviar o link', 'error');
+							}
+					} else {
+							notify('', $res['error'], 'error');
+					}
 			}
-		}
 
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/auth/forgot-password', $data);
-		$this->load->view('templates/footer', $data);
-
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/auth/forgot-password', $data);
+			$this->load->view('templates/footer', $data);
 	}
+
+
 
 	public function signup()
 	{
