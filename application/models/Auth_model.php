@@ -91,5 +91,14 @@ class Auth_model extends MY_Model {
 
   }
 
+  public function getEmailSecret() 
+  {
+      $select = "SELECT MAX(email_secret) as email_secret FROM email";
+      $execute = $this->db->query($select);
+      $row = $execute->row();
+      return ($execute->num_rows() > 0) ? $row->email_secret : null;
+  }
+
+
   
 }
