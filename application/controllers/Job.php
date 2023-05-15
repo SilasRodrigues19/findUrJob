@@ -200,6 +200,10 @@ class Job extends MY_Controller
 
 			$email = $this->input->post('email');
 
+			$email = $this->input->post('email');
+			$data['token'] = $this->input->get('token');
+
+
 			// Mocked email
 			// $email = 'silasrodrigues.fatec@gmail.com';
 
