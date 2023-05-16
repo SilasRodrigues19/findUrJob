@@ -30,6 +30,10 @@
             <input autocomplete="off" type="email" placeholder="Ex:. joao@domain.com" name="email" id="email" required>
             <i class="bx bx-user"></i>
           <?php else: ?>
+            <label class="label has-text-light" for="email">Email cadastrado</label>
+            <input autocomplete="off" type="email" placeholder="Ex:. joao@domain.com" name="email" id="email" disabled value="<?= $email ?>">
+            <i class="bx bx-user"></i>
+            
             <label class="label has-text-light" for="password">Sua nova senha</label>
             <input class="passwordInput" autocomplete="off" type="password" placeholder="********" name="password" id="password" required>
             <i class="bx bx-hide show-hide"></i>

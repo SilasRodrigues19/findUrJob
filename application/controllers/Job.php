@@ -202,8 +202,8 @@ class Job extends MY_Controller
 
 			$email = $this->input->post('email');
 			$data['token'] = $this->input->get('token');
-
-
+			$data['email'] = $this->input->get('email');
+			
 			// Mocked email
 			// $email = 'silasrodrigues.fatec@gmail.com';
 
@@ -216,7 +216,7 @@ class Job extends MY_Controller
 					
 					if($res['success']) {
 							$token = bin2hex(random_bytes(32));
-							$resetLink = base_url('job/forgot-password?token=' . $token);
+							$resetLink = base_url('job/forgot-password?token=' . $token . '&email=' . urlencode($email));
 
 							$email_config = [
 								'protocol'   => 'smtp',

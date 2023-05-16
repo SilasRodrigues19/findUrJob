@@ -278,6 +278,11 @@ nav {
 				background: rgba($color: #fff, $alpha: .4);
 				z-index: 2;
 
+				&:disabled {
+					cursor: not-allowed;
+					color: rgba($color: #fff, $alpha: .7);
+				}
+
 				@include placeholder {
 					color: #fff;
 				}
