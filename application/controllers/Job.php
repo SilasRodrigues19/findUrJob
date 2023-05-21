@@ -196,13 +196,14 @@ class Job extends MY_Controller
 	public function forgot_password()
 	{
 
-			$data['title'] = 'Altere sua senha';
-
 			$email = $this->input->post('email');
 
 			$data['token'] = $this->input->get('token');
 			$data['email'] = $this->input->get('email');
 			
+			$dynamicTitle = isset($data['token']) ? 'Altere sua senha' : 'Solicitar redefinição de senha';
+      $data['title'] = $dynamicTitle;
+
 			// Mocked email
 			// $email = 'silasrodrigues.fatec@gmail.com';
 
