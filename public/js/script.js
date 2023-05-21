@@ -203,20 +203,22 @@ if (isMobile && document.title.includes("Vagas publicadas (")) {
 // Login
 const eyeIcons = document.querySelectorAll(".show-hide");
 
-eyeIcons.forEach((eyeIcon) => {
+eyeIcons.forEach((eyeIcon, i) => {
 	eyeIcon.addEventListener("click", () => {
-		const pInput = eyeIcon.parentElement.querySelector(".passwordInput");
+		const pInputs = document.querySelectorAll(".passwordInput");
 
-		// console.log(eyeIcon);
+		const pInput = pInputs[i];
 
 		if (pInput.type === "password") {
 			eyeIcon.classList.replace("bx-hide", "bx-show");
-			return (pInput.type = "text");
+			pInput.type = "text";
+		} else {
+			eyeIcon.classList.replace("bx-show", "bx-hide");
+			pInput.type = "password";
 		}
-		eyeIcon.classList.replace("bx-show", "bx-hide");
-		pInput.type = "password";
 	});
 });
+
 
 // GSAP Animations
 const inputs = document.querySelectorAll(".input-field");
