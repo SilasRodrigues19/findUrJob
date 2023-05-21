@@ -280,11 +280,11 @@ nav {
 
 				&:disabled {
 					cursor: not-allowed;
-					color: rgba($color: #fff, $alpha: .7);
+					color: rgba($color: #fff, $alpha: .5);
 				}
 
 				@include placeholder {
-					color: #fff;
+					color: rgba($color: #fff, $alpha: .5);
 				}
 			}
 
