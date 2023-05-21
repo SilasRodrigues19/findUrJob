@@ -200,7 +200,6 @@ class Job extends MY_Controller
 
 			$email = $this->input->post('email');
 
-			$email = $this->input->post('email');
 			$data['token'] = $this->input->get('token');
 			$data['email'] = $this->input->get('email');
 			
@@ -262,6 +261,27 @@ class Job extends MY_Controller
 							notify('', $res['error'], 'error');
 					}
 			}
+
+			$dados['newPassword'] = $this->input->post('password');
+			$dados['c-newPassword'] = $this->input->post('confirm_password');
+
+			if (isset($dados['newPassword']) && isset($data['token']) && strlen(trim($data['token'])) === 64) {
+					if (strcmp($dados['newPassword'], $dados['c-newPassword']) === 0) {
+							$res = $this->mauth->resetPassword($dados);
+
+							if ($res['success']) {
+									notify('', $res['msg'], 'success');
+									redirect('/job/signin');
+							} else {
+									notify('', $res['msg'], 'error');
+									redirect('/job/forgot-password');
+							}
+					} else {
+							notify('', 'As senhas não são iguais', 'error');
+							redirect(base_url('job/forgot-password?token=' . $data['token'] . '&email=' . urlencode($data['email'])));
+					}
+			}
+
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('pages/auth/forgot-password', $data);

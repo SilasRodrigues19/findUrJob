@@ -100,5 +100,32 @@ class Auth_model extends MY_Model {
   }
 
 
+    public function resetPassword($dados)
+    {
+
+        $argon_password = password_hash($dados['newPassword'], PASSWORD_ARGON2I);
+
+        $this->db->where('user_email', $this->input->get('email'));
+        $update = $this->db->update('users', array('user_password' => $argon_password));
+        
+        //echo $this->db->last_query(); exit;
+
+        if ($update) {
+            return array(
+                    'success' => true,
+                    'msg' => 'Senha redefinida com sucesso',
+                );
+        } else {
+            return array(
+                    'success' => false,
+                    'msg' => 'Falha ao redefinir sua senha',
+                );
+        }
+
+        
+
+    }
+
+
   
 }
