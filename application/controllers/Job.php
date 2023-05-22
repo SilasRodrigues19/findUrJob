@@ -17,16 +17,23 @@ class Job extends MY_Controller
 	}
 
 	protected function is_logged_in()
-{
-    if (!$this->session->userdata('usuario')) {
-        // Armazenar a página atual em uma sessão
-        $this->session->set_userdata('redirect_url', current_url());
-        
-        notify('', 'Necessário autenticação.', 'error');
-        redirect('/job/signin');
-    }
-}
+	{
+			if (!$this->session->userdata('usuario')) {
+					// Armazenar a página atual em uma sessão
+					$this->session->set_userdata('redirect_url', current_url());
+					
+					notify('', 'Necessário autenticação.', 'error');
+					redirect('/job/signin');
+			}
+	}
 
+	function redirectIfLoggedIn() 
+	{
+			if ($this->session->has_userdata('usuario')) {
+					$redirect_url = $this->session->userdata('redirect_url') ?? '/';
+					redirect($redirect_url);
+			}
+	}
 
 
 	public function job()
@@ -196,7 +203,10 @@ class Job extends MY_Controller
 	public function forgot_password()
 	{
 
+			$this->redirectIfLoggedIn();
+
 			$email = $this->input->post('email');
+			
 
 			$data['token'] = $this->input->get('token');
 			$data['email'] = $this->input->get('email');
@@ -263,12 +273,25 @@ class Job extends MY_Controller
 					}
 			}
 
-			$dados['newPassword'] = $this->input->post('password');
-			$dados['c-newPassword'] = $this->input->post('confirm_password');
+			$data['newPassword'] = $this->input->post('password');
+			$data['cPassword'] = $this->input->post('confirm_password');
+			$data['send'] = $this->input->post('send');
 
-			if (isset($dados['newPassword']) && isset($data['token']) && strlen(trim($data['token'])) === 64) {
-					if (strcmp($dados['newPassword'], $dados['c-newPassword']) === 0) {
-							$res = $this->mauth->resetPassword($dados);
+			$messages = [
+				'email' => 'Informe o e-mail',
+			];
+
+			foreach($messages as $key => $message):
+				(empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
+			endforeach;
+
+			if(empty($data['newPassword']) && isset($data['send'])) {
+				notify('', 'Informe sua nova senha', 'info');
+			}
+
+			if (!empty($data['newPassword']) && isset($data['token']) && strlen(trim($data['token'])) === 64 && isset($data['send'])) {
+					if (strcmp($data['newPassword'], $data['cPassword']) === 0) {
+							$res = $this->mauth->resetPassword($data);
 
 							if ($res['success']) {
 									notify('', $res['msg'], 'success');
@@ -279,7 +302,7 @@ class Job extends MY_Controller
 							}
 					} else {
 							notify('', 'As senhas não são iguais', 'error');
-							redirect(base_url('job/forgot-password?token=' . $data['token'] . '&email=' . urlencode($data['email'])));
+							//redirect(base_url('job/forgot-password?token=' . $data['token'] . '&email=' . urlencode($data['email'])));
 					}
 			}
 
@@ -295,17 +318,26 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Realize seu cadastro';
 
-		if ($this->session->has_userdata('usuario')) {
-        redirect('/job');
-    }
+		$this->redirectIfLoggedIn();
 
-		$dados['user'] = $this->input->post('user');
-		$dados['password'] = $this->input->post('password');
-		$dados['email'] = $this->input->post('email');
+		$data['email'] = $this->input->post('email');
+		$data['user'] = $this->input->post('user');
+		$data['password'] = $this->input->post('password');
+		$data['send'] = $this->input->post('send');
+
+		$messages = [
+			'password' => 'Informe a senha',
+			'user' => 'Informe o usuário',
+			'email' => 'Informe o e-mail',
+		];
+
+		foreach($messages as $key => $message):
+			(empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
+		endforeach;
 
 
 		if (!empty($this->input->post('user')) && !empty($this->input->post('password')) && !empty($this->input->post('email'))) {
-			$res = $this->mauth->signUpUser($dados);
+			$res = $this->mauth->signUpUser($data);
 			if($res) {
 				notify('', 'Usuário cadastrado', 'success');
 				redirect('/job/signin');
@@ -322,16 +354,24 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Faça login';
 
-    if ($this->session->has_userdata('usuario')) {
-        $redirect_url = $this->session->userdata('redirect_url') ?? '/';
-    		redirect($redirect_url);
-    }
+    $this->redirectIfLoggedIn();
 
-		$dados['user'] = $this->input->post('user');
-		$dados['password'] = $this->input->post('password');
+		$data['user'] = $this->input->post('user');
+		$data['password'] = $this->input->post('password');
+		$data['send'] = $this->input->post('send');
+
+		$messages = [
+			'password' => 'Informe a senha',
+			'user' => 'Informe o usuário',
+		];
+
+		foreach($messages as $key => $message):
+			(empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
+		endforeach;
+
 
 		if (!empty($this->input->post('user')) && !empty($this->input->post('password'))) {
-			$res = $this->mauth->signInUser($dados);
+			$res = $this->mauth->signInUser($data);
 
 			if ($res['success']) {
 				$this->session->set_userdata('usuario', $res['user']);
