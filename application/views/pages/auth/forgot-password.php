@@ -27,7 +27,7 @@
 
           <?php if (!$hasToken): ?>
             <label class="label has-text-light" for="email">Seu e-mail cadastrado</label>
-            <input autocomplete="off" type="email" placeholder="Ex:. joao@domain.com" name="email" id="email" required>
+            <input autocomplete="off" type="email" placeholder="Ex:. joao@domain.com" name="email" id="email">
             <i class="bx bx-user"></i>
           <?php else: ?>
             <label class="label has-text-light" for="email">Email cadastrado</label>
@@ -35,18 +35,18 @@
             <i class="bx bx-user"></i>
             
             <label class="label has-text-light" for="password">Sua nova senha</label>
-            <input class="passwordInput" autocomplete="off" type="password" placeholder="********" name="password" id="password" required>
+            <input class="passwordInput" autocomplete="off" type="password" placeholder="********" name="password" id="password" value="<?= $newPassword ?>">
             <i class="bx bx-hide show-hide"></i>
             
             <label class="label has-text-light" for="confirm_password">Confirme sua nova senha</label>
-            <input class="passwordInput" autocomplete="off" type="password" placeholder="********" name="confirm_password" id="confirm_password" required>
+            <input class="passwordInput" autocomplete="off" type="password" placeholder="********" name="confirm_password" id="confirm_password" value="<?= $cPassword ?>">
             <i class="bx bx-hide show-hide"></i>
           <?php endif; ?>
 
         </div>
   
         <div class="input-field">
-          <input type="submit" class="submit" value="<?= ($hasToken) ? 'Confirmar' : 'Enviar' ?>">
+          <input type="submit" class="submit" name="send" value="<?= ($hasToken) ? 'Confirmar' : 'Enviar' ?>">
         </div>
   
         <div class="bottom">
