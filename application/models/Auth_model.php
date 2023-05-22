@@ -2,15 +2,15 @@
 
 class Auth_model extends MY_Model {
 
-  public function signUpUser($dados)
+  public function signUpUser($data)
   {
 
-    $argon_password = password_hash($dados['password'], PASSWORD_ARGON2I);
+    $argon_password = password_hash($data['password'], PASSWORD_ARGON2I);
 
     $user_id = $this->generateUUID();
 
     $insert = "INSERT INTO users (user_id, user_name, user_password, user_email, created_at) VALUES 
-    ('{$user_id}', '{$dados['user']}', '{$argon_password}', '{$dados['email']}', NOW())";
+    ('{$user_id}', '{$data['user']}', '{$argon_password}', '{$data['email']}', NOW())";
 
     /* echo $insert; exit(); */
 
@@ -36,9 +36,9 @@ class Auth_model extends MY_Model {
 
 
 
-  public function signInUser($dados)
+  public function signInUser($data)
   {
-    $username = $dados['user'];
+    $username = $data['user'];
     $this->db->where('user_name', $username);
     $select = $this->db->get('users');
 
@@ -53,7 +53,7 @@ class Auth_model extends MY_Model {
             );
         }
 
-        if (password_verify($dados['password'], $user->user_password)) {
+        if (password_verify($data['password'], $user->user_password)) {
             return array(
                 'success' => true,
                 'user' => $user,
@@ -100,10 +100,10 @@ class Auth_model extends MY_Model {
   }
 
 
-    public function resetPassword($dados)
+    public function resetPassword($data)
     {
 
-        $argon_password = password_hash($dados['newPassword'], PASSWORD_ARGON2I);
+        $argon_password = password_hash($data['newPassword'], PASSWORD_ARGON2I);
 
         $this->db->where('user_email', $this->input->get('email'));
         $update = $this->db->update('users', array('user_password' => $argon_password));
