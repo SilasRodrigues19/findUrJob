@@ -9,21 +9,21 @@
 
       <hr>
 
-      <form action="" method="POST">
+      <form action="" method="POST" name="form">
         <div class="input-field">
           <label class="label has-text-light" for="">Seu usuário</label>
-          <input autocomplete="off" type="text" placeholder="Ex:. joao.silva" name="user" required>
+          <input autocomplete="off" type="text" placeholder="Ex:. joao.silva" name="user" value="<?= $user ?>">
           <i class="bx bx-user"></i>
         </div>
   
         <div class="input-field">
           <label class="label has-text-light" for="">Sua senha</label>
-          <input class="passwordInput" autocomplete="off" type="password" placeholder="********" name="password" required>
+          <input class="passwordInput" autocomplete="off" type="password" placeholder="********" name="password" value="<?= $password ?>">
           <i class="bx bx-hide show-hide"></i>
         </div>
   
         <div class="input-field">
-          <input type="submit" class="submit" value="Entrar">
+          <input type="submit" class="submit" name="send" value="Entrar">
         </div>
   
         <div class="bottom">
