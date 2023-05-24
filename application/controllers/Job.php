@@ -282,10 +282,10 @@ class Job extends MY_Controller
 			];
 
 			foreach($messages as $key => $message):
-				(empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
+				(empty($data[$key]) && !isset($data['send']) && !isset($data['token'])) && notify('', $message, 'info');
 			endforeach;
 
-			if(empty($data['newPassword']) && isset($data['send'])) {
+			if(empty($data['newPassword']) && isset($data['send']) && isset($data['token'])) {
 				notify('', 'Informe sua nova senha', 'info');
 			}
 
