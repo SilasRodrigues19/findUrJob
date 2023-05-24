@@ -47,44 +47,46 @@
 
 <hr>
 
-### Sign Up
-[![Preview][product-screenshot6]](https://findurjobteste.000webhostapp.com/)
+### Auth pages
 
-### Sign In
+| Sign Up | Sign In |
+| -------- | -------- |
+| [![Preview][product-screenshot6]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot5]](https://findurjobteste.000webhostapp.com/) |
 
-[![Preview][product-screenshot5]](https://findurjobteste.000webhostapp.com/)
+| Forgot Password - Send Token | Forgot Password  |
+| -------- | -------- |
+| [![Preview][product-screenshot7]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot8]](https://findurjobteste.000webhostapp.com/) |
 
-### Home
+<hr>
 
-[![Preview][product-screenshot]](https://findurjobteste.000webhostapp.com/)
+### Core pages
 
-### Publish opportunity
+| Home | Publish opportunity |
+| -------- | -------- |
+| [![Preview][product-screenshot]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot2]](https://findurjobteste.000webhostapp.com/) |
+| Archived posts | About project |
+| [![Preview][product-screenshot3]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot4]](https://findurjobteste.000webhostapp.com/) |
 
-[![Preview][product-screenshot2]](https://findurjobteste.000webhostapp.com/)
-
-### Archived posts
-
-[![Preview][product-screenshot3]](https://findurjobteste.000webhostapp.com/)
-
-### About project
-
-[![Preview][product-screenshot4]](https://findurjobteste.000webhostapp.com/)
 
 The screens and features are described below:
 
-- **signup:** user sign up page
+- **/job/signup:** user sign up page
 
-- **singin:** user sing in page. There are some routes that you need to authenticate to access, and in the future some pages will be accessed based on the level of the auth user
+- **/job/singin:** user sing in page. There are some routes that you need to authenticate to access, and in the future some pages will be accessed based on the level of the auth user
+
+- **/job/forgot-password:** page to request a password reset, enter an email and if this email is in the database, a token will be sent to change the password.
+
+- **/job/forgot-password?token=XXX&email=YYY:** this page is accessed via the link sent by email when requesting a password reset, the token and email are concatenated in the URL.
 
 - **/job:** has a table listing all opportunities published by other people, with the necessary information. In the top navigation has a input field to search anything more easily.
 
-- **/new:** route that leads to publish page, just fill in all the field and publish.
+- **/new:** route that leads to publish page, just fill in all the field and publish. (you must be authenticated to view this page).
 
-- **/archived:** opportunities that have timed out will be moved in the list that will appear on this page. (Not yet implemented).
+- **/archived:** opportunities that have timed out will be moved in the list that will appear on this page. (you must be authenticated to view this page).
 
 - **/about:** a simple page to talk about this project.
 
-- **/report:** page to report publications that are not in the context of job opportunities. (Not yet implemented).
+- **/report:** page to report publications that are not in the context of job opportunities.
 
 ## Built With
 
@@ -149,6 +151,8 @@ Project Link: [https://github.com/SilasRodrigues19/findUrJob](https://github.com
 [product-screenshot4]: ./public/screenshots/preview4.png
 [product-screenshot5]: ./public/screenshots/preview5.png
 [product-screenshot6]: ./public/screenshots/preview6.png
+[product-screenshot7]: ./public/screenshots/preview7.png
+[product-screenshot8]: ./public/screenshots/preview8.png
 [license-url]: https://github.com/SilasRodrigues19/findUrJob/blob/master/LICENSE
 
 <br><hr>
