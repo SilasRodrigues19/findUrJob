@@ -61,11 +61,13 @@
 
 ### Core pages
 
-| Home | Publish opportunity |
+| Home | Archived posts |
 | -------- | -------- |
-| [![Preview][product-screenshot]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot2]](https://findurjobteste.000webhostapp.com/) |
-| Archived posts | About project |
-| [![Preview][product-screenshot3]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot4]](https://findurjobteste.000webhostapp.com/) |
+| [![Preview][product-screenshot]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot3]](https://findurjobteste.000webhostapp.com/) |
+| Publish opportunity | About project |
+| [![Preview][product-screenshot2]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot4]](https://findurjobteste.000webhostapp.com/) |
+| Report page | View reported jobs |
+| [![Preview][product-screenshot9]](https://findurjobteste.000webhostapp.com/) | [![Preview][product-screenshot10]](https://findurjobteste.000webhostapp.com/) |
 
 
 The screens and features are described below:
@@ -105,6 +107,11 @@ Technologies used in the project.
 
 - [jQuery](https://jquery.com/)
 - [Iconify Design](https://iconify.design/)
+
+### Database
+
+- [MySQL](https://www.mysql.com/)
+
 
 <!-- CONTRIBUTING -->
 
@@ -153,6 +160,8 @@ Project Link: [https://github.com/SilasRodrigues19/findUrJob](https://github.com
 [product-screenshot6]: ./public/screenshots/preview6.png
 [product-screenshot7]: ./public/screenshots/preview7.png
 [product-screenshot8]: ./public/screenshots/preview8.png
+[product-screenshot9]: ./public/screenshots/preview9.png
+[product-screenshot10]: ./public/screenshots/preview10.png
 [license-url]: https://github.com/SilasRodrigues19/findUrJob/blob/master/LICENSE
 
 <br><hr>
