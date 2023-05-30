@@ -73,46 +73,7 @@ const job_title = document.querySelector("#job_title"),
 	job_mode = document.querySelector("#job_mode"),
 	job_contract = document.querySelector("#job_contract");
 
-let urlRegex =
-	/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.?)[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-
-let testValidLink = new RegExp(urlRegex);
-
-const validateFields = () => {
-	if (
-		job_title.value == "" ||
-		job_requirements.value == "" ||
-		job_link.value == "" ||
-		job_level.value == "" ||
-		job_currency.value == "" ||
-		job_salary.value == "" ||
-		job_mode.value == "" ||
-		job_contract.value == ""
-	) {
-		showAlertBox(
-			"Erro ao publicar vaga",
-			"Certifique-se de preencher todos os campos",
-			"error"
-		);
-
-		return false;
-	}
-
-	return true;
-};
-
-const handleLink = () => {
-	if (!job_link.value.match(testValidLink)) {
-		showAlertBox(
-			"Formato inválido de URL",
-			"Informe um formato de URL válido, começando com <span class='sweet_text'>http://</span> ou <span class='sweet_text'>https://</span>",
-			"error"
-		);
-		return false;
-	}
-	return true;
-};
-
+	
 const formatCurrency = () => {
 	let salary = Number(job_salary.value);
 	salary = Number(salary).toLocaleString("pt-br", {
