@@ -40,7 +40,7 @@ class Job extends MY_Controller
 	{
 
 		if($this->input->post('submitBtn') && (empty($this->input->post('search'))) || $this->input->post('search') === '') {
-			notify('', 'O filtro está vazio para pesquisar', 'warning');
+			notify('', 'O filtro está vazio', 'info');
 			header("Location: ".$_SERVER['REQUEST_URI']);
     	exit();
 		}
@@ -149,16 +149,6 @@ class Job extends MY_Controller
 				}
 		}
 
-
-
-
-
-		if(isset($data['job_experience'])) {
-
-			
-		}
-
-
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/new', $data);
 		$this->load->view('templates/footer', $data);
@@ -196,7 +186,7 @@ class Job extends MY_Controller
 		} 
 
 		if($this->input->server('REQUEST_METHOD') == 'POST' && empty($this->input->post('report_job_id'))) {
-			notify('', 'Informe o ID da vaga', 'warning');
+			notify('', 'Informe o ID da vaga', 'info');
 		}
 
 		$this->load->view('templates/header', $data);
