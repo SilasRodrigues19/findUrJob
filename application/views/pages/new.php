@@ -44,14 +44,14 @@
       <div class="field">
         <label class="label has-text-grey-dark">Título</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="text" placeholder="Título da vaga" name="job_title" id="job_title">
+          <input autocomplete="off" class="input" type="text" placeholder="Título da vaga" name="job_title" value="<?= $job_title ?>" id="job_title">
         </div>
       </div>
 
       <div class="field">
         <label class="label has-text-grey-dark">Requisitos</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="text" placeholder="Requisitos da vaga" name="job_requirements" id="job_requirements">
+          <input autocomplete="off" class="input" type="text" placeholder="Requisitos da vaga" name="job_requirements" value="<?= $job_requirements ?>" id="job_requirements">
         </div>
       </div>
 
@@ -61,7 +61,7 @@
             <strong class="button is-static">Link:</strong>
             </p>
             <p class="control is-expanded">
-              <input onblur="return handleLink();" autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" id="job_link">
+              <input autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" value="<?= $job_link ?>" id="job_link">
             </p>
           </div>
           <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
@@ -73,12 +73,21 @@
           <div class="select">
             <select class="select" name="job_level" id="job_level">
               <option value="" disabled selected>Selecione o nível exigido pela vaga</option>
-              <option value="senior">Senior</option>
-              <option value="pleno">Pleno</option>
-              <option value="junior">Júnior</option>
-              <option value="trainee">Trainee</option>
-              <option value="estagio">Estágio</option>
-              <option value="default">Não informado</option>
+                <?php
+                $options = [
+                  'senior' => 'Sênior',
+                  'pleno' => 'Pleno',
+                  'junior' => 'Júnior',
+                  'trainee' => 'Trainee',
+                  'estagio' => 'Estágio',
+                  'default' => 'Não informado'
+                ];
+
+                foreach ($options as $value => $text) {
+                  $selected = $job_level === $value ? 'selected' : '';
+                  echo "<option value=\"$value\" $selected>$text</option>";
+                }
+                ?>
             </select>
           </div>
         </div>
@@ -87,7 +96,7 @@
       <div class="field">
         <label class="label has-text-grey-dark" id="mailLabel">Email</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="email" placeholder="Deixar em branco caso não houver" name="job_email" id="job_email">
+          <input autocomplete="off" class="input" type="email" placeholder="Deixar em branco caso não houver" name="job_email" value="<?= $job_email ?>" id="job_email">
         </div>
       </div>
 
@@ -102,7 +111,7 @@
           </span>
         </p>
         <p class="control">
-          <input onchange="return formatCurrency();" autocomplete="off" class="input" type="text" name="job_salary" id="job_salary" placeholder="Salário">
+          <input onchange="return formatCurrency();" autocomplete="off" class="input" type="text" name="job_salary" value="<?= $job_salary ?>" id="job_salary" placeholder="Salário">
         </p>
       </div>
 
@@ -111,10 +120,19 @@
         <div class="control">
           <div class="select">
             <select class="select" name="job_mode" id="job_mode">
-              <option value="" disabled selected>Selecione a modalidade</option>
-              <option value="remoto">Remoto</option>
-              <option value="presencial">Presencial</option>
-              <option value="hibrido">Híbrido</option>
+              <option value="" selected disabled>Selecione a modalidade</option>
+                <?php
+                $options = [
+                  'remoto' => 'Remoto',
+                  'presencial' => 'Presencial',
+                  'hibrido' => 'Híbrido'
+                ];
+
+                foreach ($options as $value => $text) {
+                  $selected = $job_mode === $value ? 'selected' : '';
+                  echo "<option value=\"$value\" $selected>$text</option>";
+                }
+                ?>
             </select>
           </div>
         </div>
@@ -125,10 +143,12 @@
         <div class="control">
           <div class="select">
             <select class="select" name="job_contract" id="job_contract">
-              <option value="" disabled selected>Selecione o tipo de contrato</option>
-              <option value="clt">CLT</option>
-              <option value="clt flex">CLT Flex</option>
-              <option value="pj">PJ</option>
+              <option value="" selected disabled>Selecione o tipo de contrato</option>
+              <?php foreach (['CLT', 'CLT Flex', 'PJ'] as $option): ?>
+                <option value="<?= $option ?>" <?= $job_contract === $option ? 'selected' : '' ?>>
+                  <?= ucwords($option) ?>
+                </option>
+              <?php endforeach; ?>
             </select>
           </div>
         </div>
@@ -139,11 +159,11 @@
         <div class="field is-narrow">
           <div class="control mt-4">
             <label class="radio">
-              <input type="radio" value="1" name="job_experience">
+              <input type="radio" value="1" name="job_experience" value="<?= $job_experience ?>">
               Sim
             </label>
             <label class="radio">
-              <input type="radio" value="0" name="job_experience" checked>
+              <input type="radio" value="0" name="job_experience" value="<?= $job_experience ?>" checked>
               Não
             </label>
           </div>
@@ -160,7 +180,7 @@
             <strong class="button is-static">Observação:</strong>
             </p>
             <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="job_observation" id="job_observation">
+              <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="job_observation" value="<?= $job_observation ?>" id="job_observation">
             </p>
           </div>
       </div>
@@ -169,7 +189,7 @@
 
       <div class="field is-grouped">
         <p class="control">
-          <button onclick="return validateFields()" type="submit" class="button is-link is-medium">
+          <button name="send" value="<?= $send ?>" type="submit" class="button is-link is-medium">
             Enviar
           </button>
         </p>
