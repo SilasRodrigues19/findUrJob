@@ -91,7 +91,7 @@
 
       <div class="field is-grouped">
         <p class="control">
-          <button onclick="return validateFields()" type="submit" class="button is-link is-medium">
+          <button type="submit" class="button is-link is-medium">
             Enviar
           </button>
         </p>
