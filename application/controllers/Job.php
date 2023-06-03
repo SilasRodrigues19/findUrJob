@@ -273,17 +273,81 @@ class Job extends MY_Controller
 							$this->email->to($email);
 							$this->email->subject('Solicitação de redefinir a senha');
 							$this->email->message('
-																		<html>
-																				<head>
-																						<title>Solicitação de redefinir a senha</title>
-																				</head>
-																				<body>
-																						<p>Olá,</p>
-																						<p>Recebemos uma solicitação para redefinir a sua senha. Se você não solicitou essa redefinição, por favor desconsidere este e-mail.</p>
-																						<p>Para redefinir a sua senha, clique no link abaixo:</p>
-																						<p><a href="' . $resetLink . '">' . $resetLink . '</a></p>
-																				</body>
-																		</html>
+																		<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+																			<tbody>
+																				<tr>
+																					<td style="word-break:break-word;font-size:0px;padding:0px" align="left">
+																						<div
+																							style="color:#737f8d;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px;line-height:24px;text-align:left">
+																							<h2
+																								style="font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-weight:500;font-size:20px;color:#4f545c;letter-spacing:0.27px margin: 10px 0">
+																								Solicitação de redefinir a senha
+																							</h2>
+																							<p>Olá.</p>
+																							<p>Recebemos uma solicitação para redefinir a sua senha. Se você não solicitou essa redefinição, por favor desconsidere
+																							este e-mail.</p>
+																							<p>Para alterar sua senha clique no botão abaixo para ser redirecionado:</p>
+																						</div>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="word-break:break-word;font-size:0px;padding:10px 25px;padding-top:20px" align="center">
+																						<table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate" align="center"
+																							border="0">
+																							<tbody>
+																								<tr>
+																									<td style="border:none;color:white;" align="center" valign="middle"
+																										bgcolor="#5865f2">
+																										<a
+																											href="' . $resetLink . '"
+																											style="text-decoration:none;line-height:100%;padding:15px 19px;border-radius:3px;background:#5865f2;color:white;font-family:Ubuntu,Helvetica,Arial,sans-serif;font-size:15px;font-weight:normal;text-transform:none;margin:0px"
+																											target="_blank"
+																											>
+																											Redefinir senha
+																										</a>
+																									</td>
+																								</tr>
+																							</tbody>
+																						</table>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="word-break:break-word;font-size:0px;padding:30px 0px">
+																						<p style="font-size:1px;margin:0px auto;border-top:1px solid #dcddde;width:100%"></p>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																		<div style="margin:0px auto;max-width:640px;background:transparent">
+																			<table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:transparent"
+																				align="center" border="0">
+																				<tbody>
+																					<tr>
+																						<td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px">
+																							<div aria-labelledby="mj-column-per-100" class="m_4490126977024612303mj-column-per-100"
+																								style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%">
+																								<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+																									<tbody>
+																										<tr>
+																											<td style="word-break:break-word;font-size:0px;padding:0px" align="center">
+																												<div
+																													style="color:#99aab5;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:12px;line-height:24px;text-align:center">
+																													Enviado pelo sistema 
+																													<a href="' . base_url() . '"
+																															style="color:#1eb0f4;text-decoration:none" target="_blank">
+																															FindUrJob
+																													</a>
+																												</div>
+																											</td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</div>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</div>
 																');
 
 
