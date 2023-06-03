@@ -189,6 +189,23 @@ nav {
 	}
 }
 
+@media screen and (max-width: 1024px) {
+	.navbar-home {
+			display: flex;
+			justify-content: space-around;
+			width: 80vw;
+		}
+}
+
+@media screen and (max-width: 768px) {
+	.navbar-home {
+			@include contentCenter;
+			align-items: baseline;
+			flex-direction: column;
+		}
+}
+
+
 @media screen and (max-width: 500px) {
 	.card-footer-item {
 		font-size: 14px;
@@ -203,12 +220,6 @@ nav {
 				align-self: baseline;
 			}
 		}
-	}
-
-	.navbar-home {
-		@include contentCenter;
-		align-items: baseline;
-		flex-direction: column;
 	}
 
 	.container {
