@@ -403,40 +403,54 @@ class Job extends MY_Controller
 	}
 
 
-
 	public function signup()
 	{
-		$data['title'] = 'Realize seu cadastro';
+			$data['title'] = 'Realize seu cadastro';
 
-		$this->redirectIfLoggedIn();
+			$this->redirectIfLoggedIn();
 
-		$data['email'] = $this->input->post('email');
-		$data['user'] = $this->input->post('user');
-		$data['password'] = $this->input->post('password');
-		$data['send'] = $this->input->post('send');
+			$data['email'] = $this->input->post('email');
+			$data['user'] = $this->input->post('user');
+			$data['password'] = $this->input->post('password');
+			$data['send'] = $this->input->post('send');
 
-		$messages = [
-			'password' => 'Informe a senha',
-			'user' => 'Informe o usuário',
-			'email' => 'Informe o e-mail',
-		];
+			$messages = [
+					'password' => 'Informe a senha',
+					'user' => 'Informe o usuário',
+					'email' => 'Informe o e-mail',
+			];
 
-		foreach($messages as $key => $message):
-			(empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
-		endforeach;
-
-
-		if (!empty($this->input->post('user')) && !empty($this->input->post('password')) && !empty($this->input->post('email'))) {
-			$res = $this->mauth->signUpUser($data);
-			if($res) {
-				notify('', 'Usuário cadastrado', 'success');
-				redirect('/job/signin');
+			foreach ($messages as $key => $message) {
+					(empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
 			}
-		} 
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/auth/signup', $data);
-		$this->load->view('templates/footer', $data);
+			if (!empty($this->input->post('user'))) {
+					$usernameExists = $this->mauth->checkUsernameExists($data['user']);
+					if ($usernameExists) {
+							notify('', 'Usuário já existe', 'error');
+					}
+			}
+
+			if (!empty($this->input->post('email'))) {
+					$emailExists = $this->mauth->checkEmailExists($data['email']);
+					if ($emailExists) {
+							notify('', 'E-mail já cadastrado.', 'error');
+					}
+			}
+
+			if (!empty($this->input->post('user')) && !empty($this->input->post('password')) && !empty($this->input->post('email'))) {
+					if (!$usernameExists && !$emailExists) {
+							$res = $this->mauth->signUpUser($data);
+							if ($res === true) {
+									notify('', 'Usuário cadastrado', 'success');
+									redirect('/job/signin');
+							}
+					}
+			}
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/auth/signup', $data);
+			$this->load->view('templates/footer', $data);
 	}
 
 	
