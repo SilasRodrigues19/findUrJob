@@ -2,23 +2,47 @@
 
 class Auth_model extends MY_Model {
 
+  
+  public function checkUsernameExists($username)
+  {
+    $query = "SELECT COUNT(*) as count FROM users WHERE user_name = ?";
+    $result = $this->db->query($query, array($username));
+    $row = $result->row();
+    return ($row->count > 0) ? true : false;
+  }
+
+ public function checkEmailExists($email)
+  {
+    $query = "SELECT COUNT(*) as count FROM users WHERE user_email = ?";
+    $result = $this->db->query($query, array($email));
+    $row = $result->row();
+    return ($row->count > 0) ? true : false;
+  }
+
   public function signUpUser($data)
   {
-
-    $argon_password = password_hash($data['password'], PASSWORD_ARGON2I);
-
-    $user_id = $this->generateUUID();
-
-    $insert = "INSERT INTO users (user_id, user_name, user_password, user_email, created_at) VALUES 
-    ('{$user_id}', '{$data['user']}', '{$argon_password}', '{$data['email']}', NOW())";
-
-    /* echo $insert; exit(); */
-
-    $execute = $this->db->query($insert);
-
-    return ($execute) ? true : false;
-
+     $usernameExists = $this->checkUsernameExists($data['user']);
+     $emailExists = $this->checkEmailExists($data['email']);
+ 
+     if ($usernameExists) {
+         return 'Username already exists.';
+     }
+ 
+     if ($emailExists) {
+         return 'Email already exists.';
+     }
+ 
+     $argon_password = password_hash($data['password'], PASSWORD_ARGON2I);
+     $user_id = $this->generateUUID();
+ 
+     $insert = "INSERT INTO users (user_id, user_name, user_password, user_email, created_at) VALUES 
+     ('{$user_id}', '{$data['user']}', '{$argon_password}', '{$data['email']}', NOW())";
+ 
+     $execute = $this->db->query($insert);
+ 
+     return ($execute) ? true : false;
   }
+
 
   public function isUserActive($username)
   {
