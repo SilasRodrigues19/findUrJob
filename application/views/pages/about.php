@@ -45,6 +45,17 @@
     são listadas na página inicial em formato de cartões e a pessoa que acessar para visualizar pode facilmente encontrar as informações que ela
     está a procura, inclusive existe um filtro no cabeçalho que pode auxilizar para encontrar mais facilmente alguma informação.
   </h2>
+  
+  <script type="text/javascript">
+    	atOptions = {
+    		'key' : 'e5e496ae959b531de0a6b8961032e181',
+    		'format' : 'iframe',
+    		'height' : 60,
+    		'width' : 468,
+    		'params' : {}
+    	};
+    	document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.profitabledisplaynetwork.com/e5e496ae959b531de0a6b8961032e181/invoke.js"></scr' + 'ipt>');
+  </script>
 
 </section>
 
@@ -53,7 +64,7 @@
 <section class="section my-6">
   <h1 class="title has-text-grey-dark">Informações para desenvolvedores.</h1>
   <h2 class="subtitle mt-4 about-text">
-    O projeto foi feito utilizando o framework CodeIgniter 4, que é um framework PHP que utiliza o padrão MVC (Model, View, Controller) e
+    O projeto foi feito utilizando o framework CodeIgniter 3, que é um framework PHP que utiliza o padrão MVC (Model, View, Controller) e
     foi feito com o objetivo de ser um framework leve e simples de usar, porém com muitas funcionalidades que facilitam o desenvolvimento de
     aplicações web. Para a parte de estilização foi utilizado o framework Bulma e algumas coisas mais especificas feitas a mão com a ajuda do 
     pré processador SASS e os dados são salvos em um banco de dados MySQL.
@@ -63,4 +74,19 @@
     O projeto é <em>open-source</em> e está hospedado no GitHub que pode ser acessado através 
     <a href="https://github.com/SilasRodrigues19/findUrJob" target="_blank">deste link.</a>
   </h2>
+  
+    <script type="text/javascript">
+    	atOptions = {
+    		'key' : 'b6488435be0b215edaf3c67b517cb011',
+    		'format' : 'iframe',
+    		'height' : 50,
+    		'width' : 320,
+    		'params' : {}
+    	};
+    	document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.profitabledisplaynetwork.com/b6488435be0b215edaf3c67b517cb011/invoke.js"></scr' + 'ipt>');
+    </script>
+    
+    <script async="async" data-cfasync="false" src="//pl19729442.highrevenuegate.com/2220ae0c12cb7b5eb95ee59fc92d45c6/invoke.js"></script>
+    <div id="container-2220ae0c12cb7b5eb95ee59fc92d45c6"></div>
+
 </section>
