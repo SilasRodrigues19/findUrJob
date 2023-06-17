@@ -1,15 +1,6 @@
 <?php $hasToken = (isset($token) && strlen(trim($token)) === 64) ?>
 
-<section class="loginSection">
-  <div class="backToHome">
-    <a href="<?= base_url() ?>" aria-label="Voltar para a página inicial" title="Início">
-      <span class="iconify" data-icon="majesticons:home" role="img" aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="wrapperLogin">
-    <div class="boxLogin">
-      <div class="top-header">
-        <?= showMessage(); ?>
+<?php $this->load->view('templates/auth_pages_header.php') ?>
         <span class="has-text-centered">
           <?= ($hasToken) ? 'Redefinição de senha solicitada' : 'Não consegue acessar o sistema?' ?>
         </span>
@@ -67,6 +58,4 @@
         </div>
       </form>
 
-    </div>
-  </div>
-</section>
+<?php $this->load->view('templates/auth_pages_footer.php') ?>
