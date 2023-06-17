@@ -184,6 +184,7 @@ eyeIcons.forEach((eyeIcon, i) => {
 // GSAP Animations
 const inputs = document.querySelectorAll(".input-field");
 const icons = document.querySelectorAll(".bx");
+const homeIcon = document.querySelector(".backToHome");
 
 gsap.from(".boxLogin, .showMessage", {
 	opacity: 0,
@@ -209,6 +210,19 @@ icons.forEach((icon, i) => {
 		{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
 	);
 });
+
+gsap.fromTo(
+	homeIcon,
+	{ opacity: 0, top: "5%", left: "20px" },
+	{
+		opacity: 1,
+		top: "20px",
+		left: "20px",
+		delay: icons.length * 0.25,
+		duration: 0.8,
+		ease: "power2.out",
+	}
+);
 
 const smoothScroll = document.querySelector("#smoothScroll");
 
