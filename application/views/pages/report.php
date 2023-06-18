@@ -6,7 +6,7 @@
     <p class="subtitle mt-4">
       Preencha os campos abaixo para reportar uma vaga
     </p>
-     <div class="level-right item-menu">
+    <div class="level-right item-menu">
       <p class="level-item">
         <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
@@ -40,13 +40,13 @@
 
 <section class="section my-6">
   <?= showMessage(); ?>
-  <h2 class="subtitle">
+  <h2 class="subtitle" id="jobTitle">
     Formulário de denúncias.
   </h2>
 
   <hr>
 
-  <div class="columns">
+  <div class=" columns">
     <form action="" method="POST" class="column is-6">
       <div class="field">
         <label class="label has-text-grey-dark">ID da vaga</label>
@@ -78,13 +78,13 @@
 
       <div class="field d-none  my-4" id="observation">
         <div class="field has-addons">
-            <p class="control">
+          <p class="control">
             <strong class="button is-static">Observação:</strong>
-            </p>
-            <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="report_observation" id="job_observation">
-            </p>
-          </div>
+          </p>
+          <p class="control is-expanded">
+            <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="report_observation" id="job_observation">
+          </p>
+        </div>
       </div>
 
       <hr>
@@ -103,6 +103,6 @@
       </div>
 
     </form>
-  </div>
-      
+    </div>
+
 </section>

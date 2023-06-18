@@ -137,6 +137,24 @@ const handleArchiving = (job_id, job_title) => {
 	});
 };
 
+const handleReport = (job_id, job_title) => {
+	const isDevelopment = window.location.href.includes("localhost");
+	
+	const baseUrl = isDevelopment
+		? `${window.location.origin}/findUrJob`
+		: window.location.origin;
+
+	let url = `${baseUrl}/job/report`;
+	let newWindow = window.open(url, "_blank");
+
+	newWindow.addEventListener("DOMContentLoaded", () => {
+		let reportJobIdInput = newWindow.document.querySelector("#report_job_id");
+		let title = newWindow.document.querySelector("#jobTitle");
+		reportJobIdInput.value = job_id;
+		title.innerHTML = `Reportando a vaga <strong>${job_title}</strong>`;
+	});
+};
+
 let observation = document.querySelector("#observation"),
 	btnObservation = document.querySelector("#btnObservation");
 
