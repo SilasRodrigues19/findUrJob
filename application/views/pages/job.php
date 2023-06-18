@@ -8,20 +8,20 @@
     </a>
 
 
-    <div id="navbarBasicExample" class="nav-menu"> 
+    <div id="navbarBasicExample" class="nav-menu">
 
       <div class="navbar-start">
         <!-- Left side -->
         <div class="level-left navbar-item">
           <div class="level-item">
             <p class="subtitle is-5">
-              <?= ($countJobs['countJobs'] == 0) ? 'Nenhuma' : "<strong>" . $countJobs['countJobs'] . "</strong>"?> <?= ($countJobs['countJobs'] > 1 ? 'vagas publicadas' : 'vaga publicada') ?> 
+              <?= ($countJobs['countJobs'] == 0) ? 'Nenhuma' : "<strong>" . $countJobs['countJobs'] . "</strong>" ?> <?= ($countJobs['countJobs'] > 1 ? 'vagas publicadas' : 'vaga publicada') ?>
             </p>
           </div>
           <form action="" method="POST" id="form-filter">
-          <input type="hidden" name="archivejob" id="archivejob">
-          <input type="hidden" name="archivejob_id" id="archivejob_id">
-          <input type="hidden" name="deleteId" id="deleteId">
+            <input type="hidden" name="archivejob" id="archivejob">
+            <input type="hidden" name="archivejob_id" id="archivejob_id">
+            <input type="hidden" name="deleteId" id="deleteId">
             <div class="level-item">
               <div class="field has-addons">
                 <p class="control">
@@ -37,7 +37,7 @@
             </div>
           </form>
         </div>
-    
+
         <!-- Right side -->
         <div class="level-right navbar-item navbar-home">
           <p class="level-item">
@@ -59,7 +59,7 @@
             </a>
           </p>
 
-          <?php if($this->session->userdata('usuario')): ?>
+          <?php if ($this->session->userdata('usuario')) : ?>
             <p class="level-item has-text-grey ml-3">
               <span title="<?= "Autenticado como " . $this->session->userdata('usuario')->user_name ?>" class="has-text-weight-bold"><?= $this->session->userdata('usuario')->user_name; ?></span>
               <a href="<?= base_url('logout') ?>" class="button is-light is-small ml-3">Sair</a>
@@ -76,31 +76,31 @@
 
   <section class="section is-full-vh mt-10">
 
-    <?php foreach($showJobCount as $idx => $value): ?>
+    <?php foreach ($showJobCount as $idx => $value) : ?>
 
-      <?= 
-        (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] > 0) ? 
-        '<p class="my-6">Exibindo <strong>' .$showJobCount[$idx]['count']. '</strong> ' .($showJobCount[$idx]['count'] > 1 ? 'resultados' : 'resultado'). ' para: ' . 
-          '<strong>' . $search . '</strong>
+      <?=
+      (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] > 0) ?
+        '<p class="my-6">Exibindo <strong>' . $showJobCount[$idx]['count'] . '</strong> ' . ($showJobCount[$idx]['count'] > 1 ? 'resultados' : 'resultado') . ' para: ' .
+        '<strong>' . $search . '</strong>
             <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
           </p>
-        ' 
-          : 
+        '
+        :
         ''
       ?>
 
     <?php endforeach ?>
 
-    <?= 
-        (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] == 0) ? 
-        '<p class="my-6">Nenhum resultado encontrado para: '. 
-          '<strong>' . $search . '</strong>
+    <?=
+    (isset($search) && strlen($search) > 0 && $showJobCount[$idx]['count'] == 0) ?
+      '<p class="my-6">Nenhum resultado encontrado para: ' .
+      '<strong>' . $search . '</strong>
             <span onclick="removeFilter()" class="removeFilter iconify mb--.2" data-icon="line-md:close-circle"></span>
           </p>
-        ' 
-          : 
-        ''
-      ?>
+        '
+      :
+      ''
+    ?>
 
 
     <h1 class="title has-text-grey-dark">Vagas publicadas</h1>
@@ -119,102 +119,114 @@
     </div>
 
     <div>
-      <?php if($showJob): ?>
-        <?php foreach($showJob as $idx => $value): ?>
-          <?php if(!$showJob[$idx]['job_is_archived']): ?>
-          <div class="card my-4">
-            <header class="card-header py-4">
-              <p class="card-header-title">
-                <?= $showJob[$idx]['job_title']; ?>
-              </p>
-              <?php
-              $user = $this->session->userdata('usuario');
-              if($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin') ): 
-              ?>
-              <button class="card-header-icon" aria-label="Archive item">
-                <span class="icon">
-                  <span onclick="return handleArchiving( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
-                </span>
-              </button>
-              <?php endif; ?>
-              <?php 
-              if($user && $user->user_level === 'Admin') : ?>
-              <button class="card-header-icon" aria-label="Archive item">
-                <span class="icon">
-                  <span onclick="return handleDelete( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="solar:trash-bin-minimalistic-bold"></span>
-                </span>
-              </button>
-              <?php endif; ?>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                <p><strong>Requisitos da vaga</strong></p>
-                <p><?= ($showJob[$idx]['job_requirements'] ? $showJob[$idx]['job_requirements'] : 'Não informado'); ?></p>
-              </div>
-              <div class="content">
-                <p><strong>Link da vaga</strong></p>
-                <p><?= '<a class="job-link" href="'.$showJob[$idx]['job_link'].'" target="_blank">'.$showJob[$idx]['job_link'].'</a>'; ?></p>
-              </div>
-              <div class="content">
-                <p><strong>Senioridade</strong></p>
-                <p><?= ($showJob[$idx]['job_level'] ? $showJob[$idx]['job_level'] : 'Não informado'); ?></p>
-              </div>
-              <div class="content">
-                <p><strong>Salário</strong></p>
-                <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
-              </div>
-              <div class="content">
-                <p><strong>Modalidade</strong></p>
-                <p><?= ($showJob[$idx]['job_mode'] ? $showJob[$idx]['job_mode'] : 'Não informado'); ?></p>
-              </div>
-              <div class="content">
-                <p><strong>Contrato</strong></p>
-                <p><?= ($showJob[$idx]['job_contract'] ? $showJob[$idx]['job_contract'] : 'Não informado'); ?></p>
-              </div>
-              <div class="content">
-                <p><strong>E-mail para contato</strong></p>
-                <p><?= ($showJob[$idx]['job_email'] ? '<a href="mailto:'.$showJob[$idx]['job_email'].'">'.$showJob[$idx]['job_email'].'</a>' : '<span>E-mail não informado, consulte o <a href="'.$showJob[$idx]['job_link'].'" target="_blank">link da vaga</a></span>'); ?></p>
-              </div>
-              <div class="content">
-                <p><strong>Requer experiência?</strong></p>
-                <p><?= ($showJob[$idx]['job_experience'] ? 'Sim' : 'Não') ?></p>
-              </div>
-              <?php if($showJob[$idx]['job_observation']): ?>
+      <?php if ($showJob) : ?>
+        <?php foreach ($showJob as $idx => $value) : ?>
+          <?php if (!$showJob[$idx]['job_is_archived']) : ?>
+            <div class="card my-4">
+              <header class="card-header py-4">
+                <p class="card-header-title">
+                  <?= $showJob[$idx]['job_title']; ?>
+                </p>
+                <?php
+                $user = $this->session->userdata('usuario');
+                if ($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin')) :
+                ?>
+                  <button class="card-header-icon" aria-label="Arquivas vaga">
+                    <span class="icon">
+                      <span onclick="return handleArchiving( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
+                    </span>
+                  </button>
+                <?php endif; ?>
+                <?php if ($user && $user->user_level === 'Admin') : ?>
+                  <button class="card-header-icon" aria-label="Deletar vaga">
+                    <span class="icon">
+                      <span onclick="return handleDelete( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="solar:trash-bin-minimalistic-bold"></span>
+                    </span>
+                  </button>
+                <?php endif; ?>
+                <button class="card-header-icon" aria-label="Reportar vaga">
+                  <span class="icon">
+                    <span onclick="return handleReport( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="mingcute:report-fill"></span>
+                  </span>
+                </button>
+              </header>
+              <div class="card-content">
                 <div class="content">
-                  <p><strong>Observação</strong></p>
-                  <p><?= ($showJob[$idx]['job_observation']) ?></p>
+                  <p><strong>Requisitos da vaga</strong></p>
+                  <p><?= ($showJob[$idx]['job_requirements'] ? $showJob[$idx]['job_requirements'] : 'Não informado'); ?></p>
                 </div>
-              <?php endif; ?>
+                <div class="content">
+                  <p><strong>Link da vaga</strong></p>
+                  <p><?= '<a class="job-link" href="' . $showJob[$idx]['job_link'] . '" target="_blank">' . $showJob[$idx]['job_link'] . '</a>'; ?></p>
+                </div>
+                <div class="content">
+                  <p><strong>Senioridade</strong></p>
+                  <p><?= ($showJob[$idx]['job_level'] ? $showJob[$idx]['job_level'] : 'Não informado'); ?></p>
+                </div>
+                <div class="content">
+                  <p><strong>Salário</strong></p>
+                  <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
+                </div>
+                <div class="content">
+                  <p><strong>Modalidade</strong></p>
+                  <p><?= ($showJob[$idx]['job_mode'] ? $showJob[$idx]['job_mode'] : 'Não informado'); ?></p>
+                </div>
+                <div class="content">
+                  <p><strong>Contrato</strong></p>
+                  <p><?= ($showJob[$idx]['job_contract'] ? $showJob[$idx]['job_contract'] : 'Não informado'); ?></p>
+                </div>
+                <div class="content">
+                  <p><strong>E-mail para contato</strong></p>
+                  <p><?= ($showJob[$idx]['job_email'] ? '<a href="mailto:' . $showJob[$idx]['job_email'] . '">' . $showJob[$idx]['job_email'] . '</a>' : '<span>E-mail não informado, consulte o <a href="' . $showJob[$idx]['job_link'] . '" target="_blank">link da vaga</a></span>'); ?></p>
+                </div>
+                <div class="content">
+                  <p><strong>Requer experiência?</strong></p>
+                  <p><?= ($showJob[$idx]['job_experience'] ? 'Sim' : 'Não') ?></p>
+                </div>
+                <?php if ($showJob[$idx]['job_observation']) : ?>
+                  <div class="content">
+                    <p><strong>Observação</strong></p>
+                    <p><?= ($showJob[$idx]['job_observation']) ?></p>
+                  </div>
+                <?php endif; ?>
+              </div>
+              <footer class="card-footer py-4">
+                <div class="columns w-100 px-4">
+                  <div class="column is-6">
+                    <p>
+                      Publicado no dia
+                      <strong><?= $showJob[$idx]['dateString'] ?></strong> às
+                      <strong><?= $showJob[$idx]['timeString'] ?></strong><br>
+                      <?= $showJob[$idx]['job_post_user']; ?>
+                    </p>
+                  </div>
+                  <div class="column is-6 has-text-right">
+                    <p>
+                      <strong>ID:</strong> <?= $showJob[$idx]['job_id']; ?><br>
+                    </p>
+                  </div>
+                </div>
+              </footer>
+
             </div>
-            <footer class="card-footer py-4">
-              <p class="card-footer-item d-block has-text-left">Publicado no dia 
-                <strong><?= $showJob[$idx]['dateString']?></strong> às 
-                <strong><?= $showJob[$idx]['timeString']?></strong>
-                | <?= $showJob[$idx]['job_post_user']; ?>
-              </p>
-              <p class="card-footer-item d-block has-text-right">
-                <strong>ID:</strong> <?= $showJob[$idx]['job_id']; ?>
-              </p>
-            </footer>
-          </div>
           <?php endif; ?>
         <?php endforeach; ?>
-        
-        <?php elseif(!isset($search)): ?>
-          <article class="message is-info">
-            <div class="message-header">
-              <p>Ainda não há nada por aqui.</p>
-            </div>
-            <div class="message-body">
-              Não encontramos nenhuma vaga publicada, que tal <a href="<?= base_url('/job/new') ?>">publicar uma?</a>
-            </div>
-          </article>
-        <?php else: ?>
-          <article class="message is-warning">
-            <div class="message-header">
-              <p>Não encontramos resultados com esse filtro.</p>
-            </div>
-          </article>
+
+      <?php elseif (!isset($search)) : ?>
+        <article class="message is-info">
+          <div class="message-header">
+            <p>Ainda não há nada por aqui.</p>
+          </div>
+          <div class="message-body">
+            Não encontramos nenhuma vaga publicada, que tal <a href="<?= base_url('/job/new') ?>">publicar uma?</a>
+          </div>
+        </article>
+      <?php else : ?>
+        <article class="message is-warning">
+          <div class="message-header">
+            <p>Não encontramos resultados com esse filtro.</p>
+          </div>
+        </article>
       <?php endif; ?>
     </div>
 
