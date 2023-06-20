@@ -131,21 +131,21 @@
                 $user = $this->session->userdata('usuario');
                 if ($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin')) :
                 ?>
-                  <button class="card-header-icon" aria-label="Arquivas vaga">
-                    <span class="icon">
+                  <button class="card-header-icon" aria-label="Arquivar vaga">
+                    <span class="icon tooltip" data-tooltip="Arquivar vaga" data-placement="top">
                       <span onclick="return handleArchiving( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
                     </span>
                   </button>
                 <?php endif; ?>
                 <?php if ($user && $user->user_level === 'Admin') : ?>
                   <button class="card-header-icon" aria-label="Deletar vaga">
-                    <span class="icon">
+                    <span class="icon tooltip" data-tooltip="Deletar vaga" data-placement="top">
                       <span onclick="return handleDelete( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="solar:trash-bin-minimalistic-bold"></span>
                     </span>
                   </button>
                 <?php endif; ?>
                 <button class="card-header-icon" aria-label="Reportar vaga">
-                  <span class="icon">
+                  <span class="icon tooltip" data-tooltip="Reportar vaga" data-placement="top">
                     <span onclick="return handleReport( '<?= $showJob[$idx]['job_id'] ?>' , '<?= $showJob[$idx]['job_title'] ?>' )" class="iconify" data-icon="mingcute:report-fill"></span>
                   </span>
                 </button>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="content">
                   <p><strong>Link da vaga</strong></p>
-                  <p><?= '<a class="job-link" href="' . $showJob[$idx]['job_link'] . '" target="_blank">' . $showJob[$idx]['job_link'] . '</a>'; ?></p>
+                  <p><?= ($showJob[$idx]['job_link'] ? '<a class="job-link" href="' . $showJob[$idx]['job_link'] . '" target="_blank">' . $showJob[$idx]['job_link'] . '</a>' : 'Não informado'); ?></p>
                 </div>
                 <div class="content">
                   <p><strong>Senioridade</strong></p>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="content">
                   <p><strong>Salário</strong></p>
-                  <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
+                  <p><?= ($showJob[$idx]['job_salary'] == '0,00' || $showJob[$idx]['job_salary'] == 'NaN' || $showJob[$idx]['job_salary'] == ''  ? 'Salário a combinar' : $showJob[$idx]['job_currency_symbol'] . ' ' . $showJob[$idx]['job_salary']); ?></p>
                 </div>
                 <div class="content">
                   <p><strong>Modalidade</strong></p>
