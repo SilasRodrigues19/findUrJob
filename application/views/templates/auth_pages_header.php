@@ -1,6 +1,6 @@
 <section class="loginSection">
   <div class="backToHome">
-    <a href="<?= base_url() ?>" aria-label="Voltar para a página inicial" title="Início">
+    <a class="tooltip" data-tooltip="Ir para página inicial" data-placement="right" href="<?= base_url() ?>" aria-label="Voltar para a página inicial">
       <span class="iconify" data-icon="majesticons:home" role="img" aria-hidden="true"></span>
     </a>
   </div>
