@@ -39,11 +39,11 @@ class Job extends MY_Controller
 	public function job()
 	{
 
-		if($this->input->post('submitBtn') && (empty($this->input->post('search'))) || $this->input->post('search') === '') {
+		/* if($this->input->post('submitBtn') && (empty($this->input->post('search'))) || $this->input->post('search') === '') {
 			notify('', 'O filtro está vazio', 'info');
 			header("Location: ".$_SERVER['REQUEST_URI']);
     	exit();
-		}
+		} */
 
 
 		$data['search'] = $this->input->post('search');
