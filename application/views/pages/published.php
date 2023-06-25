@@ -1,30 +1,42 @@
 <section class="hero is-link banner">
   <div class="hero-body">
     <p class="title">
-      Arquivadas
+      Minhas vagas
     </p>
     <p class="subtitle mt-4">
-      As vagas que passarem do período de inscrição ficarão arquivadas nessa lista.
+      Gerencie suas publicações
     </p>
     <div class="level-right item-menu">
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
-          <strong>
+          <span class="iconify mr-2" data-icon="entypo:home"></span>
+          <strong class="is-hidden-mobile">
             Início
           </strong>
         </a>
       </p>
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="majesticons:textbox-plus"></span>
         <a href="<?= base_url('/job/new') ?>">
-          Publicar
+          <span class="iconify mr-2" data-icon="majesticons:textbox-plus"></span>
+          <span class="is-hidden-mobile">
+            Publicar
+          </span>
         </a>
       </p>
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
+        <a href="<?= base_url('/job/archived') ?>">
+          <span class="iconify mr-2" data-icon="bxs:archive-in"></span>
+          <span class="is-hidden-mobile">
+            Arquivadas
+          </span>
+        </a>
+      </p>
+      <p class="level-item">
         <a href="<?= base_url('/job/about') ?>">
-          Sobre
+          <span class="iconify mr-2" data-icon="akar-icons:info-fill"></span>
+          <span class="is-hidden-mobile">
+            Sobre
+          </span>
         </a>
       </p>
       <?php $this->load->view('templates/logged_in_header.php') ?>
@@ -34,10 +46,10 @@
 
 <section class="section my-6">
   <?= showMessage(); ?>
- 
+
 
   <h2 class="subtitle mt-4">
-    As vagas que encerraram o tempo para candidaturas aparecerão aqui.
+    Todas as vagas publicadas por você aparecerão nessa página.
   </h2>
 
   <hr>
@@ -123,7 +135,7 @@
           <p>Ainda não há nada por aqui.</p>
         </div>
         <div class="message-body">
-          Não encontramos nenhuma vaga arquivada, que tal dar uma olhada nas <a href="<?= base_url('/job') ?>">vagas publicadas?</a>
+          Você ainda não publicou nenhuma vaga, que tal dar uma olhada nas <a href="<?= base_url('/job') ?>">vagas publicadas?</a>
         </div>
       </article>
     <?php endif; ?>

@@ -228,6 +228,9 @@ class Job extends MY_Controller
 
 	public function published()
 	{
+
+		$this->is_logged_in();
+		
 		$data['title'] = 'Minhas vagas publicadas';
 
 		$res = $this->mjob->getPublishedJobsByUser();
