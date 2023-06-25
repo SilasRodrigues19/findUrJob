@@ -41,15 +41,18 @@
         <!-- Right side -->
         <div class="level-right navbar-item navbar-home">
           <p class="level-item">
-            <span class="iconify has-text-grey mb-.1 mr-2" data-icon="bxs:archive-in"></span>
             <a href="<?= base_url('/job/archived') ?>">
-              Arquivadas
+              <span class="iconify has-text-grey mb-.1 mr-2" data-icon="bxs:archive-in"></span>
             </a>
           </p>
           <p class="level-item">
-            <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
             <a href="<?= base_url('/job/about') ?>">
-              Sobre
+              <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
+            </a>
+          </p>
+          <p class="level-item">
+            <a href="<?= base_url('/job/published') ?>">
+              <span class="iconify has-text-grey mb-.1 mr-2" data-icon="mdi:list-box"></span>
             </a>
           </p>
           <p class="level-item">
