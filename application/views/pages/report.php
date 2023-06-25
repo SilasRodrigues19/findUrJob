@@ -8,29 +8,45 @@
     </p>
     <div class="level-right item-menu">
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
-          <strong>
+          <span class="iconify mr-2" data-icon="entypo:home"></span>
+          <strong class="is-hidden-mobile">
             Início
           </strong>
         </a>
       </p>
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="majesticons:textbox-plus"></span>
         <a href="<?= base_url('/job/new') ?>">
-          Publicar
+          <span class="iconify mr-2" data-icon="majesticons:textbox-plus"></span>
+          <span class="is-hidden-mobile">
+            Publicar
+          </span>
         </a>
       </p>
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="bxs:archive-in"></span>
         <a href="<?= base_url('/job/archived') ?>">
-          Arquivadas
+          <span class="iconify mr-2" data-icon="bxs:archive-in"></span>
+          <span class="is-hidden-mobile">
+            Arquivadas
+          </span>
         </a>
       </p>
+      <?php if ($this->session->userdata('usuario')) : ?>
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
+        <a href="<?= base_url('/job/published') ?>">
+          <span class="iconify mr-2" data-icon="mdi:list-box"></span>
+          <span class="is-hidden-mobile">
+            Minhas vagas
+          </span>
+        </a>
+      </p>
+      <?php endif; ?>
+      <p class="level-item">
         <a href="<?= base_url('/job/about') ?>">
-          Sobre
+          <span class="iconify mr-2" data-icon="akar-icons:info-fill"></span>
+          <span class="is-hidden-mobile">
+            Sobre
+          </span>
         </a>
       </p>
       <?php $this->load->view('templates/logged_in_header.php') ?>
@@ -103,6 +119,6 @@
       </div>
 
     </form>
-    </div>
+  </div>
 
 </section>

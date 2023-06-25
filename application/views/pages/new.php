@@ -6,25 +6,37 @@
     <p class="subtitle mt-4">
       Viu uma vaga e quer compartilhar com mais pessoas ? Publique ela abaixo.
     </p>
-     <div class="level-right item-menu">
+    <div class="level-right item-menu">
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="entypo:home"></span>
         <a href="<?= base_url('/') ?>">
-          <strong>
+          <span class="iconify mr-2" data-icon="entypo:home"></span>
+          <strong class="is-hidden-mobile">
             Início
           </strong>
         </a>
       </p>
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="bxs:archive-in"></span>
         <a href="<?= base_url('/job/archived') ?>">
-          Arquivadas
+          <span class="iconify mr-2" data-icon="bxs:archive-in"></span>
+          <span class="is-hidden-mobile">
+            Arquivadas
+          </span>
         </a>
       </p>
       <p class="level-item">
-        <span class="iconify mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
+        <a href="<?= base_url('/job/published') ?>">
+          <span class="iconify mr-2" data-icon="mdi:list-box"></span>
+          <span class="is-hidden-mobile">
+            Minhas vagas
+          </span>
+        </a>
+      </p>
+      <p class="level-item">
         <a href="<?= base_url('/job/about') ?>">
-          Sobre
+          <span class="iconify mr-2" data-icon="akar-icons:info-fill"></span>
+          <span class="is-hidden-mobile">
+            Sobre
+          </span>
         </a>
       </p>
       <?php $this->load->view('templates/logged_in_header.php') ?>
@@ -57,14 +69,14 @@
 
       <div class="field">
         <div class="field has-addons">
-            <p class="control">
+          <p class="control">
             <strong class="button is-static">Link:</strong>
-            </p>
-            <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" value="<?= $job_link ?>" id="job_link">
-            </p>
-          </div>
-          <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
+          </p>
+          <p class="control is-expanded">
+            <input autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" value="<?= $job_link ?>" id="job_link">
+          </p>
+        </div>
+        <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
       </div>
 
       <div class="field">
@@ -73,21 +85,21 @@
           <div class="select">
             <select class="select" name="job_level" id="job_level">
               <option value="" disabled selected>Selecione o nível exigido pela vaga</option>
-                <?php
-                $options = [
-                  'senior' => 'Sênior',
-                  'pleno' => 'Pleno',
-                  'junior' => 'Júnior',
-                  'trainee' => 'Trainee',
-                  'estagio' => 'Estágio',
-                  'default' => 'Não informado'
-                ];
+              <?php
+              $options = [
+                'senior' => 'Sênior',
+                'pleno' => 'Pleno',
+                'junior' => 'Júnior',
+                'trainee' => 'Trainee',
+                'estagio' => 'Estágio',
+                'default' => 'Não informado'
+              ];
 
-                foreach ($options as $value => $text) {
-                  $selected = $job_level === $value ? 'selected' : '';
-                  echo "<option value=\"$value\" $selected>$text</option>";
-                }
-                ?>
+              foreach ($options as $value => $text) {
+                $selected = $job_level === $value ? 'selected' : '';
+                echo "<option value=\"$value\" $selected>$text</option>";
+              }
+              ?>
             </select>
           </div>
         </div>
@@ -121,18 +133,18 @@
           <div class="select">
             <select class="select" name="job_mode" id="job_mode">
               <option value="" selected disabled>Selecione a modalidade</option>
-                <?php
-                $options = [
-                  'remoto' => 'Remoto',
-                  'presencial' => 'Presencial',
-                  'hibrido' => 'Híbrido'
-                ];
+              <?php
+              $options = [
+                'remoto' => 'Remoto',
+                'presencial' => 'Presencial',
+                'hibrido' => 'Híbrido'
+              ];
 
-                foreach ($options as $value => $text) {
-                  $selected = $job_mode === $value ? 'selected' : '';
-                  echo "<option value=\"$value\" $selected>$text</option>";
-                }
-                ?>
+              foreach ($options as $value => $text) {
+                $selected = $job_mode === $value ? 'selected' : '';
+                echo "<option value=\"$value\" $selected>$text</option>";
+              }
+              ?>
             </select>
           </div>
         </div>
@@ -144,7 +156,7 @@
           <div class="select">
             <select class="select" name="job_contract" id="job_contract">
               <option value="" selected disabled>Selecione o tipo de contrato</option>
-              <?php foreach (['CLT', 'CLT Flex', 'PJ'] as $option): ?>
+              <?php foreach (['CLT', 'CLT Flex', 'PJ'] as $option) : ?>
                 <option value="<?= $option ?>" <?= $job_contract === $option ? 'selected' : '' ?>>
                   <?= ucwords($option) ?>
                 </option>
@@ -153,7 +165,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="field">
         <label class="label has-text-grey-dark">Requer experiência?</label>
         <div class="field is-narrow">
@@ -176,13 +188,13 @@
 
       <div class="field d-none  my-4" id="observation">
         <div class="field has-addons">
-            <p class="control">
+          <p class="control">
             <strong class="button is-static">Observação:</strong>
-            </p>
-            <p class="control is-expanded">
-              <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="job_observation" value="<?= $job_observation ?>" id="job_observation">
-            </p>
-          </div>
+          </p>
+          <p class="control is-expanded">
+            <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="job_observation" value="<?= $job_observation ?>" id="job_observation">
+          </p>
+        </div>
       </div>
 
       <hr>

@@ -248,6 +248,12 @@ nav {
 	}
 }
 
+.level-item {
+	.iconify {
+		margin-bottom: -.1rem;
+	}
+}
+
 @media screen and (max-width: 1024px) {
 	.navbar-home {
 			display: flex;

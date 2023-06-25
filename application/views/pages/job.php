@@ -43,16 +43,21 @@
           <p class="level-item">
             <a href="<?= base_url('/job/archived') ?>">
               <span class="iconify has-text-grey mb-.1 mr-2" data-icon="bxs:archive-in"></span>
+              <span>Arquivadas</span>
             </a>
           </p>
-          <p class="level-item">
-            <a href="<?= base_url('/job/about') ?>">
-              <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
-            </a>
-          </p>
+          <?php if ($this->session->userdata('usuario')) : ?>
           <p class="level-item">
             <a href="<?= base_url('/job/published') ?>">
               <span class="iconify has-text-grey mb-.1 mr-2" data-icon="mdi:list-box"></span>
+              <span>Minhas vagas</span>
+            </a>
+          </p>
+          <?php endif; ?>
+          <p class="level-item">
+            <a href="<?= base_url('/job/about') ?>">
+              <span class="iconify has-text-grey mb-.1 mr-2" data-icon="akar-icons:info-fill"></span>
+              <span>Sobre</span>
             </a>
           </p>
           <p class="level-item">
