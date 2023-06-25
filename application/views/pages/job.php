@@ -47,12 +47,12 @@
             </a>
           </p>
           <?php if ($this->session->userdata('usuario')) : ?>
-          <p class="level-item">
-            <a href="<?= base_url('/job/published') ?>">
-              <span class="iconify has-text-grey mb-.1 mr-2" data-icon="mdi:list-box"></span>
-              <span>Minhas vagas</span>
-            </a>
-          </p>
+            <p class="level-item">
+              <a href="<?= base_url('/job/published') ?>">
+                <span class="iconify has-text-grey mb-.1 mr-2" data-icon="mdi:list-box"></span>
+                <span>Minhas vagas</span>
+              </a>
+            </p>
           <?php endif; ?>
           <p class="level-item">
             <a href="<?= base_url('/job/about') ?>">
@@ -122,7 +122,7 @@
       <p>Caso encontre alguma publicação que tenha passado pelo filtro e esteja fora do contexto de publicação de vagas, denuncie <a target="_blank" href="<?= base_url('/job/report') ?>"><strong>nesta página.</strong></a></p>
     </div>
 
-    <div class="notification is-transparent my-2" id="rollBackPost">
+    <div class="notification is-transparent my-2" id="rollBackReportNotification">
       <span onclick="revertWarning();" class="iconify rollback" data-icon="grommet-icons:revert"></span>
     </div>
 

@@ -1,24 +1,49 @@
-let notificationBox = document.querySelector("#reportPost"),
-	rollBackPost = document.querySelector("#rollBackPost");
+/**
+ * @type {HTMLElement} notificationBox - The notification box element.
+ */ 
+let notificationBox = document.querySelector("#reportPost");
+
+/**
+ * @type {HTMLElement} rollBackReportNotification - The element of reverting the state of the report vacancy notification
+ */
+let	rollBackReportNotification = document.querySelector("#rollBackReportNotification");
 
 document.addEventListener("DOMContentLoaded", () => {
-	document.body.contains(rollBackPost) && rollBackPost.classList.add("d-none");
+	document.body.contains(rollBackReportNotification) && rollBackReportNotification.classList.add("d-none");
 });
 
+/**
+ * @type {NodeList} levelItems - The list of  menu level items.
+ */
 const levelItems = document.querySelectorAll(".level-item");
 
+/**
+ * @type {boolean} isMobile - Indicates whether the device is mobile.
+ */
 const isMobile = navigator.userAgent.match(
 	/Tablet|iPad|iPod|iPhone|Android|webOS|BlackBerry|Windows Phone/i
 );
 
+/**
+ * Adds the appropriate margin class to each level item based on the device type.
+ * @param {HTMLElement} levelItem - The level item element
+ * @returns {void}
+ */
 levelItems.forEach((levelItem) => {
 	levelItem.classList.add(isMobile ? "mx-1" : "mx-4");
 });
 
-
 window.history.replaceState &&
 	window.history.replaceState(null, null, window.location.href);
 
+/**
+ * @function showAlertBox
+ * Displays a Swal (SweetAlert) notification box.
+ *
+ * @param {string} title - The title of the notification box.
+ * @param {string} text - The text content of the notification box.
+ * @param {("warning"|"info"|"error"|"success")} icon - The icon type for the notification box.
+ */
 const showAlertBox = (title, text, icon) => {
 	Swal.fire({
 		title: title,
@@ -37,6 +62,10 @@ const showAlertBox = (title, text, icon) => {
 	});
 };
 
+/**
+ * @function removeFilter
+ * Removes the filter and reloads the page.
+ */
 const removeFilter = () => {
 	let search = document.querySelector("#search"),
 		formFilter = document.querySelector("#form-filter");
@@ -47,33 +76,81 @@ const removeFilter = () => {
 	}, 1000);
 };
 
+/**
+ * @function closeWarning
+ * Closes the notification box and displays the rollBackReportNotification element.
+ */
 const closeWarning = () => {
 	notificationBox.classList.add("d-none");
-	rollBackPost.classList.remove("d-none");
+	rollBackReportNotification.classList.remove("d-none");
 };
 
+/**
+ * @function revertWarning
+ * Reverts the warning by displaying the notification box and hiding the rollBackReportNotification element.
+ */
 const revertWarning = () => {
 	notificationBox.classList.remove("d-none");
-	rollBackPost.classList.add("d-none");
+	rollBackReportNotification.classList.add("d-none");
 };
 
+/**
+ * @constant {HTMLElement|null} showMessage - The element representing the message to be shown.
+ */
 const showMessage = document.querySelector(".showMessage");
+
+/**
+ * @constant The delay duration (in milliseconds) before hiding the showMessage element.
+ * @type {number}
+ */
+const hideDelay = 5000;
+
 
 if (document.body.contains(showMessage)) {
 	setTimeout(() => {
 		showMessage.classList.add("d-none");
-	}, 5000);
+	}, hideDelay);
 }
 
-const job_title = document.querySelector("#job_title"),
-	job_link = document.querySelector("#job_link"),
-	job_level = document.querySelector("#job_level"),
-	job_currency = document.querySelector("#job_currency"),
-	job_salary = document.querySelector("#job_salary"),
-	job_mode = document.querySelector("#job_mode"),
-	job_contract = document.querySelector("#job_contract");
+/**
+ * @constant {HTMLElement|null} job_title - The element representing the job title input field.
+ */
+const job_title = document.querySelector("#job_title");
 
-	
+/**
+ * @constant {HTMLElement|null} job_link - The element representing the job link input field.
+ */
+const job_link = document.querySelector("#job_link");
+
+/**
+ * @constant {HTMLElement|null} job_level - The element representing the job level input field.
+ */
+const job_level = document.querySelector("#job_level");
+
+/**
+ * @constant {HTMLElement|null} job_currency - The element representing the job currency input field.
+ */
+const job_currency = document.querySelector("#job_currency");
+
+/**
+ * @constant {HTMLElement|null} job_salary - The element representing the job salary input field.
+ */
+const job_salary = document.querySelector("#job_salary");
+
+/**
+ * @constant {HTMLElement|null} job_mode - The element representing the job mode input field.
+ */
+const job_mode = document.querySelector("#job_mode");
+
+/**
+ * @constant {HTMLElement|null} job_contract - The element representing the job contract input field.
+ */
+const job_contract = document.querySelector("#job_contract");
+
+/**
+ * @function formatCurrency
+ * Formats the value of the job_salary input field to display the currency format.
+ */
 const formatCurrency = () => {
 	let salary = Number(job_salary.value);
 	salary = Number(salary).toLocaleString("pt-br", {
@@ -83,11 +160,15 @@ const formatCurrency = () => {
 	job_salary.value = salary;
 };
 
-
+/**
+ * @function handleDelete
+ * Handles the deletion of a job by showing a confirmation dialog and submitting the form.
+ * @param {string} job_id - The ID of the job.
+ * @param {string} job_title - The title of the job.
+ */
 const handleDelete = (job_id, job_title) => {
-	
-	const deleteId = document.querySelector('#deleteId'),
-	formFilter = document.querySelector("#form-filter");
+	const deleteId = document.querySelector("#deleteId"),
+		formFilter = document.querySelector("#form-filter");
 
 	Swal.fire({
 		title: `Tem certeza que deseja deletar a vaga ${job_title} ?`,
@@ -106,6 +187,12 @@ const handleDelete = (job_id, job_title) => {
 	});
 };
 
+/**
+ * @function handleArchiving
+ * Handles archiving of a job by showing a password input dialog and submitting the form.
+ * @param {string} job_id - The ID of the job.
+ * @param {string} job_title - The title of the job.
+ */
 const handleArchiving = (job_id, job_title) => {
 	let archivejob = document.querySelector("#archivejob"),
 		archivejob_id = document.querySelector("#archivejob_id"),
@@ -137,9 +224,15 @@ const handleArchiving = (job_id, job_title) => {
 	});
 };
 
+/**
+ * @function handleReport
+ * Handles reporting of a job by opening a new window and pre-filling the report form.
+ * @param {string} job_id - The ID of the job.
+ * @param {string} job_title - The title of the job.
+ */
 const handleReport = (job_id, job_title) => {
 	const isDevelopment = window.location.href.includes("localhost");
-	
+
 	const baseUrl = isDevelopment
 		? `${window.location.origin}/findUrJob`
 		: window.location.origin;
@@ -155,9 +248,21 @@ const handleReport = (job_id, job_title) => {
 	});
 };
 
-let observation = document.querySelector("#observation"),
-	btnObservation = document.querySelector("#btnObservation");
+/**
+ * @type {HTMLElement}
+*/
+let observation = document.querySelector("#observation");
 
+/**
+ * @type {HTMLElement}
+ */
+let btnObservation = document.querySelector("#btnObservation");
+
+/**
+ * @function toggleObservation
+ * Toggles the visibility of the observation input field and updates the button text accordingly.
+ * @returns {void}
+ */
 const toggleObservation = () => {
 	observation.classList.toggle("d-none");
 	if (!observation.classList.contains("d-none")) {
@@ -167,9 +272,15 @@ const toggleObservation = () => {
 	}
 };
 
-const burger = document.querySelector(".nav-toggle"),
-	menu = document.querySelector(".nav-menu");
+/**
+ * @constant {HTMLElement|null} burger - The element representing the menu toggle.
+ */
+const burger = document.querySelector(".nav-toggle");
 
+/**
+ * @constant {HTMLElement|null} burger - The element representing the menu navigation.
+ */
+const menu = document.querySelector(".nav-menu");
 
 if (isMobile && document.title.includes("Vagas publicadas (")) {
 	menu.classList.add("is-hidden");
@@ -180,10 +291,24 @@ if (isMobile && document.title.includes("Vagas publicadas (")) {
 }
 
 // Login
+
+/**
+ * @constant @type {NodeListOf<HTMLElement>}
+ */
 const eyeIcons = document.querySelectorAll(".show-hide");
 
+
+/**
+ * Adds click event listeners to the eye icons to toggle the visibility of password input fields.
+ * @param {HTMLElement} eyeIcon - The eye icon element
+ * @param {number} i - The index of the current eye icon
+ * @returns {void}
+ */
 eyeIcons.forEach((eyeIcon, i) => {
 	eyeIcon.addEventListener("click", () => {
+		/**
+		 * @constant @type {NodeListOf<HTMLInputElement>}
+		 */
 		const pInputs = document.querySelectorAll(".passwordInput");
 
 		const pInput = pInputs[i];
@@ -198,10 +323,21 @@ eyeIcons.forEach((eyeIcon, i) => {
 	});
 });
 
-
 // GSAP Animations
+
+/**
+ * @constant @type {NodeListOf<HTMLElement>}
+ */
 const inputs = document.querySelectorAll(".input-field");
+
+/**
+ * @type {NodeListOf<HTMLElement>}
+ */
 const icons = document.querySelectorAll(".bx");
+
+/**
+ * @type {HTMLElement}
+ */
 const homeIcon = document.querySelector(".backToHome");
 
 gsap.from(".boxLogin, .showMessage", {
@@ -213,6 +349,13 @@ gsap.from(".boxLogin, .showMessage", {
 
 gsap.set([...inputs, ...icons], { opacity: 0, y: 30 });
 
+
+/**
+ * Animates the opacity and position of the input fields using GSAP.
+ * @param {HTMLElement} input - The input field element
+ * @param {number} i - The index of the input field in the loop
+ * @returns {void}
+ */
 inputs.forEach((input, i) => {
 	gsap.fromTo(
 		input,
@@ -221,6 +364,12 @@ inputs.forEach((input, i) => {
 	);
 });
 
+/**
+ * Animates the opacity and position of the icons using GSAP.
+ * @param {HTMLElement} icon - The icon element
+ * @param {number} i - The index of the icon in the loop
+ * @returns {void}
+ */
 icons.forEach((icon, i) => {
 	gsap.fromTo(
 		icon,
@@ -242,14 +391,17 @@ gsap.fromTo(
 	}
 );
 
+/**
+ * @type {HTMLElement}
+ */
 const smoothScroll = document.querySelector("#smoothScroll");
 
-document.addEventListener('scroll', () => {
+document.addEventListener("scroll", () => {
 	let scroll_position = window.scrollY;
 
 	if (scroll_position < 600) {
-		smoothScroll.style.cssText = 'bottom: -30rem';
+		smoothScroll.style.cssText = "bottom: -30rem";
 		return;
-	} 
-	smoothScroll.style.cssText = 'bottom: 5rem';
-})
+	}
+	smoothScroll.style.cssText = "bottom: 5rem";
+});
