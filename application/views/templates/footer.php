@@ -1,5 +1,12 @@
 
-			<?php if($this->session->userdata('usuario')): ?>
+			<?php
+
+				$currentUrl = $_SERVER['REQUEST_URI'];
+
+				$isAuthPage = strpos($currentUrl, "/signin") || strpos($currentUrl, "/signup") || strpos($currentUrl, "/forgot-password");
+				
+				if(!$isAuthPage):
+			?>
 				<footer class="footer">
 						<div class="content has-text-centered">
 							<p>
