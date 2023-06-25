@@ -139,6 +139,21 @@ class Job_model extends MY_Model {
     return ($execute) ? true : false;
   }
 
+  public function getPublishedJobsByUser()
+  {
+    $this->load->library('session');
+
+    $user = $this->session->userdata('usuario');
+
+    $job_post_user = $user->user_name . ' - ' . $user->user_email;
+
+    $query = "SELECT * FROM jobs WHERE job_post_user = " . $this->db->escape($job_post_user);
+
+    $execute = $this->db->query($query);
+
+    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+
+  }
 
   public function reportJob($dados)
   {
@@ -181,5 +196,5 @@ class Job_model extends MY_Model {
     
   }
 
-
+  
 }

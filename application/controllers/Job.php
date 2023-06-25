@@ -226,6 +226,19 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
+	public function published()
+	{
+		$data['title'] = 'Minhas vagas publicadas';
+
+		$res = $this->mjob->getPublishedJobsByUser();
+		$data['showPublishedJobsByLoggedInUser'] = $res;
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/published', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
+
 	public function forgot_password()
 	{
 
