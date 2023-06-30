@@ -245,6 +245,13 @@ const handleReport = (job_id, job_title) => {
 		let title = newWindow.document.querySelector("#jobTitle");
 		reportJobIdInput.value = job_id;
 		title.innerHTML = `Reportando a vaga <strong>${job_title}</strong>`;
+
+		let resetBtn = newWindow.document.querySelector("#resetBtn");
+
+		resetBtn.addEventListener('click', () => {
+			title.innerHTML = 'Formulário de denúncias.';
+		})
+
 	});
 };
 

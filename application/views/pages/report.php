@@ -112,7 +112,7 @@
           </button>
         </p>
         <p class="control">
-          <button type="reset" class="button is-light is-medium">
+          <button id="resetBtn" type="reset" class="button is-light is-medium">
             Limpar
           </button>
         </p>
