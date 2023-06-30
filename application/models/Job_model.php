@@ -155,6 +155,25 @@ class Job_model extends MY_Model {
 
   }
 
+  public function getReportedJobs()
+  {
+
+    $select = "SELECT A.report_job_id, A.report_reason, 
+                IF(LENGTH(A.report_observation) = 0, 'Nenhuma observação', report_observation) report_obs, 
+                CONCAT(B.user_name, ' (', B.user_email, ')') user_name, C.job_title, A.created_at reported_at 
+              FROM report A
+                LEFT JOIN users B ON 
+                  A.report_by = B.user_id
+                LEFT JOIN jobs C ON
+                  A.report_job_id = C.job_id
+                ";
+
+    $execute = $this->db->query($select);
+    
+    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+
+  }
+
   public function reportJob($dados)
   {
 

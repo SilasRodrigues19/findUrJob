@@ -241,6 +241,20 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
+	public function reported()
+	{
+		$this->is_logged_in();
+
+		$data['title'] = 'Vagas reportadas';
+
+		$res = $this->mjob->getReportedJobs();
+		$data['listReportedJobs'] = $res;
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/reported', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
 
 	public function forgot_password()
 	{
