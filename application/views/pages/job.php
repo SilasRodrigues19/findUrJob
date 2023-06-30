@@ -119,7 +119,7 @@
 
     <div class="notification is-link is-light my-6" id="reportPost">
       <button onclick="closeWarning();" class="delete m-auto"></button>
-      <p>Caso encontre alguma publicação que tenha passado pelo filtro e esteja fora do contexto de publicação de vagas, denuncie <a target="_blank" href="<?= base_url('/job/report') ?>"><strong>nesta página.</strong></a></p>
+      <p>Gerencie as publicações reportadas pelos usuários <a target="_blank" href="<?= base_url('/job/reported') ?>"><strong>nesta página.</strong></a></p>
     </div>
 
     <div class="notification is-transparent my-2" id="rollBackReportNotification">

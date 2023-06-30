@@ -1,10 +1,10 @@
 <section class="hero is-link banner">
   <div class="hero-body">
     <p class="title">
-      Minhas vagas
+      Vagas reportadas
     </p>
     <p class="subtitle mt-4">
-      Gerencie suas publicações
+      Gerencie as vagas reportadas pelos usuários
     </p>
     <div class="level-right item-menu">
       <p class="level-item">
