@@ -117,10 +117,14 @@
       Abaixo você pode encontrar todas as <strong class="has-text-grey-dark">vagas publicadas</strong>, ou utilize o filtro do cabeçalho para buscar por algo.
     </h2>
 
+    <?php $user = $this->session->userdata('usuario'); if ($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin')) : ?>
+
     <div class="notification is-link is-light my-6" id="reportPost">
       <button onclick="closeWarning();" class="delete m-auto"></button>
       <p>Gerencie as publicações reportadas pelos usuários <a target="_blank" href="<?= base_url('/job/reported') ?>"><strong>nesta página.</strong></a></p>
     </div>
+
+    <?php endif; ?>
 
     <div class="notification is-transparent my-2" id="rollBackReportNotification">
       <span onclick="revertWarning();" class="iconify rollback" data-icon="grommet-icons:revert"></span>
