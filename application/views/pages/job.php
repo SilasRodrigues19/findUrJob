@@ -19,7 +19,6 @@
             </p>
           </div>
           <form action="" method="POST" id="form-filter">
-            <input type="hidden" name="archivejob" id="archivejob">
             <input type="hidden" name="archivejob_id" id="archivejob_id">
             <input type="hidden" name="deleteId" id="deleteId">
             <div class="level-item">
@@ -224,19 +223,21 @@
           <?php endif; ?>
         <?php endforeach; ?>
 
-      <?php elseif (!isset($search)) : ?>
+      <?php elseif (isset($search)) : ?>
+        <article class="message is-warning">
+          <div class="message-header">
+            <p>Não encontramos resultados com esse filtro.</p>
+          </div>
+        </article>
+      <?php endif; ?>
+
+      <?php if (($countJobs['countJobs'] == 0) && empty($search)) : ?>
         <article class="message is-info">
           <div class="message-header">
             <p>Ainda não há nada por aqui.</p>
           </div>
           <div class="message-body">
             Não encontramos nenhuma vaga publicada, que tal <a href="<?= base_url('/job/new') ?>">publicar uma?</a>
-          </div>
-        </article>
-      <?php else : ?>
-        <article class="message is-warning">
-          <div class="message-header">
-            <p>Não encontramos resultados com esse filtro.</p>
           </div>
         </article>
       <?php endif; ?>

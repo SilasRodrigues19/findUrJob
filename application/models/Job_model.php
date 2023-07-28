@@ -127,13 +127,17 @@ class Job_model extends MY_Model {
 
   public function archiveJob($id)
   {
-    $query = "SELECT job_is_archived FROM jobs WHERE job_id = {$id}";
+    $query = "SELECT job_is_archived FROM jobs WHERE job_id = '$id'";
     $result = $this->db->query($query);
     $row = $result->row();
     $current_value = $row->job_is_archived;
 
+    //echo $current_value; exit;
+
     $new_value = ($current_value == 0) ? 1 : 0;
-    $update = "UPDATE jobs SET job_is_archived = {$new_value} WHERE job_id = {$id}";
+    $update = "UPDATE jobs SET job_is_archived = {$new_value} WHERE job_id = '$id'";
+
+    //echo $update; exit;
     $execute = $this->db->query($update);
 
     return ($execute) ? true : false;

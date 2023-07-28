@@ -57,19 +57,20 @@ class Job extends MY_Controller
 		$res = $this->mjob->totalJobs();
 		$data['countJobs'] = $res[0];
 
-		$accesskey = $this->input->post('archivejob');
 		$id = $this->input->post('archivejob_id');
 
-		if($accesskey == 123) {
-			$res = $this->mjob->archiveJob("'" . $id . "'");
+		if(!empty($this->input->post('archivejob_id'))) {
+			$res = $this->mjob->archiveJob($id);
 			$data['archiveJob'] = $res;
-
+			
 			if($res) {
 				notify('', 'Vaga arquivada', 'success');
 				redirect('/job/archived');
 			}
 		}
 
+
+		
 		
 		$id = $this->input->post('deleteId');
 
@@ -203,17 +204,17 @@ class Job extends MY_Controller
 		$res = $this->mjob->archivedJobs();
 		$data['archivedJobs'] = $res;
 
-		$accesskey = $this->input->post('archivejob');
 		$id = $this->input->post('archivejob_id');
 
-		if($accesskey == 123) {
-			$res = $this->mjob->archiveJob("'" . $id . "'");
+		if(!empty($this->input->post('archivejob_id'))) {
+			$res = $this->mjob->archiveJob($id);
 			$data['archiveJob'] = $res;
 
 			if($res) {
 				notify('', 'Vaga desarquivada', 'success');
 				redirect('/job');
 			}
+
 		}
 
 

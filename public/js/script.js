@@ -194,34 +194,16 @@ const handleDelete = (job_id, job_title) => {
  * @param {string} job_title - The title of the job.
  */
 const handleArchiving = (job_id, job_title) => {
-	let archivejob = document.querySelector("#archivejob"),
-		archivejob_id = document.querySelector("#archivejob_id"),
+	let archivejob_id = document.querySelector("#archivejob_id"),
 		formFilter = document.querySelector("#form-filter");
 
-	Swal.fire({
-		title: "Insira a chave de acesso para arquivar a vaga",
-		input: "password",
-		confirmButtonText: "Confirmar",
-		allowOutsideClick: false,
-		allowEscapeKey: true,
-	}).then(({ value }) => {
-		archivejob.value = value;
-		archivejob_id.value = job_id.toString();
-		setTimeout(() => {
-			formFilter.submit();
-		}, 3000);
-		if (value == 123) {
-			Swal.fire({
-				icon: "success",
-				html: `O status da vaga ${job_title} foi alterado`,
-			});
-			return;
-		}
-		Swal.fire({
-			icon: "error",
-			html: `O status da vaga ${job_title} não foi alterado`,
-		});
-	});
+	archivejob_id.value = job_id;
+
+	setTimeout(() => {
+		formFilter.submit();
+		archivejob_id.value = "";
+	}, 3000);
+
 };
 
 /**
