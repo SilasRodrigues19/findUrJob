@@ -72,7 +72,7 @@
               ?>
                 <button class="card-header-icon" aria-label="Archive item">
                   <span class="icon">
-                    <span onclick="return handleArchiving( '<?= $listReportedJobs[$idx]['job_id'] ?>' , '<?= $listReportedJobs[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
+                    <span onclick="return handleArchiving( '<?= $listReportedJobs[$idx]['report_job_id'] ?>' , '<?= $listReportedJobs[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
                   </span>
                 </button>
               <?php endif; ?>
@@ -84,7 +84,7 @@
               </div>
               <div class="content">
                 <p><strong>Razão da denúncia</strong></p>
-                <p><?= $listReportedJobs[$idx]['report_reason']; ?></p>
+                <p><?= "{$listReportedJobs[$idx]['report_reason_text']} ({$listReportedJobs[$idx]['report_reason']})"; ?></p>
               </div>
               <div class="content">
                 <p><strong>Observação</strong></p>

@@ -162,14 +162,21 @@ class Job_model extends MY_Model {
   public function getReportedJobs()
   {
 
-    $select = "SELECT A.report_job_id, A.report_reason, 
-                IF(LENGTH(A.report_observation) = 0, 'Nenhuma observação', report_observation) report_obs, 
-                CONCAT(B.user_name, ' (', B.user_email, ')') user_name, C.job_title, A.created_at reported_at 
+    $select = "SELECT A.report_job_id, A.report_reason,
+                  IF(LENGTH(A.report_observation) = 0, 'Nenhuma observação', report_observation) report_obs, 
+                  CONCAT(B.user_name, ' (', B.user_email, ')') user_name, C.job_title, A.created_at reported_at,
+                CASE A.report_reason
+                  WHEN 'Fraudulent' THEN 'A vaga parece ser fraudulenta'
+                  WHEN 'Misleading' THEN 'A vaga parece ser enganosa'
+                  WHEN 'discriminatory' THEN 'A vaga parece ser discriminatória'
+                  WHEN 'illegal' THEN 'A vaga parece ser ilegal'
+                  WHEN 'invalid' THEN 'A postagem não é uma vaga'
+                END AS report_reason_text 
               FROM report A
-                LEFT JOIN users B ON 
-                  A.report_by = B.user_id
-                LEFT JOIN jobs C ON
-                  A.report_job_id = C.job_id
+                  LEFT JOIN users B ON 
+                    A.report_by = B.user_id
+                  LEFT JOIN jobs C ON
+                    A.report_job_id = C.job_id
                 ";
 
     $execute = $this->db->query($select);
