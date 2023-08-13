@@ -94,9 +94,80 @@ class Job extends MY_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
-	public function new()
+	public function new($jobId = null)
 	{
-		$data['title'] = 'Publique uma vaga';
+		$data['title'] = ($jobId === null) ? 'Publique uma vaga' : 'Atualize uma vaga';
+
+		$this->is_logged_in();
+
+		$data['job_title'] = $this->input->post('job_title');
+		$data['job_requirements'] = $this->input->post('job_requirements');
+		$data['job_link'] = $this->input->post('job_link');
+		$data['job_level'] = $this->input->post('job_level');
+		$data['job_currency'] = $this->input->post('job_currency');
+		$data['job_mode'] = $this->input->post('job_mode');
+		$data['job_contract'] = $this->input->post('job_contract');
+		$data['job_email'] = $this->input->post('job_email');
+		$data['job_salary'] = $this->input->post('job_salary');
+		$data['job_experience'] = $this->input->post('job_experience');
+		$data['job_observation'] = $this->input->post('job_observation');
+		$data['job_post_user'] = $this->input->post('job_post_user');
+
+		$data['send'] = $this->input->post('send');
+
+
+		$messages = [
+			'job_title' => 'Informe o título',
+			'job_requirements' => 'Informe os requisitos',
+			'job_link' => 'Informe uma URL válida',
+			'job_level' => 'Informe o nível',
+			'job_salary' => 'Informe o salário',
+			'job_mode' => 'Informe a modalidade',
+			'job_contract' => 'Informe o tipo de contrato',
+		];
+
+		$isValid = true;
+
+		foreach ($messages as $key => $message):
+				if (empty($data[$key]) && isset($data['send'])):
+						notify('', $message, 'info');
+						$isValid = false;
+						break;
+				elseif ($key === 'job_link' && !empty($data['job_link']) && !filter_var($data['job_link'], FILTER_VALIDATE_URL)):
+						notify('', $message, 'info');
+						$isValid = false;
+						break;
+				endif;
+		endforeach;
+
+		if($jobId !== null) {
+			$data['job'] = $this->mjob->getJobById($jobId)[0];
+		}
+
+
+		if($isValid && !empty($data['job_title'])) {
+
+			if($mode === 'insert') {
+				$res = $this->mjob->addJob($data);
+			} else if($mode === 'edit') {
+				$res = $this->mjob->updateJob($data);
+			}
+
+
+				if($res) {
+					notify('', 'Vaga adicionada', 'success');
+					redirect('/');
+				}
+		}
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/new', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
+	public function edit()
+	{
+		$data['title'] = 'Editando vaga';
 
 		$this->is_logged_in();
 
@@ -151,7 +222,7 @@ class Job extends MY_Controller
 		}
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/new', $data);
+		$this->load->view('pages/edit', $data);
 		$this->load->view('templates/footer', $data);
 	}
 
