@@ -26,6 +26,15 @@ class Job_model extends MY_Model {
     return ($execute->num_rows() > 0) ? $execute->result_array() : array();
   }
 
+  public function getJobById($job_id) 
+  {
+    $select = "SELECT * FROM jobs WHERE job_id = " . $this->db->escape($job_id);
+
+    $execute = $this->db->query($select);
+
+    return ($execute->num_rows() > 0) ? $execute->result_array() : array();
+  }
+
   public function showJobCount($searchTerm = false)
   {
 
