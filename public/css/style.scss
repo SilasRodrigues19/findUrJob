@@ -26,7 +26,7 @@ a {
 	&:hover {
 		color: inherit;
 	}
-	
+
 }
 
 li {
@@ -62,7 +62,7 @@ li {
  	background: transparent;
  	color: inherit;
  	cursor: pointer;
-	
+
 
  	&[data-tooltip] {
  		&::before {
@@ -114,7 +114,7 @@ li {
  		}
  	}
  }
- 
+
 
 .is-full-vh {
 	min-height: 100vh;
@@ -299,12 +299,12 @@ nav {
 	.container {
 		.columns {
 				display: flex;
-		
+
 				.column {
 					@include flexCenter(center);
 					width: 100%;
 				}
-		
+
 			}
 	}
 

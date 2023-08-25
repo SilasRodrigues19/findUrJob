@@ -65,8 +65,8 @@
       <div class="field">
         <label class="label has-text-grey-dark">Requisitos</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="text" placeholder="Requisitos da vaga" name="job_requirements" 
-          value="<?= isset($job) ? $job['job_requirements'] : $job_requirements ?>" 
+          <input autocomplete="off" class="input" type="text" placeholder="Requisitos da vaga" name="job_requirements"
+          value="<?= isset($job) ? $job['job_requirements'] : $job_requirements ?>"
           id="job_requirements">
         </div>
       </div>

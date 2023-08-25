@@ -12,7 +12,7 @@ class Job_model extends MY_Model
         }
 
         $select = "SELECT *, DATE_FORMAT(created_at, '%d/%m/%Y') AS dateString, DATE_FORMAT(created_at, '%H:%i:%s') AS timeString,
-      CASE 
+      CASE
         WHEN job_currency = 'Real' THEN 'R$'
         WHEN job_currency = 'Dollar' THEN '$'
         WHEN job_currency = 'Euro' THEN '€'
@@ -107,9 +107,9 @@ class Job_model extends MY_Model
         $job_id = $this->generateUUID();
 
 
-        $insert = "INSERT INTO jobs (job_id, job_title, job_requirements, job_link, job_level, job_currency, job_mode, job_contract, job_email, job_salary, job_experience, job_is_archived, job_observation, job_post_user) 
-    VALUES ('{$job_id}', '{$dados['job_title']}', '{$dados['job_requirements']}', '{$dados['job_link']}', '{$dados['job_level']}', 
-            '{$dados['job_currency']}', '{$dados['job_mode']}', '{$dados['job_contract']}', '{$dados['job_email']}', '{$dados['job_salary']}', 
+        $insert = "INSERT INTO jobs (job_id, job_title, job_requirements, job_link, job_level, job_currency, job_mode, job_contract, job_email, job_salary, job_experience, job_is_archived, job_observation, job_post_user)
+    VALUES ('{$job_id}', '{$dados['job_title']}', '{$dados['job_requirements']}', '{$dados['job_link']}', '{$dados['job_level']}',
+            '{$dados['job_currency']}', '{$dados['job_mode']}', '{$dados['job_contract']}', '{$dados['job_email']}', '{$dados['job_salary']}',
             '{$dados['job_experience']}', false, '{$dados['job_observation']}', '{$job_post_user}')";
 
         $execute = $this->db->query($insert);
@@ -124,7 +124,7 @@ class Job_model extends MY_Model
         $user = $this->session->userdata('usuario');
         $job_post_user = $user->user_name . ' - ' . $user->user_email;
 
-        $update = "UPDATE jobs 
+        $update = "UPDATE jobs
                 SET job_title = '{$dados['job_title']}',
                     job_requirements = '{$dados['job_requirements']}',
                     job_link = '{$dados['job_link']}',
@@ -147,11 +147,11 @@ class Job_model extends MY_Model
     public function archivedJobs()
     {
 
-        $select = "SELECT *, CASE 
+        $select = "SELECT *, CASE
                           WHEN job_currency = 'Real' THEN 'R$'
                           WHEN job_currency = 'Dollar' THEN '$'
                           WHEN job_currency = 'Euro' THEN '€'
-                        END AS job_currency_symbol 
+                        END AS job_currency_symbol
               FROM jobs WHERE job_is_archived = 1";
 
         $execute = $this->db->query($select);
@@ -198,7 +198,7 @@ class Job_model extends MY_Model
     {
 
         $select = "SELECT A.report_job_id, A.report_reason,
-                  IF(LENGTH(A.report_observation) = 0, 'Nenhuma observação', report_observation) report_obs, 
+                  IF(LENGTH(A.report_observation) = 0, 'Nenhuma observação', report_observation) report_obs,
                   CONCAT(B.user_name, ' (', B.user_email, ')') user_name, C.job_title, A.created_at reported_at,
                 CASE A.report_reason
                   WHEN 'Fraudulent' THEN 'A vaga parece ser fraudulenta'
@@ -206,9 +206,9 @@ class Job_model extends MY_Model
                   WHEN 'discriminatory' THEN 'A vaga parece ser discriminatória'
                   WHEN 'illegal' THEN 'A vaga parece ser ilegal'
                   WHEN 'invalid' THEN 'A postagem não é uma vaga'
-                END AS report_reason_text 
+                END AS report_reason_text
               FROM report A
-                  LEFT JOIN users B ON 
+                  LEFT JOIN users B ON
                     A.report_by = B.user_id
                   LEFT JOIN jobs C ON
                     A.report_job_id = C.job_id

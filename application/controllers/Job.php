@@ -445,7 +445,7 @@ class Job extends MY_Controller
 																											<td style="word-break:break-word;font-size:0px;padding:0px" align="center">
 																												<div
 																													style="color:#99aab5;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:12px;line-height:24px;text-align:center">
-																													Enviado pelo sistema 
+																													Enviado pelo sistema
 																													<a href="' . base_url() . '"
 																															style="color:#1eb0f4;text-decoration:none" target="_blank">
 																															FindUrJob
