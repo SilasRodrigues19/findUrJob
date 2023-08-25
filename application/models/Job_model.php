@@ -118,6 +118,32 @@ class Job_model extends MY_Model {
 
   }
 
+  public function updateJob($dados, $job_id)
+  {
+      $this->load->library('session');
+      $user = $this->session->userdata('usuario');
+      $job_post_user = $user->user_name . ' - ' . $user->user_email;
+
+      $update = "UPDATE jobs 
+                SET job_title = '{$dados['job_title']}',
+                    job_requirements = '{$dados['job_requirements']}',
+                    job_link = '{$dados['job_link']}',
+                    job_level = '{$dados['job_level']}',
+                    job_currency = '{$dados['job_currency']}',
+                    job_mode = '{$dados['job_mode']}',
+                    job_contract = '{$dados['job_contract']}',
+                    job_email = '{$dados['job_email']}',
+                    job_salary = '{$dados['job_salary']}',
+                    job_experience = '{$dados['job_experience']}',
+                    job_observation = '{$dados['job_observation']}'
+                WHERE job_id = '{$job_id}'";
+
+      $execute = $this->db->query($update);
+
+      return ($execute) ? true : false;
+  }
+
+
   public function archivedJobs()
   {
 
