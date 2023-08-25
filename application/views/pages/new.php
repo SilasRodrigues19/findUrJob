@@ -1,10 +1,10 @@
 <section class="hero is-link banner">
   <div class="hero-body">
     <p class="title">
-      Publique uma vaga.
+        <?= isset($job) ? 'Editando a vaga: ' . $job['job_title'] : 'Publique uma vaga.' ?>
     </p>
     <p class="subtitle mt-4">
-      Viu uma vaga e quer compartilhar com mais pessoas ? Publique ela abaixo.
+      <?= isset($job) ? 'Confira os campos abaixo e edite o que for necessário.' : 'Viu uma vaga e quer compartilhar com mais pessoas ? Publique ela abaixo.' ?>
     </p>
     <div class="level-right item-menu">
       <p class="level-item">
@@ -56,14 +56,18 @@
       <div class="field">
         <label class="label has-text-grey-dark">Título</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="text" placeholder="Título da vaga" name="job_title" value="<?= $job_title ?>" id="job_title">
+          <input autocomplete="off" class="input" type="text" placeholder="Título da vaga" name="job_title" id="job_title"
+            value="<?= isset($job) ? $job['job_title'] : $job_title ?>"
+          >
         </div>
       </div>
 
       <div class="field">
         <label class="label has-text-grey-dark">Requisitos</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="text" placeholder="Requisitos da vaga" name="job_requirements" value="<?= $job_requirements ?>" id="job_requirements">
+          <input autocomplete="off" class="input" type="text" placeholder="Requisitos da vaga" name="job_requirements" 
+          value="<?= isset($job) ? $job['job_requirements'] : $job_requirements ?>" 
+          id="job_requirements">
         </div>
       </div>
 
@@ -73,7 +77,7 @@
             <strong class="button is-static">Link:</strong>
           </p>
           <p class="control is-expanded">
-            <input autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" value="<?= $job_link ?>" id="job_link">
+            <input autocomplete="off" class="input" type="text" placeholder="https://exemplo.com.br" name="job_link" value="<?= isset($job) ? $job['job_link'] : $job_link ?>" id="job_link">
           </p>
         </div>
         <p class="help">Copie o link da vaga e cole aqui, para evitar escrever errado.</p>
@@ -96,9 +100,13 @@
               ];
 
               foreach ($options as $value => $text) {
-                $selected = $job_level === $value ? 'selected' : '';
+                $selected = isset($job) && $job['job_level'] === $value ? 'selected' : '';
                 echo "<option value=\"$value\" $selected>$text</option>";
               }
+
+                if (isset($job)) {
+                        echo "<option value=\"" . $job['job_level'] . "\" selected>" . $job['job_level'] . "</option>";
+                    }              
               ?>
             </select>
           </div>
@@ -108,7 +116,7 @@
       <div class="field">
         <label class="label has-text-grey-dark" id="mailLabel">Email</label>
         <div class="control">
-          <input autocomplete="off" class="input" type="email" placeholder="Deixar em branco caso não houver" name="job_email" value="<?= $job_email ?>" id="job_email">
+          <input autocomplete="off" class="input" type="email" placeholder="Deixar em branco caso não houver" name="job_email" value="<?= isset($job) ? $job['job_email'] : $job_email ?>" id="job_email">
         </div>
       </div>
 
@@ -123,7 +131,7 @@
           </span>
         </p>
         <p class="control">
-          <input onchange="return formatCurrency();" autocomplete="off" class="input" type="text" name="job_salary" value="<?= $job_salary ?>" id="job_salary" placeholder="Salário">
+          <input onchange="return formatCurrency();" autocomplete="off" class="input" type="text" name="job_salary" value="<?= isset($job) ? $job['job_salary'] : $job_salary ?>" id="job_salary" placeholder="Salário">
         </p>
       </div>
 
@@ -144,6 +152,10 @@
                 $selected = $job_mode === $value ? 'selected' : '';
                 echo "<option value=\"$value\" $selected>$text</option>";
               }
+
+              if (isset($job)) {
+                        echo "<option value=\"" . $job['job_mode'] . "\" selected>" . $job['job_mode'] . "</option>";
+                    } 
               ?>
             </select>
           </div>
@@ -155,12 +167,19 @@
         <div class="control">
           <div class="select">
             <select class="select" name="job_contract" id="job_contract">
-              <option value="" selected disabled>Selecione o tipo de contrato</option>
-              <?php foreach (['CLT', 'CLT Flex', 'PJ'] as $option) : ?>
-                <option value="<?= $option ?>" <?= $job_contract === $option ? 'selected' : '' ?>>
-                  <?= ucwords($option) ?>
-                </option>
-              <?php endforeach; ?>
+                <option value="" disabled>Selecione o tipo de contrato</option>
+                <?php
+                $contractOptions = ['CLT', 'CLT Flex', 'PJ'];
+
+                foreach ($contractOptions as $option) {
+                    $selected = (isset($job) && $job['job_contract'] === $option) ? 'selected' : '';
+                    echo "<option value=\"$option\" $selected>" . ucwords($option) . "</option>";
+                }
+
+                if (isset($job)) {
+                    echo "<option value=\"" . $job['job_contract'] . "\" selected>" . ucwords($job['job_contract']) . "</option>";
+                }
+                ?>
             </select>
           </div>
         </div>
@@ -171,11 +190,11 @@
         <div class="field is-narrow">
           <div class="control mt-4">
             <label class="radio">
-              <input type="radio" value="1" name="job_experience" value="<?= $job_experience ?>">
+              <input type="radio" value="1" name="job_experience" value="<?= isset($job) ? $job['job_experience'] : $job_experience ?>">
               Sim
             </label>
             <label class="radio">
-              <input type="radio" value="0" name="job_experience" value="<?= $job_experience ?>" checked>
+              <input type="radio" value="0" name="job_experience" value="<?= isset($job) ? $job['job_experience'] : $job_experience ?>" checked>
               Não
             </label>
           </div>
@@ -192,7 +211,7 @@
             <strong class="button is-static">Observação:</strong>
           </p>
           <p class="control is-expanded">
-            <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="job_observation" value="<?= $job_observation ?>" id="job_observation">
+            <input autocomplete="off" class="input" type="tel" placeholder="Fique a vontade pra escrever algo pertinente a vaga" name="job_observation" value="<?= isset($job) ? $job['job_observation'] : $job_observation ?>" id="job_observation">
           </p>
         </div>
       </div>

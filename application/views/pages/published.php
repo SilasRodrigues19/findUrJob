@@ -77,6 +77,11 @@
                     <span onclick="return handleArchiving( '<?= $showPublishedJobsByLoggedInUser[$idx]['job_id'] ?>' , '<?= $showPublishedJobsByLoggedInUser[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
                   </span>
                 </button>
+                <button class="card-header-icon" aria-label="Edit item">
+                  <a class="icon" href="<?= base_url('/job/new/' . $showPublishedJobsByLoggedInUser[$idx]['job_id']) ?>">
+                    <span class="iconify" data-icon="mingcute:edit-line"></span>
+                  </a>
+                </button>
               <?php endif; ?>
             </header>
             <div class="card-content">
