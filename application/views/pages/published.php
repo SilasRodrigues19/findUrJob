@@ -70,8 +70,8 @@
               </p>
               <?php
               $user = $this->session->userdata('usuario');
-              if ($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin')) :
-              ?>
+            if ($user && ($user->user_level === 'Mod' || $user->user_level === 'Admin')) :
+                ?>
                 <button class="card-header-icon" aria-label="Archive item">
                   <span class="icon">
                     <span onclick="return handleArchiving( '<?= $showPublishedJobsByLoggedInUser[$idx]['job_id'] ?>' , '<?= $showPublishedJobsByLoggedInUser[$idx]['job_title'] ?>' )" class="iconify" data-icon="material-symbols:archive"></span>
@@ -99,7 +99,7 @@
               </div>
               <div class="content">
                 <p><strong>Salário</strong></p>
-                <p><?= ($showPublishedJobsByLoggedInUser[$idx]['job_salary'] == '0,00' || $showPublishedJobsByLoggedInUser[$idx]['job_salary'] == 'NaN'  ? 'Não informado' : $showPublishedJobsByLoggedInUser[$idx]['job_currency'] . ' ' . $showPublishedJobsByLoggedInUser[$idx]['job_salary']); ?></p>
+                <p><?= ($showPublishedJobsByLoggedInUser[$idx]['job_salary'] == '0,00' || $showPublishedJobsByLoggedInUser[$idx]['job_salary'] == 'NaN' ? 'Não informado' : $showPublishedJobsByLoggedInUser[$idx]['job_currency'] . ' ' . $showPublishedJobsByLoggedInUser[$idx]['job_salary']); ?></p>
               </div>
               <div class="content">
                 <p><strong>Modalidade</strong></p>

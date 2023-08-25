@@ -99,15 +99,15 @@
                 'default' => 'Não informado'
               ];
 
-              foreach ($options as $value => $text) {
-                $selected = isset($job) && $job['job_level'] === $value ? 'selected' : '';
-                echo "<option value=\"$value\" $selected>$text</option>";
-              }
+        foreach ($options as $value => $text) {
+            $selected = isset($job) && $job['job_level'] === $value ? 'selected' : '';
+            echo "<option value=\"$value\" $selected>$text</option>";
+        }
 
-                if (isset($job)) {
-                        echo "<option value=\"" . $job['job_level'] . "\" selected>" . $job['job_level'] . "</option>";
-                    }              
-              ?>
+        if (isset($job)) {
+            echo "<option value=\"" . $job['job_level'] . "\" selected>" . $job['job_level'] . "</option>";
+        }
+        ?>
             </select>
           </div>
         </div>
@@ -142,21 +142,21 @@
             <select class="select" name="job_mode" id="job_mode">
               <option value="" selected disabled>Selecione a modalidade</option>
               <?php
-              $options = [
-                'remoto' => 'Remoto',
-                'presencial' => 'Presencial',
-                'hibrido' => 'Híbrido'
-              ];
+        $options = [
+          'remoto' => 'Remoto',
+          'presencial' => 'Presencial',
+          'hibrido' => 'Híbrido'
+        ];
 
-              foreach ($options as $value => $text) {
-                $selected = $job_mode === $value ? 'selected' : '';
-                echo "<option value=\"$value\" $selected>$text</option>";
-              }
+        foreach ($options as $value => $text) {
+            $selected = $job_mode === $value ? 'selected' : '';
+            echo "<option value=\"$value\" $selected>$text</option>";
+        }
 
-              if (isset($job)) {
-                        echo "<option value=\"" . $job['job_mode'] . "\" selected>" . $job['job_mode'] . "</option>";
-                    } 
-              ?>
+        if (isset($job)) {
+            echo "<option value=\"" . $job['job_mode'] . "\" selected>" . $job['job_mode'] . "</option>";
+        }
+        ?>
             </select>
           </div>
         </div>
@@ -169,17 +169,17 @@
             <select class="select" name="job_contract" id="job_contract">
                 <option value="" disabled>Selecione o tipo de contrato</option>
                 <?php
-                $contractOptions = ['CLT', 'CLT Flex', 'PJ'];
+          $contractOptions = ['CLT', 'CLT Flex', 'PJ'];
 
-                foreach ($contractOptions as $option) {
-                    $selected = (isset($job) && $job['job_contract'] === $option) ? 'selected' : '';
-                    echo "<option value=\"$option\" $selected>" . ucwords($option) . "</option>";
-                }
+        foreach ($contractOptions as $option) {
+            $selected = (isset($job) && $job['job_contract'] === $option) ? 'selected' : '';
+            echo "<option value=\"$option\" $selected>" . ucwords($option) . "</option>";
+        }
 
-                if (isset($job)) {
-                    echo "<option value=\"" . $job['job_contract'] . "\" selected>" . ucwords($job['job_contract']) . "</option>";
-                }
-                ?>
+        if (isset($job)) {
+            echo "<option value=\"" . $job['job_contract'] . "\" selected>" . ucwords($job['job_contract']) . "</option>";
+        }
+        ?>
             </select>
           </div>
         </div>
