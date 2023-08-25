@@ -20,6 +20,15 @@ a {
 	}
 }
 
+.card-header-icon a {
+	color: inherit;
+
+	&:hover {
+		color: inherit;
+	}
+	
+}
+
 li {
 	list-style: none;
 }
