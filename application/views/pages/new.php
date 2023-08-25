@@ -84,7 +84,7 @@
       </div>
 
       <div class="field">
-        <label class="label has-text-grey-dark">Nível</label>job_link
+        <label class="label has-text-grey-dark">Nível</label>
         <div class="control">
           <div class="select">
             <select class="select" name="job_level" id="job_level">

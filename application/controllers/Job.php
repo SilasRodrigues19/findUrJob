@@ -100,6 +100,8 @@ class Job extends MY_Controller
 
 		$this->is_logged_in();
 
+		$mode = 'insert';
+
 		$data['job_title'] = $this->input->post('job_title');
 		$data['job_requirements'] = $this->input->post('job_requirements');
 		$data['job_link'] = $this->input->post('job_link');
@@ -147,17 +149,26 @@ class Job extends MY_Controller
 
 		if($isValid && !empty($data['job_title'])) {
 
-			if($mode === 'insert') {
-				$res = $this->mjob->addJob($data);
-			} else if($mode === 'edit') {
-				$res = $this->mjob->updateJob($data);
+			if(isset($data['job']) && strlen(trim($data['job']['job_id'])) === 32) {
+				$mode = 'edit';
+			} else {
+				$mode = 'insert';
 			}
 
 
-				if($res) {
-					notify('', 'Vaga adicionada', 'success');
-					redirect('/');
+			if($mode === 'insert') {
+				$res = $this->mjob->addJob($data);
+			} else if($mode === 'edit') {
+				$res = $this->mjob->updateJob($data, $data['job']['job_id']);
+			}
+
+
+				if ($res) {
+						$notificationMessage = ($mode === 'insert') ? 'Vaga adicionada' : 'Vaga editada';
+						notify('', $notificationMessage, 'success');
+						redirect('/');
 				}
+
 		}
 
 		$this->load->view('templates/header', $data);
