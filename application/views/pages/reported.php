@@ -45,6 +45,11 @@
 </section>
 
 <section class="section my-6">
+
+  <ol class="breadcrumb is-right" aria-label="breadcrumbs">
+    <?php echo $breadcrumb_default_style; ?>
+  </ol>
+  
   <?= showMessage(); ?>
 
   <h1 class="title has-text-grey-dark">

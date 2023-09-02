@@ -48,6 +48,11 @@
 </section>
 
 <section class="section my-6">
+  
+  <ol class="breadcrumb is-right" aria-label="breadcrumbs">
+    <?php echo $breadcrumb_default_style; ?>
+  </ol>
+
   <h1 class="title has-text-grey-dark">Sobre o projeto.</h1>
   <h2 class="subtitle mt-4 about-text">
     Este projeto foi feito com o objetivo de organizar em um único lugar diversas vagas que são encontradas em outros sites de vagas.

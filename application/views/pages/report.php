@@ -55,6 +55,11 @@
 </section>
 
 <section class="section my-6">
+
+  <ol class="breadcrumb is-right" aria-label="breadcrumbs">
+    <?php echo $breadcrumb_default_style; ?>
+  </ol>
+  
   <?= showMessage(); ?>
   <h2 class="subtitle" id="jobTitle">
     Formulário de denúncias.
