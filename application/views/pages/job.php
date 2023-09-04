@@ -108,7 +108,7 @@
       ''
     ?>
 
-
+    
     <h1 class="title has-text-grey-dark">Vagas publicadas</h1>
     <?= showMessage(); ?>
     <h2 class="subtitle my-6">
@@ -123,7 +123,27 @@
     </div>
 
     <?php endif; ?>
-
+<div class="columns">
+      <div class="column is-full">
+        <select class="multipleFilter" name="filters[]" multiple>
+          <optgroup label="Senioridade">
+            <option value="AK">Estágio</option>
+            <option value="HI">Júnior</option>
+            <option value="HI">Pleno</option>
+            <option value="HI">Sênior</option>
+          </optgroup>
+          <optgroup label="Modalidade">
+            <option value="CA">CLT</option>
+            <option value="NV">PJ</option>
+          </optgroup>
+          <optgroup label="Moeda">
+            <option value="CA">Real R$</option>
+            <option value="NV">Dollar $</option>
+            <option value="NV">Euro €</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
     <div class="notification is-transparent my-2" id="rollBackReportNotification">
       <span onclick="revertWarning();" class="iconify rollback" data-icon="grommet-icons:revert"></span>
     </div>

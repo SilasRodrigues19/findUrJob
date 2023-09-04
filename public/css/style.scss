@@ -61,6 +61,14 @@ li {
 	color: #fff;
 }
 
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-results>.select2-results__options, span.select2-dropdown.select2-dropdown--below {
+	width: 30rem !important;
+}
+
+input.select2-search__field {
+	text-align: center;
+}
+
  .tooltip {
  	position: relative;
  	background: transparent;

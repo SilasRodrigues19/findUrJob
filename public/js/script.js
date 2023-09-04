@@ -394,3 +394,32 @@ document.addEventListener("scroll", () => {
 	}
 	smoothScroll.style.cssText = "bottom: 5rem";
 });
+
+$(document).ready(function () {
+	$(".multipleFilter").select2();
+});
+$(document).ready(function () {
+	$(".multipleFilter").select2({
+		placeholder: "Clique aqui para selecionar filtros pré-definidos",
+		allowClear: true,
+	});
+
+	$(".multipleFilter").on("select2:select", function (e) {
+		const option = e.params.data.element;
+		const optgroup = $(option).closest("optgroup");
+
+		optgroup.find("option").prop("disabled", true);
+		option.disabled = false;
+
+		$(".multipleFilter").select2();
+	});
+
+	$(".multipleFilter").on("select2:unselect", function (e) {
+		const option = e.params.data.element;
+		const optgroup = $(option).closest("optgroup");
+
+		optgroup.find("option").prop("disabled", false);
+
+		$(".multipleFilter").select2();
+	});
+});
