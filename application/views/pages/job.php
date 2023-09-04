@@ -123,27 +123,35 @@
     </div>
 
     <?php endif; ?>
-<div class="columns">
-      <div class="column is-full">
-        <select class="multipleFilter" name="filters[]" multiple>
-          <optgroup label="Senioridade">
-            <option value="AK">Estágio</option>
-            <option value="HI">Júnior</option>
-            <option value="HI">Pleno</option>
-            <option value="HI">Sênior</option>
-          </optgroup>
-          <optgroup label="Modalidade">
-            <option value="CA">CLT</option>
-            <option value="NV">PJ</option>
-          </optgroup>
-          <optgroup label="Moeda">
-            <option value="CA">Real R$</option>
-            <option value="NV">Dollar $</option>
-            <option value="NV">Euro €</option>
-          </optgroup>
-        </select>
-      </div>
+
+     <div class="columns">
+        <div class="column is-full">
+          <select class="multipleFilter" name="filters[]" multiple>
+            <optgroup label="Senioridade">
+              <option value="estagio">Estágio</option>
+              <option value="trainee">Trainee</option>
+              <option value="junior">Júnior</option>
+              <option value="pleno">Pleno</option>
+              <option value="senior">Sênior</option>
+            </optgroup>
+            <optgroup label="Modalidade">
+              <option value="remoto">Remoto</option>
+              <option value="presencial">Presencial</option>
+              <option value="hibrido">Híbrido</option>
+            </optgroup>
+            <optgroup label="Contrato">
+              <option value="clt">CLT</option>
+              <option value="pj">PJ</option>
+            </optgroup>
+            <optgroup label="Moeda">
+              <option value="real">Real R$</option>
+              <option value="dollar">Dollar $</option>
+              <option value="euro">Euro €</option>
+            </optgroup>
+          </select>
+        </div>
     </div>
+
     <div class="notification is-transparent my-2" id="rollBackReportNotification">
       <span onclick="revertWarning();" class="iconify rollback" data-icon="grommet-icons:revert"></span>
     </div>

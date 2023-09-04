@@ -1,15 +1,18 @@
 /**
  * @type {HTMLElement} notificationBox - The notification box element.
- */ 
+ */
 let notificationBox = document.querySelector("#reportPost");
 
 /**
  * @type {HTMLElement} rollBackReportNotification - The element of reverting the state of the report vacancy notification
  */
-let	rollBackReportNotification = document.querySelector("#rollBackReportNotification");
+let rollBackReportNotification = document.querySelector(
+	"#rollBackReportNotification"
+);
 
 document.addEventListener("DOMContentLoaded", () => {
-	document.body.contains(rollBackReportNotification) && rollBackReportNotification.classList.add("d-none");
+	document.body.contains(rollBackReportNotification) &&
+		rollBackReportNotification.classList.add("d-none");
 });
 
 /**
@@ -104,7 +107,6 @@ const showMessage = document.querySelector(".showMessage");
  * @type {number}
  */
 const hideDelay = 5000;
-
 
 if (document.body.contains(showMessage)) {
 	setTimeout(() => {
@@ -203,7 +205,6 @@ const handleArchiving = (job_id, job_title) => {
 		formFilter.submit();
 		archivejob_id.value = "";
 	}, 3000);
-
 };
 
 /**
@@ -230,16 +231,15 @@ const handleReport = (job_id, job_title) => {
 
 		let resetBtn = newWindow.document.querySelector("#resetBtn");
 
-		resetBtn.addEventListener('click', () => {
-			title.innerHTML = 'Formulário de denúncias.';
-		})
-
+		resetBtn.addEventListener("click", () => {
+			title.innerHTML = "Formulário de denúncias.";
+		});
 	});
 };
 
 /**
  * @type {HTMLElement}
-*/
+ */
 let observation = document.querySelector("#observation");
 
 /**
@@ -285,7 +285,6 @@ if (isMobile && document.title.includes("Vagas publicadas (")) {
  * @constant @type {NodeListOf<HTMLElement>}
  */
 const eyeIcons = document.querySelectorAll(".show-hide");
-
 
 /**
  * Adds click event listeners to the eye icons to toggle the visibility of password input fields.
@@ -337,7 +336,6 @@ gsap.from(".boxLogin, .showMessage", {
 });
 
 gsap.set([...inputs, ...icons], { opacity: 0, y: 30 });
-
 
 /**
  * Animates the opacity and position of the input fields using GSAP.
@@ -395,31 +393,35 @@ document.addEventListener("scroll", () => {
 	smoothScroll.style.cssText = "bottom: 5rem";
 });
 
-$(document).ready(function () {
-	$(".multipleFilter").select2();
-});
-$(document).ready(function () {
-	$(".multipleFilter").select2({
+
+initSelect2 = () => {
+	return $(".multipleFilter").select2({
 		placeholder: "Clique aqui para selecionar filtros pré-definidos",
 		allowClear: true,
+		language: {
+			noResults: () => "Nenhum resultado encontrado",
+		}
 	});
+}
+
+$(document).ready(function () {
+	const select2Instance = initSelect2();
 
 	$(".multipleFilter").on("select2:select", function (e) {
 		const option = e.params.data.element;
 		const optgroup = $(option).closest("optgroup");
 
-		optgroup.find("option").prop("disabled", true);
-		option.disabled = false;
+		optgroup.find("option:selected").each(function () {
+			if (this !== option) {
+				$(this).prop("selected", false);
+			}
+		});
 
-		$(".multipleFilter").select2();
+		select2Instance.trigger("change");
 	});
 
 	$(".multipleFilter").on("select2:unselect", function (e) {
-		const option = e.params.data.element;
-		const optgroup = $(option).closest("optgroup");
-
-		optgroup.find("option").prop("disabled", false);
-
-		$(".multipleFilter").select2();
+		select2Instance.trigger("change");
 	});
 });
+

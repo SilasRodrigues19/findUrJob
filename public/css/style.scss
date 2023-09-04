@@ -69,6 +69,12 @@ input.select2-search__field {
 	text-align: center;
 }
 
+.select2-container--default .select2-results__option[aria-disabled="true"] {
+	color: #ccc;
+	cursor: url("https://api.iconify.design/gg/block.svg?color=%23a0aec0&width=25&height=25"), not-allowed;
+
+}
+
  .tooltip {
  	position: relative;
  	background: transparent;
