@@ -18,6 +18,7 @@ class Job extends MY_Controller
 
 	protected function is_logged_in()
 	{
+		
 			if (!$this->session->userdata('usuario')) {
 					// Armazenar a página atual em uma sessão
 					$this->session->set_userdata('redirect_url', current_url());
@@ -35,16 +36,29 @@ class Job extends MY_Controller
 			}
 	}
 
+	public function generateBreadcrumb()
+	{
+		$this->load->library('breadcrumb');
+
+		$current_uri = $this->uri->uri_string();
+		$current_uri = str_replace('job/', '', $current_uri);
+		$current_uri = str_replace('new/', ' edit / ', $current_uri);
+
+		$breadcrumbItems = [
+			'job' => '/',
+			$current_uri => $current_uri,
+		];
+
+		$this->breadcrumb->add_item($breadcrumbItems);
+	}
+
 
 	public function job()
 	{
+		
 
-		/* if($this->input->post('submitBtn') && (empty($this->input->post('search'))) || $this->input->post('search') === '') {
-			notify('', 'O filtro está vazio', 'info');
-			header("Location: ".$_SERVER['REQUEST_URI']);
-    	exit();
-		} */
-
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
 		$data['search'] = $this->input->post('search');
 
@@ -96,6 +110,10 @@ class Job extends MY_Controller
 
 	public function new($jobId = null)
 	{
+
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
+
 		$data['title'] = ($jobId === null) ? 'Publique uma vaga' : 'Atualize uma vaga';
 
 		$this->is_logged_in();
@@ -178,6 +196,10 @@ class Job extends MY_Controller
 
 	public function edit()
 	{
+
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
+
 		$data['title'] = 'Editando vaga';
 
 		$this->is_logged_in();
@@ -239,6 +261,10 @@ class Job extends MY_Controller
 
 	public function about()
 	{
+
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
+
 		$data['title'] = 'Sobre';
 
 		$this->load->view('templates/header', $data);
@@ -248,6 +274,10 @@ class Job extends MY_Controller
 
 	public function report()
 	{
+
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
+
 		$data['title'] = 'Denuncie';
 
 		$dados['report_job_id'] = $this->input->post('report_job_id');
@@ -279,6 +309,9 @@ class Job extends MY_Controller
 
 	public function archived()
 	{
+
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
 		$res = $this->mjob->totalArchivedJobs();
 		$data['countArchivedJobs'] = $res[0];
@@ -312,6 +345,9 @@ class Job extends MY_Controller
 	public function published()
 	{
 
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
+
 		$this->is_logged_in();
 		
 		$data['title'] = 'Minhas vagas publicadas';
@@ -326,6 +362,10 @@ class Job extends MY_Controller
 
 	public function reported()
 	{
+
+		$this->generateBreadcrumb();
+		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
+		
 		$this->is_logged_in();
 
 		$data['title'] = 'Vagas reportadas';

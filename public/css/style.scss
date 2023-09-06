@@ -20,6 +20,10 @@ a {
 	}
 }
 
+.breadcrumb li {
+	gap: .5rem;
+}
+
 .card-header-icon a {
 	color: inherit;
 
@@ -55,6 +59,20 @@ li {
 ::selection {
 	background: #485fc7;
 	color: #fff;
+}
+
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-results>.select2-results__options, span.select2-dropdown.select2-dropdown--below {
+	width: 30rem !important;
+}
+
+input.select2-search__field {
+	text-align: center;
+}
+
+.select2-container--default .select2-results__option[aria-disabled="true"] {
+	color: #ccc;
+	cursor: url("https://api.iconify.design/gg/block.svg?color=%23a0aec0&width=25&height=25"), not-allowed;
+
 }
 
  .tooltip {
