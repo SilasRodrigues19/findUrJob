@@ -393,16 +393,15 @@ document.addEventListener("scroll", () => {
 	smoothScroll.style.cssText = "bottom: 5rem";
 });
 
-
 initSelect2 = () => {
 	return $(".multipleFilter").select2({
 		placeholder: "Clique aqui para selecionar filtros pré-definidos",
 		allowClear: true,
 		language: {
 			noResults: () => "Nenhum resultado encontrado",
-		}
+		},
 	});
-}
+};
 
 $(document).ready(function () {
 	const select2Instance = initSelect2();
@@ -423,5 +422,53 @@ $(document).ready(function () {
 	$(".multipleFilter").on("select2:unselect", function (e) {
 		select2Instance.trigger("change");
 	});
-});
 
+	$("#multipleFilter").change(function () {
+		// Obtém os valores selecionados em todas as optgroups
+		let selectedValues = $(this).val();
+
+		// Cria um objeto de mapeamento
+		let valueMapping = {
+			estagio: "job_level",
+			trainee: "job_level",
+			junior: "job_level",
+			pleno: "job_level",
+			senior: "job_level",
+			remoto: "job_mode",
+			presencial: "job_mode",
+			hibrido: "job_mode",
+			clt: "job_contract",
+			pj: "job_contract",
+			real: "job_currency",
+			dollar: "job_currency",
+			euro: "job_currency",
+		};
+
+		// Cria um objeto para armazenar os valores correspondentes
+		let attributes = {};
+
+		selectedValues.forEach(function (value) {
+			if (valueMapping[value]) {
+				attributes[valueMapping[value]] = value;
+			}
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "filter-selection",
+			data: attributes,
+			success: (data) => {
+				console.log(data, attributes);
+
+				/* data = data.replace(
+					/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+					""
+				); */
+
+				$("#jobContent").empty().append(data);
+				$("#multipleFilter").select2();
+		
+			},
+		});
+	});
+});
