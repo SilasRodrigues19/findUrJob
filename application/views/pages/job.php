@@ -1,4 +1,4 @@
-<main class="is-widescreen is-fullhd has-background-light	hero is-fullheight">
+<main id="jobContent" class="is-widescreen is-fullhd has-background-light	hero is-fullheight">
   <nav class="level p-4 has-position-fixed-on-top w-100 navbar" role="navigation" aria-label="main navigation">
 
     <a role="button" class="navbar-burger nav-toggle" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -126,7 +126,7 @@
 
      <div class="columns">
         <div class="column is-full">
-          <select class="multipleFilter" name="filters[]" multiple>
+          <select id="multipleFilter" class="multipleFilter" name="filters[]" multiple>
             <optgroup label="Senioridade">
               <option value="estagio">Estágio</option>
               <option value="trainee">Trainee</option>

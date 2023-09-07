@@ -52,17 +52,57 @@ class Job extends MY_Controller
 		$this->breadcrumb->add_item($breadcrumbItems);
 	}
 
+public function filter_selection()
+{
+    $attributes = $this->input->post();
+
+    // Verifica se há dados em "attributes"
+    if (!empty($attributes)) {
+        // Inicializa uma matriz para armazenar as cláusulas WHERE
+        $whereClauses = array();
+
+        // Loop pelos atributos e constrói as cláusulas WHERE
+        foreach ($attributes as $column => $value) {
+            // Adiciona uma cláusula WHERE para cada atributo
+            $whereClauses[] = "$column = '$value'";
+        }
+
+        // Combina as cláusulas WHERE em uma única string usando "AND"
+        $whereClause = implode(' AND ', $whereClauses);
+
+        // Agora você pode passar a $whereClause para o seu modelo
+        // e usar em sua consulta SQL
+        // $result = $this->mjob->getJobsByConditions($whereClause);
+				return $whereClause;
+
+        // Faça algo com os resultados, como passá-los para a visão
+    } else {
+        // Caso não haja dados em "attributes"
+        echo "Nenhum dado recebido do AJAX.";
+    }
+}
+
 
 	public function job()
 	{
-		
 
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
 		$data['search'] = $this->input->post('search');
+		$seachTerm = $this->input->post('search');
+		$data['filters'] = $this->input->post('filters');
 
-		$res = $this->mjob->showJob($data['search']);
+		// Verifique se há dados do AJAX
+    if ($this->input->is_ajax_request()) {
+        $whereClause = $this->filter_selection();
+				$seachTerm = false;
+    } else {
+        $whereClause = false;
+    }
+
+
+		$res = $this->mjob->showJob($seachTerm, $whereClause);
 		$data['showJob'] = $res;
 
 		$res = $this->mjob->showJobCount($data['search']);
