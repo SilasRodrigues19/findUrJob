@@ -1,4 +1,12 @@
 <main id="jobContent" class="is-widescreen is-fullhd has-background-light	hero is-fullheight">
+
+  <div id="loaderOverlay" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content has-text-centered">
+      <span class="iconify is-large" data-icon="line-md:loading-loop" data-width="100"data-height="100"></span>
+    </div>
+  </div>
+
   <nav class="level p-4 has-position-fixed-on-top w-100 navbar" role="navigation" aria-label="main navigation">
 
     <a role="button" class="navbar-burger nav-toggle" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

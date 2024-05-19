@@ -9,10 +9,10 @@ public function showJob($searchTerm = false, $whereClause = false)
 
     if ($searchTerm && $whereClause) {
 
-        $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%' AND {$whereClause}";
+        $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_email, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%' AND {$whereClause}";
     } elseif ($searchTerm) {
 
-        $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
+        $where = "WHERE CONCAT(job_title, job_requirements, job_link, job_email, job_level, job_salary, job_currency, job_mode, job_contract) LIKE '%{$searchTerm}%'";
     } elseif ($whereClause) {
 
         $where = "WHERE {$whereClause}";
@@ -26,7 +26,7 @@ public function showJob($searchTerm = false, $whereClause = false)
       END AS job_currency_symbol
     FROM jobs {$where}";
 
-    echo $select;
+    #echo $select; exit;
 
     $execute = $this->db->query($select);
     

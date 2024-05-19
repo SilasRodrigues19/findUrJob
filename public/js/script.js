@@ -328,55 +328,66 @@ const icons = document.querySelectorAll(".bx");
  */
 const homeIcon = document.querySelector(".backToHome");
 
-gsap.from(".boxLogin, .showMessage", {
-	opacity: 0,
-	y: 50,
-	duration: 0.5,
-	ease: "power2.out",
-});
-
-gsap.set([...inputs, ...icons], { opacity: 0, y: 30 });
-
-/**
- * Animates the opacity and position of the input fields using GSAP.
- * @param {HTMLElement} input - The input field element
- * @param {number} i - The index of the input field in the loop
- * @returns {void}
- */
-inputs.forEach((input, i) => {
-	gsap.fromTo(
-		input,
-		{ opacity: 0, y: 30 },
-		{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
-	);
-});
-
-/**
- * Animates the opacity and position of the icons using GSAP.
- * @param {HTMLElement} icon - The icon element
- * @param {number} i - The index of the icon in the loop
- * @returns {void}
- */
-icons.forEach((icon, i) => {
-	gsap.fromTo(
-		icon,
-		{ opacity: 0, y: 30 },
-		{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
-	);
-});
-
-gsap.fromTo(
-	homeIcon,
-	{ opacity: 0, top: "5%", left: "20px" },
-	{
-		opacity: 1,
-		top: "20px",
-		left: "20px",
-		delay: icons.length * 0.25,
-		duration: 0.8,
+if(document.body.contains(homeIcon) || document.body.contains(showMessage)) {
+	gsap.from(".boxLogin, .showMessage", {
+		opacity: 0,
+		y: 50,
+		duration: 0.5,
 		ease: "power2.out",
-	}
-);
+	});
+}
+
+if (inputs.length > 0 || icons.length > 0) {
+
+	gsap.set([...inputs, ...icons], { opacity: 0, y: 30 });
+
+	/**
+	 * Animates the opacity and position of the input fields using GSAP.
+	 * @param {HTMLElement} input - The input field element
+	 * @param {number} i - The index of the input field in the loop
+	 * @returns {void}
+	 */
+	inputs.forEach((input, i) => {
+		gsap.fromTo(
+			input,
+			{ opacity: 0, y: 30 },
+			{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
+		);
+	});
+
+	/**
+	 * Animates the opacity and position of the icons using GSAP.
+	 * @param {HTMLElement} icon - The icon element
+	 * @param {number} i - The index of the icon in the loop
+	 * @returns {void}
+	 */
+	icons.forEach((icon, i) => {
+		gsap.fromTo(
+			icon,
+			{ opacity: 0, y: 30 },
+			{ opacity: 1, y: 0, delay: i * 0.25, duration: 0.8, ease: "power2.out" }
+		);
+	});
+}
+
+if(document.body.contains(homeIcon)) {
+
+	gsap.fromTo(
+		homeIcon,
+		{ opacity: 0, top: "5%", left: "20px" },
+		{
+			opacity: 1,
+			top: "20px",
+			left: "20px",
+			delay: icons.length * 0.25,
+			duration: 0.8,
+			ease: "power2.out",
+		}
+	);
+
+}
+
+
 
 /**
  * @type {HTMLElement}
@@ -424,10 +435,8 @@ $(document).ready(function () {
 	});
 
 	$("#multipleFilter").change(function () {
-		// Obtém os valores selecionados em todas as optgroups
 		let selectedValues = $(this).val();
 
-		// Cria um objeto de mapeamento
 		let valueMapping = {
 			estagio: "job_level",
 			trainee: "job_level",
@@ -444,7 +453,6 @@ $(document).ready(function () {
 			euro: "job_currency",
 		};
 
-		// Cria um objeto para armazenar os valores correspondentes
 		let attributes = {};
 
 		selectedValues.forEach(function (value) {
@@ -457,17 +465,29 @@ $(document).ready(function () {
 			type: "POST",
 			url: "filter-selection",
 			data: attributes,
+			beforeSend: function () {
+				$("#loaderOverlay").addClass("is-active");
+			},
 			success: (data) => {
 				console.log(data, attributes);
 
-				/* data = data.replace(
+				data = data.replace(
 					/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
 					""
-				); */
+				);
 
-				$("#jobContent").empty().append(data);
-				$("#multipleFilter").select2();
-		
+				let selectedValues = $("#multipleFilter").val();
+
+				$("#jobContent").html("");
+
+				$("#jobContent").html(data);
+				$("#multipleFilter").select2(); 
+				if (selectedValues) {
+					$("#multipleFilter").val(selectedValues).trigger("change"); 
+				}
+			},
+			complete: function () {
+				$("#loaderOverlay").removeClass("is-active");
 			},
 		});
 	});
