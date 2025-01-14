@@ -217,7 +217,7 @@ const handleReport = (job_id, job_title) => {
 	const isDevelopment = window.location.href.includes("localhost");
 
 	const baseUrl = isDevelopment
-		? `${window.location.origin}/findUrJob`
+		? `${window.location.origin}/aspire`
 		: window.location.origin;
 
 	let url = `${baseUrl}/job/report`;

@@ -18,11 +18,9 @@ class Job extends MY_Controller
 
 	protected function is_logged_in()
 	{
-		
 			if (!$this->session->userdata('usuario')) {
 					// Armazenar a página atual em uma sessão
 					$this->session->set_userdata('redirect_url', current_url());
-					
 					notify('', 'Necessário autenticação.', 'error');
 					redirect('/job/signin');
 			}
@@ -55,7 +53,6 @@ class Job extends MY_Controller
 
 	public function job()
 	{
-		
 
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
@@ -76,16 +73,13 @@ class Job extends MY_Controller
 		if(!empty($this->input->post('archivejob_id'))) {
 			$res = $this->mjob->archiveJob($id);
 			$data['archiveJob'] = $res;
-			
+
 			if($res) {
 				notify('', 'Vaga arquivada', 'success');
 				redirect('/job/archived');
 			}
 		}
 
-
-		
-		
 		$id = $this->input->post('deleteId');
 
 		if (!empty($this->input->post('deleteId'))) {
@@ -97,9 +91,6 @@ class Job extends MY_Controller
 				notify('', $res['msg'], 'error');
 			}
 		}
-
-
-
 
 		$data['title'] = 'Vagas publicadas ' . '(' .$data['countJobs']['countJobs']. ')' ;
 
@@ -118,32 +109,29 @@ class Job extends MY_Controller
 
 		$this->is_logged_in();
 
-		$mode = 'insert';
-
-		$data['job_title'] = $this->input->post('job_title');
+        $data['job_title']        = $this->input->post('job_title');
 		$data['job_requirements'] = $this->input->post('job_requirements');
-		$data['job_link'] = $this->input->post('job_link');
-		$data['job_level'] = $this->input->post('job_level');
-		$data['job_currency'] = $this->input->post('job_currency');
-		$data['job_mode'] = $this->input->post('job_mode');
-		$data['job_contract'] = $this->input->post('job_contract');
-		$data['job_email'] = $this->input->post('job_email');
-		$data['job_salary'] = $this->input->post('job_salary');
-		$data['job_experience'] = $this->input->post('job_experience');
-		$data['job_observation'] = $this->input->post('job_observation');
-		$data['job_post_user'] = $this->input->post('job_post_user');
+		$data['job_link']         = $this->input->post('job_link');
+		$data['job_level']        = $this->input->post('job_level');
+		$data['job_currency']     = $this->input->post('job_currency');
+		$data['job_mode']         = $this->input->post('job_mode');
+		$data['job_contract']     = $this->input->post('job_contract');
+		$data['job_email']        = $this->input->post('job_email');
+		$data['job_salary']       = $this->input->post('job_salary');
+		$data['job_experience']   = $this->input->post('job_experience');
+		$data['job_observation']  = $this->input->post('job_observation');
+		$data['job_post_user']    = $this->input->post('job_post_user');
 
 		$data['send'] = $this->input->post('send');
 
-
 		$messages = [
-			'job_title' => 'Informe o título',
+			'job_title'        => 'Informe o título',
 			'job_requirements' => 'Informe os requisitos',
-			'job_link' => 'Informe uma URL válida',
-			'job_level' => 'Informe o nível',
-			'job_salary' => 'Informe o salário',
-			'job_mode' => 'Informe a modalidade',
-			'job_contract' => 'Informe o tipo de contrato',
+			'job_link'         => 'Informe uma URL válida',
+			'job_level'        => 'Informe o nível',
+			'job_salary'       => 'Informe o salário',
+			'job_mode'         => 'Informe a modalidade',
+			'job_contract'     => 'Informe o tipo de contrato',
 		];
 
 		$isValid = true;
@@ -164,7 +152,6 @@ class Job extends MY_Controller
 			$data['job'] = $this->mjob->getJobById($jobId)[0];
 		}
 
-
 		if($isValid && !empty($data['job_title'])) {
 
 			if(isset($data['job']) && strlen(trim($data['job']['job_id'])) === 32) {
@@ -173,20 +160,17 @@ class Job extends MY_Controller
 				$mode = 'insert';
 			}
 
-
 			if($mode === 'insert') {
 				$res = $this->mjob->addJob($data);
 			} else if($mode === 'edit') {
 				$res = $this->mjob->updateJob($data, $data['job']['job_id']);
 			}
 
-
-				if ($res) {
-						$notificationMessage = ($mode === 'insert') ? 'Vaga adicionada' : 'Vaga editada';
-						notify('', $notificationMessage, 'success');
-						redirect('/');
-				}
-
+            if ($res) {
+                    $notificationMessage = ($mode === 'insert') ? 'Vaga adicionada' : 'Vaga editada';
+                    notify('', $notificationMessage, 'success');
+                    redirect('/');
+            }
 		}
 
 		$this->load->view('templates/header', $data);
@@ -196,7 +180,6 @@ class Job extends MY_Controller
 
 	public function edit()
 	{
-
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
@@ -204,30 +187,30 @@ class Job extends MY_Controller
 
 		$this->is_logged_in();
 
-		$data['job_title'] = $this->input->post('job_title');
+		$data['job_title']        = $this->input->post('job_title');
 		$data['job_requirements'] = $this->input->post('job_requirements');
-		$data['job_link'] = $this->input->post('job_link');
-		$data['job_level'] = $this->input->post('job_level');
-		$data['job_currency'] = $this->input->post('job_currency');
-		$data['job_mode'] = $this->input->post('job_mode');
-		$data['job_contract'] = $this->input->post('job_contract');
-		$data['job_email'] = $this->input->post('job_email');
-		$data['job_salary'] = $this->input->post('job_salary');
-		$data['job_experience'] = $this->input->post('job_experience');
-		$data['job_observation'] = $this->input->post('job_observation');
-		$data['job_post_user'] = $this->input->post('job_post_user');
+		$data['job_link']         = $this->input->post('job_link');
+		$data['job_level']        = $this->input->post('job_level');
+		$data['job_currency']     = $this->input->post('job_currency');
+		$data['job_mode']         = $this->input->post('job_mode');
+		$data['job_contract']     = $this->input->post('job_contract');
+		$data['job_email']        = $this->input->post('job_email');
+		$data['job_salary']       = $this->input->post('job_salary');
+		$data['job_experience']   = $this->input->post('job_experience');
+		$data['job_observation']  = $this->input->post('job_observation');
+		$data['job_post_user']    = $this->input->post('job_post_user');
 
 		$data['send'] = $this->input->post('send');
 
 
 		$messages = [
-			'job_title' => 'Informe o título',
+			'job_title'        => 'Informe o título',
 			'job_requirements' => 'Informe os requisitos',
-			'job_link' => 'Informe uma URL válida',
-			'job_level' => 'Informe o nível',
-			'job_salary' => 'Informe o salário',
-			'job_mode' => 'Informe a modalidade',
-			'job_contract' => 'Informe o tipo de contrato',
+			'job_link'         => 'Informe uma URL válida',
+			'job_level'        => 'Informe o nível',
+			'job_salary'       => 'Informe o salário',
+			'job_mode'         => 'Informe a modalidade',
+			'job_contract'     => 'Informe o tipo de contrato',
 		];
 
 		$isValid = true;
@@ -244,14 +227,13 @@ class Job extends MY_Controller
 				endif;
 		endforeach;
 
-
 		if($isValid && !empty($data['job_title'])) {
 			$res = $this->mjob->addJob($data);
 
-				if($res) {
-					notify('', 'Vaga adicionada', 'success');
-					redirect('/');
-				}
+            if($res) {
+                notify('', 'Vaga adicionada', 'success');
+                redirect('/');
+            }
 		}
 
 		$this->load->view('templates/header', $data);
@@ -261,7 +243,6 @@ class Job extends MY_Controller
 
 	public function about()
 	{
-
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
@@ -274,7 +255,6 @@ class Job extends MY_Controller
 
 	public function report()
 	{
-
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
@@ -295,7 +275,6 @@ class Job extends MY_Controller
 				notify('', $res['msg'], 'error');
 				redirect('/job/report');
 			}
-
 		} 
 
 		if($this->input->server('REQUEST_METHOD') == 'POST' && empty($this->input->post('report_job_id'))) {
@@ -309,7 +288,6 @@ class Job extends MY_Controller
 
 	public function archived()
 	{
-
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
@@ -329,7 +307,6 @@ class Job extends MY_Controller
 				notify('', 'Vaga desarquivada', 'success');
 				redirect('/job');
 			}
-
 		}
 
 
@@ -344,12 +321,10 @@ class Job extends MY_Controller
 
 	public function published()
 	{
-
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
 
 		$this->is_logged_in();
-		
 		$data['title'] = 'Minhas vagas publicadas';
 
 		$res = $this->mjob->getPublishedJobsByUser();
@@ -362,10 +337,9 @@ class Job extends MY_Controller
 
 	public function reported()
 	{
-
 		$this->generateBreadcrumb();
 		$data['breadcrumb_default_style'] = $this->breadcrumb->generate();
-		
+
 		$this->is_logged_in();
 
 		$data['title'] = 'Vagas reportadas';
@@ -381,229 +355,216 @@ class Job extends MY_Controller
 
 	public function forgot_password()
 	{
+        $this->redirectIfLoggedIn();
+        $email = $this->input->post('email');
 
-			$this->redirectIfLoggedIn();
+        $data['token'] = $this->input->get('token');
+        $data['email'] = $this->input->get('email');
 
-			$email = $this->input->post('email');
-			
+        $dynamicTitle = isset($data['token']) ? 'Altere sua senha' : 'Solicitar redefinição de senha';
+        $data['title'] = $dynamicTitle;
 
-			$data['token'] = $this->input->get('token');
-			$data['email'] = $this->input->get('email');
-			
-			$dynamicTitle = isset($data['token']) ? 'Altere sua senha' : 'Solicitar redefinição de senha';
-      $data['title'] = $dynamicTitle;
+        $res = $this->mauth->getEmailSecret();
+        $dados['emailSecret'] = $res;
 
-			// Mocked email
-			// $email = 'silasrodrigues.fatec@gmail.com';
+        if(!empty($email)) {
+            $dados['email'] = $email;
+            $res = $this->mauth->validateMail($dados);
+            if($res['success']) {
+                    $token = bin2hex(random_bytes(32));
+                    $resetLink = base_url('job/forgot-password?token=' . $token . '&email=' . urlencode($email));
 
-			$res = $this->mauth->getEmailSecret();
-			$dados['emailSecret'] = $res;
+                    $email_config = [
+                        'protocol'   => 'smtp',
+                        'smtp_host'  => 'smtp.gmail.com',
+                        'smtp_port'  => '587',
+                        'smtp_crypto'=> 'tls',
+                        'smtp_user'  => 'silasrodrigues.fatec@gmail.com',
+                        'smtp_pass'  => $dados['emailSecret'],
+                        'mailtype'   => 'html',
+                        'starttls'   => true,
+                        'newline'    => "\r\n"
+                    ];
 
-			if(!empty($email)) {
-					$dados['email'] = $email;
-					$res = $this->mauth->validateMail($dados);
-					
-					if($res['success']) {
-							$token = bin2hex(random_bytes(32));
-							$resetLink = base_url('job/forgot-password?token=' . $token . '&email=' . urlencode($email));
+                    $this->load->library('email', $email_config);
 
-							$email_config = [
-								'protocol'   => 'smtp',
-								'smtp_host'  => 'smtp.gmail.com',
-								'smtp_port'  => '587',
-								'smtp_crypto'=> 'tls',
-								'smtp_user'  => 'silasrodrigues.fatec@gmail.com',
-								'smtp_pass'  => $dados['emailSecret'],
-								'mailtype'   => 'html',
-								'starttls'   => true,
-								'newline'    => "\r\n"
-							];
+                    $this->email->from('silasrodrigues.fatec@gmail.com');
+                    $this->email->to($email);
+                    $this->email->subject('Solicitação de redefinir a senha');
+                    $this->email->message('
+                                                                <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td style="word-break:break-word;font-size:0px;padding:0px" align="left">
+                                                                                <div
+                                                                                    style="color:#737f8d;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px;line-height:24px;text-align:left">
+                                                                                    <h2
+                                                                                        style="font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-weight:500;font-size:20px;color:#4f545c;letter-spacing:0.27px margin: 10px 0">
+                                                                                        Solicitação de redefinir a senha
+                                                                                    </h2>
+                                                                                    <p>Olá.</p>
+                                                                                    <p>Recebemos uma solicitação para redefinir a sua senha. Se você não solicitou essa redefinição, por favor desconsidere
+                                                                                    este e-mail.</p>
+                                                                                    <p>Para alterar sua senha clique no botão abaixo para ser redirecionado:</p>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="word-break:break-word;font-size:0px;padding:10px 25px;padding-top:20px" align="center">
+                                                                                <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate" align="center"
+                                                                                    border="0">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td style="border:none;color:white;" align="center" valign="middle"
+                                                                                                bgcolor="#5865f2">
+                                                                                                <a
+                                                                                                    href="' . $resetLink . '"
+                                                                                                    style="text-decoration:none;line-height:100%;padding:15px 19px;border-radius:3px;background:#5865f2;color:white;font-family:Ubuntu,Helvetica,Arial,sans-serif;font-size:15px;font-weight:normal;text-transform:none;margin:0px"
+                                                                                                    target="_blank"
+                                                                                                    >
+                                                                                                    Redefinir senha
+                                                                                                </a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="word-break:break-word;font-size:0px;padding:30px 0px">
+                                                                                <p style="font-size:1px;margin:0px auto;border-top:1px solid #dcddde;width:100%"></p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div style="margin:0px auto;max-width:640px;background:transparent">
+                                                                    <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:transparent"
+                                                                        align="center" border="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px">
+                                                                                    <div aria-labelledby="mj-column-per-100" class="m_4490126977024612303mj-column-per-100"
+                                                                                        style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%">
+                                                                                        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="word-break:break-word;font-size:0px;padding:0px" align="center">
+                                                                                                        <div
+                                                                                                            style="color:#99aab5;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:12px;line-height:24px;text-align:center">
+                                                                                                            Enviado pelo sistema 
+                                                                                                            <a href="' . base_url() . '"
+                                                                                                                    style="color:#1eb0f4;text-decoration:none" target="_blank">
+                                                                                                                    Aspire
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                        ');
 
+                    if ($this->email->send()) {
+                        notify('', 'Link enviado para o e-mail informado', 'success');
+                    } else {
+                        notify('', 'Falha ao enviar o link', 'error');
+                    }
+            } else {
+                notify('', $res['error'], 'error');
+            }
+        }
 
-							$this->load->library('email', $email_config);
+        $data['newPassword'] = $this->input->post('password');
+        $data['cPassword'] = $this->input->post('confirm_password');
+        $data['send'] = $this->input->post('send');
 
-							$this->email->from('silasrodrigues.fatec@gmail.com');
-							$this->email->to($email);
-							$this->email->subject('Solicitação de redefinir a senha');
-							$this->email->message('
-																		<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-																			<tbody>
-																				<tr>
-																					<td style="word-break:break-word;font-size:0px;padding:0px" align="left">
-																						<div
-																							style="color:#737f8d;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px;line-height:24px;text-align:left">
-																							<h2
-																								style="font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-weight:500;font-size:20px;color:#4f545c;letter-spacing:0.27px margin: 10px 0">
-																								Solicitação de redefinir a senha
-																							</h2>
-																							<p>Olá.</p>
-																							<p>Recebemos uma solicitação para redefinir a sua senha. Se você não solicitou essa redefinição, por favor desconsidere
-																							este e-mail.</p>
-																							<p>Para alterar sua senha clique no botão abaixo para ser redirecionado:</p>
-																						</div>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td style="word-break:break-word;font-size:0px;padding:10px 25px;padding-top:20px" align="center">
-																						<table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate" align="center"
-																							border="0">
-																							<tbody>
-																								<tr>
-																									<td style="border:none;color:white;" align="center" valign="middle"
-																										bgcolor="#5865f2">
-																										<a
-																											href="' . $resetLink . '"
-																											style="text-decoration:none;line-height:100%;padding:15px 19px;border-radius:3px;background:#5865f2;color:white;font-family:Ubuntu,Helvetica,Arial,sans-serif;font-size:15px;font-weight:normal;text-transform:none;margin:0px"
-																											target="_blank"
-																											>
-																											Redefinir senha
-																										</a>
-																									</td>
-																								</tr>
-																							</tbody>
-																						</table>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td style="word-break:break-word;font-size:0px;padding:30px 0px">
-																						<p style="font-size:1px;margin:0px auto;border-top:1px solid #dcddde;width:100%"></p>
-																					</td>
-																				</tr>
-																			</tbody>
-																		</table>
-																		<div style="margin:0px auto;max-width:640px;background:transparent">
-																			<table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:transparent"
-																				align="center" border="0">
-																				<tbody>
-																					<tr>
-																						<td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px">
-																							<div aria-labelledby="mj-column-per-100" class="m_4490126977024612303mj-column-per-100"
-																								style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%">
-																								<table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-																									<tbody>
-																										<tr>
-																											<td style="word-break:break-word;font-size:0px;padding:0px" align="center">
-																												<div
-																													style="color:#99aab5;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:12px;line-height:24px;text-align:center">
-																													Enviado pelo sistema 
-																													<a href="' . base_url() . '"
-																															style="color:#1eb0f4;text-decoration:none" target="_blank">
-																															FindUrJob
-																													</a>
-																												</div>
-																											</td>
-																										</tr>
-																									</tbody>
-																								</table>
-																							</div>
-																						</td>
-																					</tr>
-																				</tbody>
-																			</table>
-																		</div>
-																');
+        $messages = [
+            'email' => 'Informe o e-mail',
+        ];
 
+        foreach($messages as $key => $message):
+            (empty($data[$key]) && !isset($data['send']) && !isset($data['token'])) && notify('', $message, 'info');
+        endforeach;
 
-							// echo $this->email->print_debugger();
+        if(empty($data['newPassword']) && isset($data['send']) && isset($data['token'])) {
+            notify('', 'Informe sua nova senha', 'info');
+        }
 
-							if ($this->email->send()) {
-									notify('', 'Link enviado para o e-mail informado', 'success');
-							} else {
-									notify('', 'Falha ao enviar o link', 'error');
-							}
-					} else {
-							notify('', $res['error'], 'error');
-					}
-			}
+        if (!empty($data['newPassword']) && isset($data['token']) && strlen(trim($data['token'])) === 64 && isset($data['send'])) {
+                if (strcmp($data['newPassword'], $data['cPassword']) === 0) {
+                        $res = $this->mauth->resetPassword($data);
 
-			$data['newPassword'] = $this->input->post('password');
-			$data['cPassword'] = $this->input->post('confirm_password');
-			$data['send'] = $this->input->post('send');
-
-			$messages = [
-				'email' => 'Informe o e-mail',
-			];
-
-			foreach($messages as $key => $message):
-				(empty($data[$key]) && !isset($data['send']) && !isset($data['token'])) && notify('', $message, 'info');
-			endforeach;
-
-			if(empty($data['newPassword']) && isset($data['send']) && isset($data['token'])) {
-				notify('', 'Informe sua nova senha', 'info');
-			}
-
-			if (!empty($data['newPassword']) && isset($data['token']) && strlen(trim($data['token'])) === 64 && isset($data['send'])) {
-					if (strcmp($data['newPassword'], $data['cPassword']) === 0) {
-							$res = $this->mauth->resetPassword($data);
-
-							if ($res['success']) {
-									notify('', $res['msg'], 'success');
-									redirect('/job/signin');
-							} else {
-									notify('', $res['msg'], 'error');
-									redirect('/job/forgot-password');
-							}
-					} else {
-							notify('', 'As senhas não são iguais', 'error');
-							//redirect(base_url('job/forgot-password?token=' . $data['token'] . '&email=' . urlencode($data['email'])));
-					}
-			}
-
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('pages/auth/forgot-password', $data);
-			$this->load->view('templates/footer', $data);
+                        if ($res['success']) {
+                                notify('', $res['msg'], 'success');
+                                redirect('/job/signin');
+                        } else {
+                                notify('', $res['msg'], 'error');
+                                redirect('/job/forgot-password');
+                        }
+                } else {
+                        notify('', 'As senhas não são iguais', 'error');
+                        //redirect(base_url('job/forgot-password?token=' . $data['token'] . '&email=' . urlencode($data['email'])));
+                }
+        }
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/auth/forgot-password', $data);
+        $this->load->view('templates/footer', $data);
 	}
 
 
 	public function signup()
 	{
-			$data['title'] = 'Realize seu cadastro';
+        $data['title'] = 'Realize seu cadastro';
 
-			$this->redirectIfLoggedIn();
+        $this->redirectIfLoggedIn();
 
-			$data['email'] = $this->input->post('email');
-			$data['user'] = $this->input->post('user');
-			$data['password'] = $this->input->post('password');
-			$data['send'] = $this->input->post('send');
+        $data['email'] = $this->input->post('email');
+        $data['user'] = $this->input->post('user');
+        $data['password'] = $this->input->post('password');
+        $data['send'] = $this->input->post('send');
 
-			$messages = [
-					'password' => 'Informe a senha',
-					'user' => 'Informe o usuário',
-					'email' => 'Informe o e-mail',
-			];
+        $messages = [
+                'password' => 'Informe a senha',
+                'user' => 'Informe o usuário',
+                'email' => 'Informe o e-mail',
+        ];
 
-			foreach ($messages as $key => $message) {
-					(empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
-			}
+        foreach ($messages as $key => $message) {
+                (empty($data[$key]) && isset($data['send'])) && notify('', $message, 'info');
+        }
 
-			if (!empty($this->input->post('user'))) {
-					$usernameExists = $this->mauth->checkUsernameExists($data['user']);
-					if ($usernameExists) {
-							notify('', 'Usuário já existe', 'error');
-					}
-			}
+        if (!empty($this->input->post('user'))) {
+                $usernameExists = $this->mauth->checkUsernameExists($data['user']);
+                if ($usernameExists) {
+                    notify('', 'Usuário já existe', 'error');
+                }
+        }
 
-			if (!empty($this->input->post('email'))) {
-					$emailExists = $this->mauth->checkEmailExists($data['email']);
-					if ($emailExists) {
-							notify('', 'E-mail já cadastrado.', 'error');
-					}
-			}
+        if (!empty($this->input->post('email'))) {
+                $emailExists = $this->mauth->checkEmailExists($data['email']);
+                if ($emailExists) {
+                    notify('', 'E-mail já cadastrado.', 'error');
+                }
+        }
 
-			if (!empty($this->input->post('user')) && !empty($this->input->post('password')) && !empty($this->input->post('email'))) {
-					if (!$usernameExists && !$emailExists) {
-							$res = $this->mauth->signUpUser($data);
-							if ($res === true) {
-									notify('', 'Usuário cadastrado', 'success');
-									redirect('/job/signin');
-							}
-					}
-			}
+        if (!empty($this->input->post('user')) && !empty($this->input->post('password')) && !empty($this->input->post('email'))) {
+                if (!$usernameExists && !$emailExists) {
+                        $res = $this->mauth->signUpUser($data);
+                        if ($res === true) {
+                                notify('', 'Usuário cadastrado', 'success');
+                                redirect('/job/signin');
+                        }
+                }
+        }
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('pages/auth/signup', $data);
-			$this->load->view('templates/footer', $data);
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/auth/signup', $data);
+        $this->load->view('templates/footer', $data);
 	}
 
 	
@@ -611,7 +572,7 @@ class Job extends MY_Controller
 	{
 		$data['title'] = 'Faça login';
 
-    $this->redirectIfLoggedIn();
+        $this->redirectIfLoggedIn();
 
 		$data['user'] = $this->input->post('user');
 		$data['password'] = $this->input->post('password');
@@ -641,8 +602,6 @@ class Job extends MY_Controller
 				notify('', $res['error'], 'error');
 				redirect('/job/signin');
 			}
-
-
 		} 
 
 		$this->load->view('templates/header', $data);
@@ -652,9 +611,8 @@ class Job extends MY_Controller
 
 	public function logout()
 	{
-			$this->session->sess_destroy();
-			redirect(base_url());
+        $this->session->sess_destroy();
+        redirect(base_url());
 	}
-
 
 }
