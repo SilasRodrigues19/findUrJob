@@ -12,7 +12,7 @@
     <img src="./logo.svg" alt="Logo" width="35">
   </a>
 
-  <h3 align="center" id="fuj">Find your job</h3>
+  <h3 align="center" id="fuj">Aspire</h3>
 
   <p align="center">
     <a href="https://aspireteste.000webhostapp.com/">Demo</a>
